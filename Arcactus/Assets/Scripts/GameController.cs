@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
     public float yPosMax = 5.0f;
 
     public GameObject enemy;
+    public GameObject player;
     public float startWait = 1.0f;
     public float waveWait = 4.0f;
     public float spawnWait = 0.5f;
@@ -63,9 +64,10 @@ public class GameController : MonoBehaviour {
                 float yPos = Random.Range(yPosMin, yPosMax);
                 float zPos = Mathf.Sin(alpha) * spawnRadius;
                
-                Vector3 spawnPosition = new Vector3(xPos, yPos, zPos);
+                Vector3 spawnPosition = player.transform.position + new Vector3(xPos, yPos, zPos);
                 Quaternion spawnRotation = Quaternion.identity;
                 Instantiate(enemy, spawnPosition, spawnRotation);
+             
                 yield return new WaitForSeconds(spawnWait);
             }
             yield return new WaitForSeconds(waveWait);

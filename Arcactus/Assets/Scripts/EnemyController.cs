@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class EnemyController : MonoBehaviour {
-
-    private Rigidbody rb;
-    private Transform playerTransform;
 
     public float speed;
     public int scoreValue;
     public int damage;
+
+    private Rigidbody rb;
+    private Transform playerTransform;
 
     void Start()
     {
