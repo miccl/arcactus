@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyMover : MonoBehaviour {
+public class EnemyController : MonoBehaviour {
 
     private Rigidbody rb;
     private Transform playerTransform;
 
-    public float speed = 1;    
+    public float speed;
+    public int scoreValue;
+    public int damage;
 
     void Start()
     {
@@ -17,7 +19,6 @@ public class EnemyMover : MonoBehaviour {
     void FixedUpdate()
     {
         Vector3 direction = (playerTransform.position- transform.position).normalized;
-        Debug.Log(direction);
         rb.AddForce(direction * speed);
 
     }

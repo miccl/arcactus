@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameController : MonoBehaviour {
@@ -14,10 +15,34 @@ public class GameController : MonoBehaviour {
 
     public float spawnRadius = 100f;
 
+    private bool gameOver;
+    private bool restart;
+
+    private int score = 0;
+    public int lives = 3;
+
+
+    public Text scoreText;
+    public Text restartText;
+    public Text gameOverText;
+    public Text livesText;
+
+
 
     // Use this for initialization
     void Start () {
+
+        score = 0;
+        UpdateScore();
+        gameOver = false;
+        restart = false;
+        restartText.text = "";
+        gameOverText.text = "";
+        livesText.text = lives.ToString();
+
         StartCoroutine(SpawnWaves());
+
+        
 	}
 	
 	// Update is called once per frame
@@ -44,6 +69,45 @@ public class GameController : MonoBehaviour {
                 yield return new WaitForSeconds(spawnWait);
             }
             yield return new WaitForSeconds(waveWait);
+
+            if(gameOver)
+            {
+                restartText.text = "Press 'R' for restart.";
+                restart = true;
+                break;
+            }
         }
+    }
+
+    public void AddScore(int scoreValue)
+    {
+        score += scoreValue;
+        Debug.Log(scoreValue);
+        UpdateScore();
+    }
+
+    void UpdateScore()
+    {
+        scoreText.text = score.ToString();
+    }
+
+    void UpdateLives()
+    {
+        livesText.text = lives.ToString();
+    }
+
+    public void ApplyDamage(int damageValue)
+    {
+        lives -= damageValue;
+        UpdateLives();
+        if(lives <= 0) {
+            GameOver();
+        }
+    }
+
+    void GameOver()
+    {
+        gameOverText.text = "Game Over !";
+        gameOver = true;
     }
 }
