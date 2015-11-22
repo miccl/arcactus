@@ -20,13 +20,15 @@ public class GameController : MonoBehaviour {
     private bool restart;
 
     private int score = 0;
-    public int lives = 3;
-
+    public int lives_count;
+    private int lives;
+    
 
     public Text scoreText;
     public Text restartText;
     public Text gameOverText;
     public Text livesText;
+    public Texture heartTexture;
 
 
 
@@ -34,6 +36,7 @@ public class GameController : MonoBehaviour {
     void Start () {
 
         score = 0;
+        lives = lives_count;
         UpdateScore();
         gameOver = false;
         restart = false;
@@ -48,8 +51,15 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if (restart)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Application.LoadLevel(Application.loadedLevel);
+            }
+        }
+
+    }
 
     IEnumerator SpawnWaves()
     {
@@ -112,4 +122,19 @@ public class GameController : MonoBehaviour {
         gameOverText.text = "Game Over !";
         gameOver = true;
     }
+
+    void OnGUI()
+    {
+        Rect r = new Rect(10, 10, Screen.width, Screen.height); //Adjust the rectangle position and size for your own needs
+        GUILayout.BeginArea(r);
+        GUILayout.BeginHorizontal();
+
+        for (int i = 0; i < lives; i++)
+            GUILayout.Label(heartTexture); //assign your heart image to this texture
+
+        GUILayout.FlexibleSpace();
+        GUILayout.EndHorizontal();
+        GUILayout.EndArea();
+    }
+
 }
