@@ -36,15 +36,15 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 
-    void OnCollisionEnter(Collision collision)
+    void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        GameObject other = collision.collider.gameObject;
+        GameObject other = hit.gameObject;
         if (other.tag == "Enemy")
         {
-            EnemyController enemyController = other.gameObject.GetComponent<EnemyController>();
+            EnemyController enemyController = other.GetComponent<EnemyController>();
             gameController.ApplyDamage(enemyController.damage);
             Destroy(other.gameObject);
-        }
 
+        }
     }
 }
