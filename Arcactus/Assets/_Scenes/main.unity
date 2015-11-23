@@ -804,6 +804,7 @@ MonoBehaviour:
   yPosMin: .5
   yPosMax: .5
   enemy: {fileID: 183312, guid: 0b4b8644070fd534e84fdeb2447a3672, type: 2}
+  player: {fileID: 0}
   startWait: 1
   waveWait: 10
   spawnWait: 1
