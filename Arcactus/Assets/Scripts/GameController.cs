@@ -26,7 +26,6 @@ public class GameController : MonoBehaviour {
     public Text scoreText;
     public Text restartText;
     public Text gameOverText;
-    public Text livesText;
     public Texture heartTexture;
 
 
@@ -41,7 +40,6 @@ public class GameController : MonoBehaviour {
         restart = false;
         restartText.text = "";
         gameOverText.text = "";
-        livesText.text = lives.ToString();
 
         StartCoroutine(SpawnWaves());
 
@@ -101,15 +99,9 @@ public class GameController : MonoBehaviour {
         scoreText.text = score.ToString();
     }
 
-    void UpdateLives()
-    {
-        livesText.text = lives.ToString();
-    }
-
     public void ApplyDamage(int damageValue)
     {
         lives -= damageValue;
-        UpdateLives();
         if(lives <= 0) {
             GameOver();
         }
