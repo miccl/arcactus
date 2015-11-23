@@ -3,8 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    [Header("blala")]
-    [Tooltip("Shot")]
+    
     public GameObject shot;
     public Transform shotSpawn;
     public float fireRate = 0.25f;
@@ -37,28 +36,15 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 
-    //void OnCollisionEnter(Collision collision)
-    //{
-    //    GameObject other = collision.collider.gameObject;
-    //    if (other.tag == "Enemy")
-    //    {
-    //        EnemyController enemyController = other.gameObject.GetComponent<EnemyController>();
-    //        gameController.ApplyDamage(enemyController.damage);
-    //        Destroy(other.gameObject);
-    //    }
-
-    //}
-    
-
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    void OnCollisionEnter(Collision collision)
     {
-        GameObject other = hit.gameObject;
+        GameObject other = collision.collider.gameObject;
         if (other.tag == "Enemy")
         {
-            EnemyController enemyController = other.GetComponent<EnemyController>();
+            EnemyController enemyController = other.gameObject.GetComponent<EnemyController>();
             gameController.ApplyDamage(enemyController.damage);
             Destroy(other.gameObject);
-
         }
+
     }
 }
