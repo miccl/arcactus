@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour {
     public Text scoreText;
     public Text restartText;
     public Text gameOverText;
+    public Text highscoreText;
     public Texture heartTexture;
 
 
@@ -36,6 +37,7 @@ public class GameController : MonoBehaviour {
         score = 0;
         lives = lives_count;
         UpdateScore();
+        UpdateHighscore();
         gameOver = false;
         restart = false;
         restartText.text = "";
@@ -49,7 +51,7 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (restart)
-        {
+        {            
             if (Input.GetKeyDown(KeyCode.R))
             {
                 Application.LoadLevel(Application.loadedLevel);
@@ -89,14 +91,29 @@ public class GameController : MonoBehaviour {
 
     public void AddScore(int scoreValue)
     {
-        score += scoreValue;
-        Debug.Log(scoreValue);
-        UpdateScore();
+        if(!gameOver)
+        {
+            score += scoreValue;
+            UpdateScore();
+        }
     }
 
     void UpdateScore()
     {
         scoreText.text = score.ToString();
+    }
+
+    void UpdateHighscore()
+    {
+        int highscore = PlayerPrefs.GetInt("highscore", 0);
+        if (score > highscore)
+        {
+            PlayerPrefs.SetInt("highscore", score);
+            restartText.text = "New Highscore!";
+            highscore = score;
+        }
+        highscoreText.text = "Highscore:" + highscore;
+
     }
 
     public void ApplyDamage(int damageValue)
@@ -111,6 +128,7 @@ public class GameController : MonoBehaviour {
     {
         gameOverText.text = "Game Over !";
         gameOver = true;
+        UpdateHighscore();
     }
 
     void OnGUI()
@@ -126,4 +144,38 @@ public class GameController : MonoBehaviour {
         GUILayout.EndHorizontal();
         GUILayout.EndArea();
     }
+
+    //void AddHighscore(string name, int score)
+    //{
+    //    int newScore, oldScore;
+    //    string newName, oldName;
+    //    const string HSCORE = "HScore";
+    //    const string HSCORENAME = "HScoreName";
+    //    newScore = score;
+    //    newName = name;
+    //    for(int i=0;i<10;i++)
+    //    {
+    //        if(PlayerPrefs.HasKey(i + HSCORE))
+    //        {
+    //            if(PlayerPrefs.GetInt(i + HSCORE) < newScore)
+    //            {
+    //                //new score ist higher than stored score
+    //                oldScore = PlayerPrefs.GetInt(i + HSCORE);
+    //                oldName = PlayerPrefs.GetString(i + HSCORE);
+    //                PlayerPrefs.SetInt(i + HSCORE, newScore);
+    //                PlayerPrefs.SetString(i + HSCORENAME, newName);
+
+    //                newScore = oldScore;
+    //                newName = oldName;
+    //            } 
+    //            else
+    //            {
+    //                PlayerPrefs.SetInt(i + HSCORE, newScore);
+    //                PlayerPrefs.SetString(i + HSCORENAME, newName);
+    //                newScore = 0;
+    //                newName = "";
+    //            }
+    //        }
+    //    }
+    //}
 }
