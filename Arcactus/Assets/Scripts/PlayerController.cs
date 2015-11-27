@@ -9,19 +9,16 @@ public class PlayerController : MonoBehaviour {
     public float fireRate = 0.25f;
 
     private float nextFire;
-    private GameController gameController;
+    private Vector3 movementVector;
+    private CharacterController characterController = null;
+    public float movement_speed = 1;
+
+
 
     void Start () {
 
-        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
-        if (gameControllerObject != null)
-        {
-            gameController = gameControllerObject.GetComponent<GameController>();
-        }
-        else
-        {
-            Debug.Log("Cannot find 'GameController' script");
-        }
+        characterController = gameObject.GetComponent<CharacterController>();
+
 
     }
 
@@ -36,15 +33,16 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        GameObject other = hit.gameObject;
-        if (other.tag == "Enemy")
-        {
-            EnemyController enemyController = other.GetComponent<EnemyController>();
-            gameController.ApplyDamage(enemyController.damage);
-            Destroy(other.gameObject);
+    //void FixedUpdate()
+    //{
+    //    float moveHorizontal = Input.GetAxis("Horizontal");
+    //    float moveVertical = Input.GetAxis("Vertical");
 
-        }
-    }
+    //    Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+
+    //    characterController.Move(movement * movement_speed);
+
+    //}
+
+
 }
