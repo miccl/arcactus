@@ -11,7 +11,7 @@ public class ThornController : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = (transform.forward) * speed;
+        rb.velocity = (transform.up) * speed;
 
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject != null)
