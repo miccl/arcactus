@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour {
     
     public GameObject shot;
     public Transform shotSpawn;
-    public float fireRate = 0.25f;
+	[Range(0.1f,2)]
+    public float fireRate = 0.5f;
 
     private float nextFire;
     private Vector3 movementVector;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour {
     void Start () {
 
         characterController = gameObject.GetComponent<CharacterController>();
+       
 
 
     }
@@ -33,16 +35,16 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 
-    //void FixedUpdate()
-    //{
-    //    float moveHorizontal = Input.GetAxis("Horizontal");
-    //    float moveVertical = Input.GetAxis("Vertical");
-
-    //    Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-    //    characterController.Move(movement * movement_speed);
-
-    //}
+//    void FixedUpdate()
+//    {
+//        float moveHorizontal = Input.GetAxis("Horizontal");
+//        float moveVertical = Input.GetAxis("Vertical");
+//
+//        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+//
+//        characterController.Move(movement * movement_speed);
+//
+//    }
 
 
 }

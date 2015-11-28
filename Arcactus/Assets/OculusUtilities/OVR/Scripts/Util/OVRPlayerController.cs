@@ -302,7 +302,7 @@ public class OVRPlayerController : MonoBehaviour
         {
             euler.y += Input.GetAxis("Mouse X") * rotateInfluence * 3.25f;
 			//neu:
-            euler.x -= Input.GetAxis("Mouse Y") * rotateInfluence * 3.25f;
+            //euler.x -= Input.GetAxis("Mouse Y") * rotateInfluence * 3.25f;
         }
 #endif
 
