@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour {
     public Text scoreText;
     public Text newHighscoreText;
     public Text gameOverText;
+    public Text pauseText;
 	public RawImage life1;
 	public RawImage life2;
 	public RawImage life3;
@@ -36,6 +37,8 @@ public class GameController : MonoBehaviour {
 
 	private bool newHighscore;
 	private int highscore;
+
+    private bool paused;
 
 
     // Use this for initialization
@@ -49,6 +52,8 @@ public class GameController : MonoBehaviour {
         restart = false;
         newHighscoreText.text = "";
         gameOverText.text = "";
+        pauseText.text = "";
+        paused = false;
 		newHighscore = true;
 
         StartCoroutine(SpawnWaves());
@@ -61,6 +66,21 @@ public class GameController : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.R))
             {
                 Application.LoadLevel(Application.loadedLevel);
+            }
+        }
+
+        if (Input.GetButtonDown("Start"))
+        {
+            if(!paused)
+            {
+                Time.timeScale = 0;
+                pauseText.text = "Paused";
+                paused = true;
+            }
+            else {
+                Time.timeScale = 1;
+                pauseText.text = "";
+                paused = false;
             }
         }
     }
