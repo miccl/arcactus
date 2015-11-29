@@ -9,9 +9,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 418706}
   - 33: {fileID: 3360246}
-  - 136: {fileID: 13610456}
   - 23: {fileID: 2357328}
   - 54: {fileID: 5483908}
+  - 136: {fileID: 13610456}
   - 114: {fileID: 11422342}
   m_Layer: 0
   m_Name: Thorn
@@ -26,9 +26,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 138334}
-  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: .300000012, y: .949999988, z: .74000001}
-  m_LocalScale: {x: .0500000007, y: .150000006, z: .0500000007}
+  m_LocalRotation: {x: 2.18556941e-08, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: .319000006, y: .754000008, z: 3.27699995}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -49,7 +49,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_ImportantGI: 0
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
@@ -62,7 +62,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 138334}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 6bd33720bd7d36d4c8743b26dd7d30b5, type: 3}
 --- !u!54 &5483908
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75f7dc4b8c9ff64c928372fa67a0db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 50
 --- !u!136 &13610456
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -99,9 +99,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
+  m_Radius: .0399999991
+  m_Height: .709999979
+  m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
@@ -132,7 +132,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: speed
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: scoreValue
