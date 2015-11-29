@@ -122,9 +122,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.01982546
-  m_Height: 2.22875953
+  m_Height: 2.58999991
   m_Direction: 1
-  m_Center: {x: -1.78813934e-07, y: .25, z: 1.78813934e-07}
+  m_Center: {x: -1.78813934e-07, y: .0500000007, z: 1.78813934e-07}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -183,6 +183,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_CollisionDetection
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Height
+      value: 2.58999991
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Center.y
+      value: .0500000007
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
