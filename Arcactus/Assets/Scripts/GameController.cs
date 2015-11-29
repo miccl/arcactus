@@ -29,8 +29,9 @@ public class GameController : MonoBehaviour {
     public Text scoreText;
     public Text newHighscoreText;
     public Text gameOverText;
-    public Texture heartTexture;
-
+	public RawImage life1;
+	public RawImage life2;
+	public RawImage life3;
 	//Boolean, um nur das erste Mal anzuzeigen, dass der Spieler einen neuen Highscore hat.
 
 	private bool newHighscore;
@@ -120,29 +121,23 @@ public class GameController : MonoBehaviour {
     public void ApplyDamage(int damageValue)
     {
         lives -= damageValue;
+		UpdateLives();
         if(lives <= 0) {
             GameOver();
         }
     }
 
+	void UpdateLives()
+	{
+		life1.enabled = (lives >= 1);
+		life2.enabled = (lives >= 2);
+		life3.enabled = (lives >= 3);
+	}
+
     void GameOver()
     {
         gameOverText.text = "Game Over !";
         gameOver = true;
-    }
-
-    void OnGUI()
-    {
-		Rect r = new Rect(Screen.width/2, Screen.height/2, Screen.width, Screen.height); //Adjust the rectangle position and size for your own needs
-        GUILayout.BeginArea(r);
-        GUILayout.BeginHorizontal();
-
-        for (int i = 0; i < lives; i++)
-            GUILayout.Label(heartTexture); //assign your heart image to this texture
-
-        GUILayout.FlexibleSpace();
-        GUILayout.EndHorizontal();
-        GUILayout.EndArea();
     }
 
     //void AddHighscore(string name, int score)
