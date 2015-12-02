@@ -29,9 +29,8 @@ public class PlayerController : MonoBehaviour {
 	    if(Input.GetButton("Fire1") && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
-            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-            //Instantiate(shot, shotSpawn.position, new Quaternion(0,0,0,1));
-  
+            GameObject thorn = (GameObject) Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            ThornController tc = thorn.GetComponent<ThornController>();
         }
 	}
 

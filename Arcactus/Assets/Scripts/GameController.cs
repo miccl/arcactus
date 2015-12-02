@@ -18,43 +18,26 @@ public class GameController : MonoBehaviour {
 
     public float spawnRadius = 100f;
 
-    private bool gameOver;
-    private bool restart;
 
-    private int score = 0;
-    public int lives_count;
-    private int lives;
 
     [Header("Text")]
-    public Text scoreText;
-    public Text newHighscoreText;
     public Text gameOverText;
     public Text pauseText;
-	public RawImage life1;
-	public RawImage life2;
-	public RawImage life3;
-	//Boolean, um nur das erste Mal anzuzeigen, dass der Spieler einen neuen Highscore hat.
 
-	private bool newHighscore;
-	private int highscore;
 
-    private bool paused;
+    internal bool paused;
+    internal bool gameOver;
+    private bool restart;
 
 
     // Use this for initialization
     void Start () {
 
-        score = 0;
-        lives = lives_count;
-        UpdateScoreText();
-		highscore = PlayerPrefs.GetInt("highscore", 0);
         gameOver = false;
         restart = false;
-        newHighscoreText.text = "";
         gameOverText.text = "";
         pauseText.text = "";
         paused = false;
-		newHighscore = true;
 
         StartCoroutine(SpawnWaves());
 	}
@@ -114,83 +97,12 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public void AddScore(int scoreValue)
-    {
-        if(!gameOver)
-        {
-            score += scoreValue;
-			if (score > highscore) {
-				PlayerPrefs.SetInt ("highscore", score);
-				if (newHighscore) {
-					newHighscoreText.text = "New Highscore!";
-					newHighscore = false;
-				} else {
-					newHighscoreText.text = "";
-				}
-				highscore = score;
-			}
-            UpdateScoreText();
-        }
-    }
 
-    void UpdateScoreText()
-    {
-        scoreText.text = score.ToString();
-    }
 
-    public void ApplyDamage(int damageValue)
-    {
-        lives -= damageValue;
-		UpdateLives();
-        if(lives <= 0) {
-            GameOver();
-        }
-    }
-
-	void UpdateLives()
-	{
-		life1.enabled = (lives >= 1);
-		life2.enabled = (lives >= 2);
-		life3.enabled = (lives >= 3);
-	}
-
-    void GameOver()
+    internal void GameOver()
     {
         gameOverText.text = "Game Over !";
         gameOver = true;
     }
 
-    //void AddHighscore(string name, int score)
-    //{
-    //    int newScore, oldScore;
-    //    string newName, oldName;
-    //    const string HSCORE = "HScore";
-    //    const string HSCORENAME = "HScoreName";
-    //    newScore = score;
-    //    newName = name;
-    //    for(int i=0;i<10;i++)
-    //    {
-    //        if(PlayerPrefs.HasKey(i + HSCORE))
-    //        {
-    //            if(PlayerPrefs.GetInt(i + HSCORE) < newScore)
-    //            {
-    //                //new score ist higher than stored score
-    //                oldScore = PlayerPrefs.GetInt(i + HSCORE);
-    //                oldName = PlayerPrefs.GetString(i + HSCORE);
-    //                PlayerPrefs.SetInt(i + HSCORE, newScore);
-    //                PlayerPrefs.SetString(i + HSCORENAME, newName);
-
-    //                newScore = oldScore;
-    //                newName = oldName;
-    //            } 
-    //            else
-    //            {
-    //                PlayerPrefs.SetInt(i + HSCORE, newScore);
-    //                PlayerPrefs.SetString(i + HSCORENAME, newName);
-    //                newScore = 0;
-    //                newName = "";
-    //            }
-    //        }
-    //    }
-    //}
 }

@@ -3,33 +3,31 @@ using System.Collections;
 
 public class ThornController : MonoBehaviour {
 
-    public float speed;
+    /// <summary>
+    /// movement speed of the thorn
+    /// </summary>
+    public float speed = 100;
+
+    /// <summary>
+    /// damage caused by hit
+    /// </summary>
+    public int damage = 1;
 
     private Rigidbody rb;
-    private GameController gameController;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity = (transform.forward) * speed;
-
-        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
-        if (gameControllerObject != null)
-        {
-            gameController = gameControllerObject.GetComponent<GameController>();
-        }
-        else
-        {
-            Debug.Log("Cannot find 'GameController' script");
-        }
     }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
         {
             EnemyController enemyController = other.gameObject.GetComponent<EnemyController>();
-            gameController.AddScore(enemyController.scoreValue);
-            Destroy(other.gameObject);
+            enemyController.ApplyDamage(damage);
+            //Destroy(other.gameObject);
             Destroy(gameObject);
         }
 

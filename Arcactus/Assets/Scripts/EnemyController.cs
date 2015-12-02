@@ -4,14 +4,24 @@ using System;
 
 public class EnemyController : MonoBehaviour {
 
-
+    /// <summary>
+    /// needed shots from the player to destroy the enemy
+    /// </summary>
+    public int lives;
+    /// <summary>
+    /// movement speed of the enemy
+    /// </summary>
     public float speed;
+    /// <summary>
+    /// score value of the enemy if the player destroys it
+    /// </summary>
     public int scoreValue;
     public int damage;
 
     private Rigidbody rb;
     private Transform playerTransform;
     private GameController gameController;
+    private ScoreManager scoreManager;
 
 
     void Start()
@@ -23,12 +33,23 @@ public class EnemyController : MonoBehaviour {
         if (gameControllerObject != null)
         {
             gameController = gameControllerObject.GetComponent<GameController>();
+            scoreManager = gameControllerObject.GetComponent<ScoreManager>();
         }
         else
         {
             Debug.Log("Cannot find 'GameController' script");
         }
 
+    }
+
+    public void ApplyDamage(int taken_damage)
+    {
+        lives -= taken_damage;
+        if(lives <= 0)
+        {
+            scoreManager.AddScore(scoreValue);
+            Destroy(gameObject);
+        }
     }
 
     void FixedUpdate()
@@ -43,7 +64,8 @@ public class EnemyController : MonoBehaviour {
         GameObject other = collision.gameObject;
         if(other.tag == "Player")
         {
-            gameController.ApplyDamage(damage);
+            LivesManager lv = other.gameObject.GetComponent<LivesManager>();
+            lv.ApplyDamage(damage);
             Destroy(gameObject);
         }
     }
