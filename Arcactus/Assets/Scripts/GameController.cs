@@ -52,7 +52,7 @@ public class GameController : MonoBehaviour {
             }
         }
 
-        if (Input.GetButtonDown("Start"))
+        if (Input.GetButtonDown("Pause"))
         {
             if(!paused)
             {
