@@ -898,6 +898,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!1 &1411268414 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 9808544e23e1404418ef41373c1f18ce, type: 3}
+  m_PrefabInternal: {fileID: 818112073}
+--- !u!114 &1411268415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1411268414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b01d99dd50b9b42a88cbdbea4d6f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shot: {fileID: 138334, guid: 212c73be1b4794f43975fc817ad8743c, type: 2}
+  shotSpawn: {fileID: 1305351539}
+  fireRate: .5
 --- !u!4 &1649438295 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400012, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}

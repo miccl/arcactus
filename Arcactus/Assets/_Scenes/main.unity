@@ -416,6 +416,24 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &634205195 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 9808544e23e1404418ef41373c1f18ce, type: 3}
+  m_PrefabInternal: {fileID: 818112073}
+--- !u!114 &634205198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 634205195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b01d99dd50b9b42a88cbdbea4d6f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shot: {fileID: 138334, guid: 212c73be1b4794f43975fc817ad8743c, type: 2}
+  shotSpawn: {fileID: 1305351539}
+  fireRate: .5
 --- !u!1 &636050028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,9 +1075,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efed661e1f46d2e4a8e69231cb866295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shot: {fileID: 138334, guid: 212c73be1b4794f43975fc817ad8743c, type: 2}
-  shotSpawn: {fileID: 1305351539}
-  fireRate: .5
   movement_speed: .5
 --- !u!114 &1956359849
 MonoBehaviour:
@@ -1072,7 +1087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dfa613dda86764db28b8efb382cbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives_count: 3
+  lives_count: 1000
   life1: {fileID: 184396670}
   life2: {fileID: 1980668439}
   life3: {fileID: 302742266}

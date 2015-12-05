@@ -8,10 +8,6 @@ public class ThornController : MonoBehaviour {
     /// </summary>
     public float speed = 100;
 
-    /// <summary>
-    /// damage caused by hit
-    /// </summary>
-    public int damage = 1;
 
     private Rigidbody rb;
 
@@ -25,8 +21,8 @@ public class ThornController : MonoBehaviour {
     {
         if (other.tag == "Enemy")
         {
-            EnemyController enemyController = other.gameObject.GetComponent<EnemyController>();
-            enemyController.ApplyDamage(damage);
+            //EnemyController enemyController = other.gameObject.GetComponent<EnemyController>();
+            //enemyController.ApplyDamage(damage);
             //Destroy(other.gameObject);
             Destroy(gameObject);
         }

@@ -16,11 +16,13 @@ public class EnemyController : MonoBehaviour {
     /// score value of the enemy if the player destroys it
     /// </summary>
     public int scoreValue;
+    /// <summary>
+    /// damage of the enemy
+    /// </summary>
     public int damage;
 
     private Rigidbody rb;
     private Transform playerTransform;
-    private GameController gameController;
     private ScoreManager scoreManager;
 
 
@@ -32,7 +34,6 @@ public class EnemyController : MonoBehaviour {
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject != null)
         {
-            gameController = gameControllerObject.GetComponent<GameController>();
             scoreManager = gameControllerObject.GetComponent<ScoreManager>();
         }
         else
@@ -47,8 +48,7 @@ public class EnemyController : MonoBehaviour {
         lives -= taken_damage;
         if(lives <= 0)
         {
-            scoreManager.AddScore(scoreValue);
-            Destroy(gameObject);
+            Dead();
         }
     }
 
@@ -68,5 +68,11 @@ public class EnemyController : MonoBehaviour {
             lv.ApplyDamage(damage);
             Destroy(gameObject);
         }
+    }
+
+    void Dead()
+    {
+        scoreManager.AddScore(scoreValue);
+        Destroy(gameObject);
     }
 }
