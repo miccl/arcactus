@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class LivesManager : MonoBehaviour {
 
     public int lives_count = 3;
-    private int lives;
+    internal float lives;
 
     public RawImage life1;
     public RawImage life2;
     public RawImage life3;
 
     private GameController gameController;
+    private ScoreManager scoreManager;
 
-
-    // Use this for initialization
     void Start () {
         lives = lives_count;
 
@@ -22,6 +22,7 @@ public class LivesManager : MonoBehaviour {
         if (gameControllerObject != null)
         {
             gameController = gameControllerObject.GetComponent<GameController>();
+            scoreManager = gameControllerObject.GetComponent<ScoreManager>();
         }
         else
         {
@@ -36,13 +37,14 @@ public class LivesManager : MonoBehaviour {
 	
 	}
 
-    public void ApplyDamage(int damageValue)
+
+    public void ApplyDamage(float damageValue)
     {
         lives -= damageValue;
         UpdateLives();
         if (lives <= 0)
         {
-            gameController.GameOver();
+            Dead();
         }
     }
 
@@ -54,4 +56,21 @@ public class LivesManager : MonoBehaviour {
     }
 
 
+    void Dead()
+    {
+        //TODO Explosion
+        gameController.GameOver();
+    }
+
+    internal void AddLive()
+    {
+        if (lives_count < lives)
+        {
+            lives += 1;
+        }
+        else
+        {
+            scoreManager.AddScore(100);
+        }
+    }
 }

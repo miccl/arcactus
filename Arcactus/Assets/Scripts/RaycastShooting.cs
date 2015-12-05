@@ -16,7 +16,7 @@ public class RaycastShooting : MonoBehaviour {
     /// <summary>
     /// damage of the shot
     /// </summary>
-    int shotDamage = 1;
+    public float shotDamage = 1.0f;
     /// <summary>
     /// range of the shot
     /// </summary>

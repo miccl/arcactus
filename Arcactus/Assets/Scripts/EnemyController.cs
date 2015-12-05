@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour {
     /// <summary>
     /// needed shots from the player to destroy the enemy
     /// </summary>
-    public int lives;
+    public float lives;
     /// <summary>
     /// movement speed of the enemy
     /// </summary>
@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour {
     /// <summary>
     /// damage of the enemy
     /// </summary>
-    public int damage;
+    public float damage;
 
     private Rigidbody rb;
     private Transform playerTransform;
@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour {
 
     }
 
-    public void ApplyDamage(int taken_damage)
+    public void ApplyDamage(float taken_damage)
     {
         lives -= taken_damage;
         if(lives <= 0)
@@ -56,7 +56,7 @@ public class EnemyController : MonoBehaviour {
     {
         Vector3 direction = (playerTransform.position- transform.position).normalized;
         rb.AddForce(direction * speed);
-
+        Debug.Log(speed);
     }
 
     void OnCollisionEnter(Collision collision)

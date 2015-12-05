@@ -16,16 +16,4 @@ public class ThornController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         rb.velocity = (transform.forward) * speed;
     }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            //EnemyController enemyController = other.gameObject.GetComponent<EnemyController>();
-            //enemyController.ApplyDamage(damage);
-            //Destroy(other.gameObject);
-            Destroy(gameObject);
-        }
-
-    }
 }

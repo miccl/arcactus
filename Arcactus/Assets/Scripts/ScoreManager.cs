@@ -9,6 +9,7 @@ public class ScoreManager : MonoBehaviour {
     public Text newHighscoreText;
 
     private int score = 0;
+    internal int scoreMultiplier = 1;
 
     //Boolean, um nur das erste Mal anzuzeigen, dass der Spieler einen neuen Highscore hat.
     private bool newHighscore;
@@ -21,6 +22,7 @@ public class ScoreManager : MonoBehaviour {
 
         //Init things
         score = 0;
+        scoreMultiplier = 1;
         UpdateScoreText();
         highscore = PlayerPrefs.GetInt("highscore", 0);
         newHighscoreText.text = "";
@@ -47,7 +49,7 @@ public class ScoreManager : MonoBehaviour {
     {
         if (!gameController.gameOver)
         {
-            score += scoreValue;
+            score += scoreValue * scoreMultiplier;
             if (score > highscore)
             {
                 PlayerPrefs.SetInt("highscore", score);
