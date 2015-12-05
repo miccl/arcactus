@@ -56,7 +56,6 @@ public class EnemyController : MonoBehaviour {
     {
         Vector3 direction = (playerTransform.position- transform.position).normalized;
         rb.AddForce(direction * speed);
-        Debug.Log(speed);
     }
 
     void OnCollisionEnter(Collision collision)
