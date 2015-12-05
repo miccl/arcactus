@@ -18,7 +18,7 @@ public class PowerUpManager : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Cannot find 'GameController' script");
+            Debug.Log("Cannot find 'ArmObject' script");
         }
 
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
@@ -117,11 +117,12 @@ public class PowerUpManager : MonoBehaviour {
 
     IEnumerator EnemySmaller(float duration)
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach(GameObject enemy in enemies)
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            Debug.Log("Hallo");
-            enemy.transform.localScale += new Vector3(50, 5, 5);
+            if (enemy != null)
+            {
+                enemy.gameObject.transform.localScale *= 2;
+            }
         }
         yield return new WaitForSeconds(duration);
 
@@ -141,6 +142,8 @@ public class PowerUpManager : MonoBehaviour {
         {
             if(enemy != null)
             {
+                Rigidbody rb = enemy.GetComponent<Rigidbody>();
+                rb.velocity = new Vector3(0, 0, 0);
                 EnemyController enemyController = enemy.gameObject.GetComponent<EnemyController>();
                 enemyController.speed = 0;
             } else
@@ -151,6 +154,20 @@ public class PowerUpManager : MonoBehaviour {
         }
 
         yield return new WaitForSeconds(duration);
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            if (enemy != null)
+            {
+                Rigidbody rb = enemy.GetComponent<Rigidbody>();
+                //EnemyController enemyController = enemy.gameObject.GetComponent<EnemyController>();
+                //enemyController.speed = 1;
+            }
+            else
+            {
+                Debug.Log("enemy null");
+            }
+
+        }
 
 
     }

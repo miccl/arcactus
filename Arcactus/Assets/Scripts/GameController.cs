@@ -12,9 +12,18 @@ public class GameController : MonoBehaviour {
     [Header("Wave Settings")]
     public float startWait = 1.0f;
     public float waveWait = 4.0f;
+    /// <summary>
+    /// wait
+    /// </summary>
     public float spawnWait = 0.5f;
-    public int waveCount = 10;
-
+    /// <summary>
+    /// count of the enemies
+    /// </summary>
+    public int enemyCount = 10;
+    /// <summary>
+    /// the amount of powerUps spawned per wave
+    /// </summary>
+    public float powerUpPerWave = 1f;
 
     [Header("Enemy")]
     public float enemySpawnRadius = 100f;
@@ -29,13 +38,18 @@ public class GameController : MonoBehaviour {
     [Header("Text")]
     public Text gameOverText;
     public Text pauseText;
+    public Text nextWaveText;
 
     internal bool paused;
     internal bool gameOver;
     private bool restart;
-    private int currentWave;
+    private int currentWave = 1;
 
+    private float enemyEasyProb = 0.95f;
+    private float enemyMediumProb = 0.05f;
+    private float enemyHardProb = 0.0f;
 
+   
     // Use this for initialization
     void Start () {
 
@@ -43,9 +57,10 @@ public class GameController : MonoBehaviour {
         restart = false;
         gameOverText.text = "";
         pauseText.text = "";
+        nextWaveText.text = "";
         paused = false;
+        currentWave = 1;
 
-        currentWave = 0;
         StartCoroutine(SpawnWaves());
 	}
 	
@@ -80,32 +95,77 @@ public class GameController : MonoBehaviour {
         yield return new WaitForSeconds(startWait);
         while(true)
         {
-            currentWave++;
-            for (int i = 0; i < waveCount; i++)
+
+
+            for (int i = 0; i < enemyCount; i++)
             {
-                SpawnEnemy(i);
+                float alpha = Random.Range(0.0f, 1.0f);
+                float powerUpProb = powerUpPerWave / enemyCount;
+                if (alpha <= powerUpProb)
+                {
+                    SpawnPowerUp();
+                }
+                SpawnEnemy();
+
                 yield return new WaitForSeconds(spawnWait);
             }
-            for(int i = 0; i < 15; i++)
+
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            while (enemies.Length > 0)
             {
-                SpawnPowerUp();
+                yield return new WaitForSeconds(1.0f);
+                enemies = GameObject.FindGameObjectsWithTag("Enemy");
             }
 
-            yield return new WaitForSeconds(waveWait);
-
-            if(gameOver)
+            if (gameOver)
             {
                 restart = true;
                 break;
             }
+
+            InitializeNextWave();
+            yield return new WaitForSeconds(waveWait);
         }
     }
 
-    void SpawnEnemy(int wave)
+    private void InitializeNextWave()
+    {
+        if (currentWave <= 11)
+        {
+            enemyHardProb += currentWave/100.0f;
+            enemyEasyProb -= (1.5f*(11 - (currentWave)))/100.0f;
+            enemyMediumProb = 1 - enemyHardProb - enemyEasyProb;
+            Debug.Log(enemyEasyProb + " ! " + enemyMediumProb + " ! " + enemyHardProb);
+        }
+
+        enemyCount += currentWave;
+        currentWave++;
+        nextWaveText.text = "Next Wave: " + currentWave;
+
+
+    }
+
+    void SpawnEnemy()
     {
         Vector3 spawnPosition = ComputeSpawnPosition(enemySpawnRadius, enemyYPosMin, enemyYPosMax);
         Quaternion spawnRotation = Quaternion.identity;
-        Instantiate(enemy, spawnPosition, spawnRotation);
+
+        float alpha = Random.Range(0.0f, 1.0f);
+        if(alpha <= enemyEasyProb)
+        {
+            GameObject enemy = Instantiate(Resources.Load("Prefabs/Enemies/Enemy Easy"), spawnPosition, spawnRotation) as GameObject;
+        }
+        else if(alpha >= 1- enemyHardProb)
+        {
+            GameObject enemy = Instantiate(Resources.Load("Prefabs/Enemies/Enemy Hard"), spawnPosition, spawnRotation) as GameObject;
+        }
+        else
+        {
+            GameObject enemy = Instantiate(Resources.Load("Prefabs/Enemies/Enemy Medium"), spawnPosition, spawnRotation) as GameObject;
+        }
+
+
+        //Instantiate(enemy, spawnPosition, spawnRotation);
 
     }
 
