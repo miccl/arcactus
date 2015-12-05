@@ -518,7 +518,7 @@ GameObject:
   - 222: {fileID: 682149650}
   - 114: {fileID: 682149649}
   m_Layer: 5
-  m_Name: HalfLife_Pos2
+  m_Name: HalfLife_Pos3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -535,7 +535,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 896163448}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -46.0000992, y: 74.9999847}
@@ -636,6 +636,10 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 4300000, guid: 03c4db28933835d4e805f37830c5f993, type: 3}
+    - target: {fileID: 100000, guid: 9808544e23e1404418ef41373c1f18ce, type: 3}
+      propertyPath: m_TagString
+      value: Arm
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 9808544e23e1404418ef41373c1f18ce, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 9808544e23e1404418ef41373c1f18ce, type: 3}
@@ -673,8 +677,8 @@ RectTransform:
   - {fileID: 1980668441}
   - {fileID: 302742265}
   - {fileID: 968540436}
-  - {fileID: 682149648}
   - {fileID: 1654938527}
+  - {fileID: 682149648}
   m_Father: {fileID: 2073862555}
   m_RootOrder: 5
   m_AnchorMin: {x: .5, y: .5}
@@ -1110,7 +1114,7 @@ GameObject:
   - 222: {fileID: 1654938526}
   - 114: {fileID: 1654938525}
   m_Layer: 5
-  m_Name: HalfLife_Pos3
+  m_Name: HalfLife_Pos2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1159,7 +1163,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 896163448}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -67.999939, y: 74.9999847}
@@ -1344,10 +1348,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dfa613dda86764db28b8efb382cbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives_count: 1000
+  lives_count: 3
   life1: {fileID: 184396670}
   life2: {fileID: 1980668439}
   life3: {fileID: 302742266}
+  halflife1: {fileID: 968540437}
+  halflife2: {fileID: 1654938525}
+  halflife3: {fileID: 682149649}
 --- !u!1 &1980668438
 GameObject:
   m_ObjectHideFlags: 0
