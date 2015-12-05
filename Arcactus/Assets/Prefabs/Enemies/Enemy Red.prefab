@@ -15,7 +15,7 @@ GameObject:
   - 54: {fileID: 5446470}
   - 136: {fileID: 13654200}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy Red
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: bf4285c7535cab34e969942f625e758f, type: 2}
+  - {fileID: 2100000, guid: feabc94bb41ed224a9cadbd92a6f5365, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -51,9 +51,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
