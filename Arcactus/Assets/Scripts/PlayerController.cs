@@ -7,15 +7,9 @@ public class PlayerController : MonoBehaviour {
     private Vector3 movementVector;
     private CharacterController characterController = null;
     public float movement_speed = 1;
-
-
-
+    
     void Start () {
-
         characterController = gameObject.GetComponent<CharacterController>();
-       
-
-
     }
 
 

@@ -4,7 +4,7 @@ using System;
 
 public class PowerUpManager : MonoBehaviour {
 
-    public enum PowerUpType { None, DoubledShotSpeed, HalfedShotSpeed, DoubledScore, HalfedScore, LiveUp, LiveDown, EnemySmaller, EnemyFreeze };
+    public enum PowerUpType { None, DoubledShotSpeed, HalfedShotSpeed, DoubledScore, HalfedScore, LiveUp, LiveDown, EnemySmaller, EnemyFreeze, EnemyDoubledSpeed };
     
     private RaycastShooting raycastShooting;
     private ScoreManager scoreManager;
@@ -69,6 +69,9 @@ public class PowerUpManager : MonoBehaviour {
                 break;
             case PowerUpType.EnemyFreeze:
                 StartCoroutine(EnemyFreeze(duration));
+                break;
+            case PowerUpType.EnemyDoubledSpeed:
+                StartCoroutine(EnemyDoubledSpeed(duration));
                 break;
             default:
                 Debug.Log("PowerUp type not implemented");
@@ -146,9 +149,6 @@ public class PowerUpManager : MonoBehaviour {
                 rb.velocity = new Vector3(0, 0, 0);
                 EnemyController enemyController = enemy.gameObject.GetComponent<EnemyController>();
                 enemyController.speed = 0;
-            } else
-            {
-                Debug.Log("enemy null");
             }
 
         }
@@ -158,9 +158,8 @@ public class PowerUpManager : MonoBehaviour {
         {
             if (enemy != null)
             {
-                Rigidbody rb = enemy.GetComponent<Rigidbody>();
-                //EnemyController enemyController = enemy.gameObject.GetComponent<EnemyController>();
-                //enemyController.speed = 1;
+                EnemyController enemyController = enemy.gameObject.GetComponent<EnemyController>();
+                enemyController.speed = enemyController.startSpeed;
             }
             else
             {
@@ -170,6 +169,37 @@ public class PowerUpManager : MonoBehaviour {
         }
 
 
+    }
+
+    IEnumerator EnemyDoubledSpeed(float duration)
+    {
+        Debug.Log("EnemyFreeze");
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            if (enemy != null)
+            {
+                //Rigidbody rb = enemy.GetComponent<Rigidbody>();
+                //rb.velocity = new Vector3(0, 0, 0);
+                EnemyController enemyController = enemy.gameObject.GetComponent<EnemyController>();
+                enemyController.speed *= 2;
+            }
+
+        }
+
+        yield return new WaitForSeconds(duration);
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            if (enemy != null)
+            {
+                EnemyController enemyController = enemy.gameObject.GetComponent<EnemyController>();
+                enemyController.speed /= 2;
+            }
+            else
+            {
+                Debug.Log("enemy null");
+            }
+
+        }
     }
 
 }

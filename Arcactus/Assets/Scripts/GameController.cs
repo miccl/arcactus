@@ -4,8 +4,6 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
-
-    public GameObject enemy;
     public GameObject player;
     public GameObject powerUp;
 
@@ -16,22 +14,24 @@ public class GameController : MonoBehaviour {
     /// wait
     /// </summary>
     public float spawnWait = 0.5f;
-    /// <summary>
-    /// count of the enemies
-    /// </summary>
-    public int enemyCount = 10;
-    /// <summary>
-    /// the amount of powerUps spawned per wave
-    /// </summary>
-    public float powerUpPerWave = 1f;
 
     [Header("Enemy")]
+    /// <summary>
+    /// count of the enemies at the start
+    /// </summary>
+    public int enemyStartCount = 10;
     public float enemySpawnRadius = 100f;
+    public int enemySpawnAngle = 160;
     public float enemyYPosMin = 0.0f;
     public float enemyYPosMax = 5.0f;
 
     [Header("PowerUp")]
+    /// <summary>
+    /// the amount of powerUps spawned per wave
+    /// </summary>
+    public float powerUpPerWave = 1f;
     public float powerUpSpawnRadius = 80f;
+    public int powerUpSpawnAngle = 160;
     public float powerUpYPosMin = 5.0f;
     public float powerUpYPosMax = 5.0f;
 
@@ -50,7 +50,6 @@ public class GameController : MonoBehaviour {
     private float enemyHardProb = 0.0f;
 
    
-    // Use this for initialization
     void Start () {
 
         gameOver = false;
@@ -64,7 +63,6 @@ public class GameController : MonoBehaviour {
         StartCoroutine(SpawnWaves());
 	}
 	
-	// Update is called once per frame
 	void Update () {
         if (restart)
         {            
@@ -97,10 +95,10 @@ public class GameController : MonoBehaviour {
         {
 
 
-            for (int i = 0; i < enemyCount; i++)
+            for (int i = 0; i < enemyStartCount; i++)
             {
                 float alpha = Random.Range(0.0f, 1.0f);
-                float powerUpProb = powerUpPerWave / enemyCount;
+                float powerUpProb = powerUpPerWave / enemyStartCount;
                 if (alpha <= powerUpProb)
                 {
                     SpawnPowerUp();
@@ -125,20 +123,21 @@ public class GameController : MonoBehaviour {
 
             InitializeNextWave();
             yield return new WaitForSeconds(waveWait);
+            nextWaveText.text = "";
         }
     }
 
     private void InitializeNextWave()
     {
-        if (currentWave <= 11)
+        if (currentWave <= 10)
         {
             enemyHardProb += currentWave/100.0f;
             enemyEasyProb -= (1.5f*(11 - (currentWave)))/100.0f;
             enemyMediumProb = 1 - enemyHardProb - enemyEasyProb;
-            Debug.Log(enemyEasyProb + " ! " + enemyMediumProb + " ! " + enemyHardProb);
         }
+        Debug.Log(enemyEasyProb + " : " + enemyMediumProb + " : " + enemyHardProb);
 
-        enemyCount += currentWave;
+        //enemyCount += currentWave;
         currentWave++;
         nextWaveText.text = "Next Wave: " + currentWave;
 
@@ -147,13 +146,14 @@ public class GameController : MonoBehaviour {
 
     void SpawnEnemy()
     {
-        Vector3 spawnPosition = ComputeSpawnPosition(enemySpawnRadius, enemyYPosMin, enemyYPosMax);
+        Vector3 spawnPosition = ComputeSpawnPosition(enemySpawnRadius, enemySpawnAngle, enemyYPosMin, enemyYPosMax);
         Quaternion spawnRotation = Quaternion.identity;
 
         float alpha = Random.Range(0.0f, 1.0f);
         if(alpha <= enemyEasyProb)
         {
-            GameObject enemy = Instantiate(Resources.Load("Prefabs/Enemies/Enemy Easy"), spawnPosition, spawnRotation) as GameObject;
+            Instantiate(Resources.Load("Prefabs/Enemies/Enemy Easy"), spawnPosition, spawnRotation);
+
         }
         else if(alpha >= 1- enemyHardProb)
         {
@@ -171,18 +171,30 @@ public class GameController : MonoBehaviour {
 
     void SpawnPowerUp()
     {
-        Vector3 spawnPosition = ComputeSpawnPosition(powerUpSpawnRadius, powerUpYPosMin, powerUpYPosMax);
+        Vector3 spawnPosition = ComputeSpawnPosition(powerUpSpawnRadius, powerUpSpawnAngle, powerUpYPosMin, powerUpYPosMax);
         Quaternion spawnRotation = Quaternion.identity;
         Instantiate(powerUp, spawnPosition, spawnRotation);
     }
-
-    private Vector3 ComputeSpawnPosition(float spawnRadius, float yPosMin, float yPosMax)
+    /// <summary>
+    /// Computes a random spawn position with the given parameters
+    /// </summary>
+    /// <param name="spawnDistance"> the spawn distance from the player </param>
+    /// <param name="spawnAngle"> the spawn angle in front of the player </param>
+    /// <param name="yPosMin"> the minimum spawn y-position </param>
+    /// <param name="yPosMax"> the maximum spawn y-position </param>
+    /// <returns></returns>
+    private Vector3 ComputeSpawnPosition(float spawnDistance, int spawnAngle, float yPosMin, float yPosMax)
     {
-        float alpha = Random.Range(0, Mathf.PI);
+        // random value in the defined spawnAngle
+        float alphaDeg = Random.Range(90 - spawnAngle / 2, 90 + spawnAngle / 2);
 
-        float xPos = Mathf.Cos(alpha) * spawnRadius;
+        // convert from degree to radiance
+        float alphaRad = alphaDeg * Mathf.Deg2Rad;
+
+        // compute x and z position based on the random value, y pos is a random value between given yPosMin and xPosMax
+        float xPos = Mathf.Cos(alphaRad) * spawnDistance;
         float yPos = Random.Range(yPosMin, yPosMax);
-        float zPos = Mathf.Sin(alpha) * spawnRadius;
+        float zPos = Mathf.Sin(alphaRad) * spawnDistance;
 
         return player.transform.position + new Vector3(xPos, yPos, zPos);
     }

@@ -8,10 +8,18 @@ public class EnemyController : MonoBehaviour {
     /// needed shots from the player to destroy the enemy
     /// </summary>
     public float lives;
+
     /// <summary>
-    /// movement speed of the enemy
+    /// speed initialised in the creation of the enemy
     /// </summary>
-    public float speed;
+    public float startSpeed;
+
+
+    /// <summary>
+    /// current movement speed of the enemy
+    /// </summary>
+    internal float speed;
+
     /// <summary>
     /// score value of the enemy if the player destroys it
     /// </summary>
@@ -24,10 +32,13 @@ public class EnemyController : MonoBehaviour {
     private Rigidbody rb;
     private Transform playerTransform;
     private ScoreManager scoreManager;
+    private TextMesh scoreText;
 
 
     void Start()
     {
+
+        speed = startSpeed;
         playerTransform = GameObject.FindWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
 
@@ -40,6 +51,9 @@ public class EnemyController : MonoBehaviour {
         {
             Debug.Log("Cannot find 'GameController' script");
         }
+
+        scoreText = GetComponentInChildren<TextMesh>();
+        scoreText.text = "";
 
     }
 
@@ -72,6 +86,21 @@ public class EnemyController : MonoBehaviour {
     void Dead()
     {
         scoreManager.AddScore(scoreValue);
+        scoreText.text = scoreValue.ToString();
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+        rb.velocity = new Vector3(0, 0, 0);
+        speed = 0;
+
+        StartCoroutine(startExplosion());
+    }
+
+    private IEnumerator startExplosion()
+    {
+
+        yield return new WaitForSeconds(1f);
+        scoreText.text = "";
         Destroy(gameObject);
+
     }
 }
