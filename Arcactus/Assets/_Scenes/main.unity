@@ -1270,18 +1270,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b929bed161eb1fa4b8c72d1e357bb4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 183312, guid: 0b4b8644070fd534e84fdeb2447a3672, type: 2}
   player: {fileID: 1956359842}
   powerUp: {fileID: 127668, guid: f1e216f389254e94f97c253ac07b73f9, type: 2}
   startWait: 1
   waveWait: 10
   spawnWait: 1
-  enemyCount: 5
-  powerUpPerWave: 1
+  enemyStartCount: 10
   enemySpawnRadius: 100
   enemySpawnAngle: 160
   enemyYPosMin: 0
   enemyYPosMax: 5
+  powerUpPerWave: 1
   powerUpSpawnRadius: 80
   powerUpSpawnAngle: 160
   powerUpYPosMin: 5

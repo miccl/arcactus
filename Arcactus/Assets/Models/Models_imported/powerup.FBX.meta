@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7586ebec8170f7242a959e206d1793b0
-timeCreated: 1448126127
+guid: f10d8bdf7bb749a41a9a7106fb97cfc0
+timeCreated: 1449678452
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Sphere001
+    4300000: Cog
     9500000: //RootNode
   materials:
     importMaterials: 1
