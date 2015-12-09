@@ -1376,11 +1376,7 @@ MonoBehaviour:
   startWait: 1
   waveWait: 10
   spawnWait: 1
-<<<<<<< HEAD
   enemyStartCount: 5
-=======
-  enemyStartCount: 10
->>>>>>> origin/master
   enemySpawnRadius: 100
   enemySpawnAngle: 160
   enemyYPosMin: 0
