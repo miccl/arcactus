@@ -144,6 +144,14 @@ Prefab:
       propertyPath: damage
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b6243a7ea1b24264abbb85be586b430b, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Volume
+      value: .186000004
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 138334}

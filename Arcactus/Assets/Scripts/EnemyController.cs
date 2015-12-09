@@ -34,9 +34,14 @@ public class EnemyController : MonoBehaviour {
     private ScoreManager scoreManager;
     private TextMesh scoreText;
 
+    AudioSource balloonPopSound;
+    AudioSource balloonBounce;
 
     void Start()
     {
+        AudioSource[] audios = GetComponents<AudioSource>();
+        balloonPopSound = audios[0];
+        balloonBounce = audios[1];
 
         speed = startSpeed;
         playerTransform = GameObject.FindWithTag("Player").transform;
@@ -63,6 +68,9 @@ public class EnemyController : MonoBehaviour {
         if(lives <= 0)
         {
             Dead();
+        } else
+        {
+            balloonBounce.Play();
         }
     }
 
@@ -91,7 +99,7 @@ public class EnemyController : MonoBehaviour {
         GetComponent<CapsuleCollider>().enabled = false;
         rb.velocity = new Vector3(0, 0, 0);
         speed = 0;
-
+        balloonPopSound.Play();
         StartCoroutine(startExplosion());
     }
 

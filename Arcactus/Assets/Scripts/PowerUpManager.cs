@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class PowerUpManager : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class PowerUpManager : MonoBehaviour {
     private RaycastShooting raycastShooting;
     private ScoreManager scoreManager;
     private LivesManager livesManager;
+    public Text powerUpText;
 
     void Start () {
         GameObject armObject = GameObject.FindWithTag("Arm");
@@ -36,6 +38,8 @@ public class PowerUpManager : MonoBehaviour {
         {
             livesManager = playerControllerObject.GetComponent<LivesManager>();
         }
+
+        powerUpText.text = "";
     }
 
 
@@ -76,6 +80,20 @@ public class PowerUpManager : MonoBehaviour {
             default:
                 Debug.Log("PowerUp type not implemented");
                 break;
+        }
+
+        StartCoroutine(DisplayPowerUp(type, duration));
+
+    }
+
+    private IEnumerator DisplayPowerUp(PowerUpType type, float duration)
+    {
+        String text = "PowerUp '" + type.ToString() + "' got activiated (" + duration + "s) !";
+        powerUpText.text = text;
+        yield return new WaitForSeconds(1f);
+        if(powerUpText.text == text)
+        {
+            powerUpText.text = "";
         }
     }
 

@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine.UI;
 using System;
 
-public class LivesManager : MonoBehaviour {
+public class LivesManager : MonoBehaviour
+{
 
     public int lives_count = 3;
     internal float lives;
@@ -18,7 +19,8 @@ public class LivesManager : MonoBehaviour {
     private GameController gameController;
     private ScoreManager scoreManager;
 
-    void Start () {
+    void Start()
+    {
         lives = lives_count;
 
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
@@ -31,19 +33,15 @@ public class LivesManager : MonoBehaviour {
         {
             Debug.Log("Cannot find 'GameController' script");
         }
-
-
     }
 
-    // Update is called once per frame
-    void Update () {
-	
-	}
 
 
     public void ApplyDamage(float damageValue)
     {
         lives -= damageValue;
+        ScreenFlash sf = gameObject.GetComponentInChildren<ScreenFlash>();
+        sf.StartFlash();
         UpdateLives();
         if (lives <= 0)
         {

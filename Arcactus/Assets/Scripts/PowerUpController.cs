@@ -16,6 +16,7 @@ public class PowerUpController : MonoBehaviour {
     public float duration = 5;
 
     private PowerUpManager powerUpManager;
+    private float startTime;
 
     void Start()
     {
@@ -28,23 +29,27 @@ public class PowerUpController : MonoBehaviour {
         {
             Debug.Log("Cannot find 'GameController' script");
         }
-
-
-
+        StartCoroutine(WaitAndDestroy());
+        
     }
 
+    IEnumerator WaitAndDestroy()
+    {
+        yield return new WaitForSeconds(lifetime);
+        Dead();
+    }
     public void ApplyDamage(float damage)
     {
         lives -= damage;
         if (lives <= 0)
         {
+            powerUpManager.ApplyPowerUp(type, duration);
             Dead();
         }
     }
 
     void Dead()
     {
-        powerUpManager.ApplyPowerUp(type, duration);
         Destroy(gameObject);
     }
 

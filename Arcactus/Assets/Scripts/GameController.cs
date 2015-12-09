@@ -93,8 +93,6 @@ public class GameController : MonoBehaviour {
         yield return new WaitForSeconds(startWait);
         while(true)
         {
-
-
             for (int i = 0; i < enemyStartCount; i++)
             {
                 float alpha = Random.Range(0.0f, 1.0f);

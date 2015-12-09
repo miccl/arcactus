@@ -32,11 +32,8 @@ public class ScoreText : MonoBehaviour
 
         if (tm.color.a > 0)
         {
-            Debug.Log(textColor.a);
             textColor.a -= 0.1f * Time.deltaTime * 8;
             tm.color = textColor;
-            //yield return new WaitForSeconds(0.1f);
-
         }
         else
         {
