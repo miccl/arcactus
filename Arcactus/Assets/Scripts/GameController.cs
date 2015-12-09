@@ -133,7 +133,6 @@ public class GameController : MonoBehaviour {
             enemyEasyProb -= (1.5f*(11 - (currentWave)))/100.0f;
             enemyMediumProb = 1 - enemyHardProb - enemyEasyProb;
         }
-        Debug.Log(enemyEasyProb + " : " + enemyMediumProb + " : " + enemyHardProb);
 
         //enemyCount += currentWave;
         currentWave++;
