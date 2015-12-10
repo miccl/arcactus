@@ -48,8 +48,8 @@ public class GameController : MonoBehaviour {
     private float enemyEasyProb = 0.95f;
     private float enemyMediumProb = 0.05f;
     private float enemyHardProb = 0.0f;
+    private ScoreManager scoreManager;
 
-   
     void Start () {
 
         gameOver = false;
@@ -59,6 +59,16 @@ public class GameController : MonoBehaviour {
         nextWaveText.text = "";
         paused = false;
         currentWave = 1;
+
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+        if (gameControllerObject != null)
+        {
+            scoreManager = gameControllerObject.GetComponent<ScoreManager>();
+        }
+        else
+        {
+            Debug.Log("Cannot find 'GameController' script");
+        }
 
         StartCoroutine(SpawnWaves());
 	}
@@ -200,6 +210,8 @@ public class GameController : MonoBehaviour {
     {
         gameOverText.text = "Game Over !";
         gameOver = true;
+        scoreManager.SaveScore(currentWave);
+        Application.LoadLevel("scores");
     }
 
 }

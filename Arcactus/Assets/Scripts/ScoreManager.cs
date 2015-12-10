@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class ScoreManager : MonoBehaviour {
 
@@ -24,7 +25,7 @@ public class ScoreManager : MonoBehaviour {
         score = 0;
         scoreMultiplier = 1;
         UpdateScoreText();
-        highscore = PlayerPrefs.GetInt("highscore", 0);
+        highscore = PlayerPrefs.GetInt(0 + HighscoreController.HSCORE, 0);
         newHighscoreText.text = "";
         newHighscore = true;
 
@@ -52,7 +53,7 @@ public class ScoreManager : MonoBehaviour {
             score += scoreValue * scoreMultiplier;
             if (score > highscore)
             {
-                PlayerPrefs.SetInt("highscore", score);
+                //PlayerPrefs.SetInt("highscore", score);
                 if (newHighscore)
                 {
                     newHighscoreText.text = "New Highscore!";
@@ -73,39 +74,10 @@ public class ScoreManager : MonoBehaviour {
         scoreText.text = score.ToString();
     }
 
-    //void AddHighscore(string name, int score)
-    //{
-    //    int newScore, oldScore;
-    //    string newName, oldName;
-    //    const string HSCORE = "HScore";
-    //    const string HSCORENAME = "HScoreName";
-    //    newScore = score;
-    //    newName = name;
-    //    for(int i=0;i<10;i++)
-    //    {
-    //        if(PlayerPrefs.HasKey(i + HSCORE))
-    //        {
-    //            if(PlayerPrefs.GetInt(i + HSCORE) < newScore)
-    //            {
-    //                //new score ist higher than stored score
-    //                oldScore = PlayerPrefs.GetInt(i + HSCORE);
-    //                oldName = PlayerPrefs.GetString(i + HSCORE);
-    //                PlayerPrefs.SetInt(i + HSCORE, newScore);
-    //                PlayerPrefs.SetString(i + HSCORENAME, newName);
-
-    //                newScore = oldScore;
-    //                newName = oldName;
-    //            } 
-    //            else
-    //            {
-    //                PlayerPrefs.SetInt(i + HSCORE, newScore);
-    //                PlayerPrefs.SetString(i + HSCORENAME, newName);
-    //                newScore = 0;
-    //                newName = "";
-    //            }
-    //        }
-    //    }
-    //}
 
 
+    internal void SaveScore(int wave)
+    {
+        HighscoreController.AddHighscore(score, wave);
+    }
 }

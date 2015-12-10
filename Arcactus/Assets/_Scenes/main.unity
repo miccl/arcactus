@@ -1381,7 +1381,7 @@ MonoBehaviour:
   enemySpawnAngle: 160
   enemyYPosMin: 0
   enemyYPosMax: 5
-  powerUpPerWave: 1
+  powerUpPerWave: 10
   powerUpSpawnRadius: 80
   powerUpSpawnAngle: 160
   powerUpYPosMin: 5
@@ -1525,7 +1525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dfa613dda86764db28b8efb382cbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives_count: 3
+  lives_count: 1
   life1: {fileID: 184396670}
   life2: {fileID: 1980668439}
   life3: {fileID: 302742266}
