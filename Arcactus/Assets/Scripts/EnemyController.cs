@@ -65,7 +65,7 @@ public class EnemyController : MonoBehaviour {
     public void ApplyDamage(float taken_damage)
     {
         lives -= taken_damage;
-        if (lives <= 0)
+        if(lives <= 0)
         {
             Dead();
         } else
@@ -95,20 +95,20 @@ public class EnemyController : MonoBehaviour {
     {
         scoreManager.AddScore(scoreValue);
         scoreText.text = scoreValue.ToString();
-
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
         rb.velocity = new Vector3(0, 0, 0);
         speed = 0;
         balloonPopSound.Play();
-
         StartCoroutine(startExplosion());
     }
 
     private IEnumerator startExplosion()
     {
+
         yield return new WaitForSeconds(1f);
         scoreText.text = "";
         Destroy(gameObject);
+
     }
 }

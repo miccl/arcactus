@@ -76,7 +76,7 @@ public class GameController : MonoBehaviour {
 	void Update () {
         if (restart)
         {            
-            if (Input.GetButtonDown("Restart"))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 Application.LoadLevel(Application.loadedLevel);
             }
@@ -211,7 +211,7 @@ public class GameController : MonoBehaviour {
         gameOverText.text = "Game Over !";
         gameOver = true;
         scoreManager.SaveScore(currentWave);
-        //Application.LoadLevel("scores");
+        Application.LoadLevel("scores");
     }
 
 }
