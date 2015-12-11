@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class GameController : MonoBehaviour {
 
@@ -35,35 +36,32 @@ public class GameController : MonoBehaviour {
     public float powerUpYPosMin = 5.0f;
     public float powerUpYPosMax = 5.0f;
 
-    [Header("Text")]
-    public Text gameOverText;
-    public Text pauseText;
-    public Text nextWaveText;
-
     internal bool paused;
     internal bool gameOver;
     private bool restart;
     private int currentWave = 1;
+    private bool highscoreShown;
 
     private float enemyEasyProb = 0.95f;
     private float enemyMediumProb = 0.05f;
     private float enemyHardProb = 0.0f;
+
     private ScoreManager scoreManager;
+    private UIManager uiManager;
 
     void Start () {
 
         gameOver = false;
         restart = false;
-        gameOverText.text = "";
-        pauseText.text = "";
-        nextWaveText.text = "";
         paused = false;
         currentWave = 1;
+        highscoreShown = false;
 
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject != null)
         {
             scoreManager = gameControllerObject.GetComponent<ScoreManager>();
+            uiManager = gameControllerObject.GetComponent<UIManager>();
         }
         else
         {
@@ -76,9 +74,24 @@ public class GameController : MonoBehaviour {
 	void Update () {
         if (restart)
         {            
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetButtonDown("Restart"))
             {
                 Application.LoadLevel(Application.loadedLevel);
+            }
+        }
+
+        if (gameOver)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                if(!highscoreShown)
+                {
+                    //uiManager.ShowHUD(false);
+                    uiManager.RemoveEventText();
+                    uiManager.ShowHighscore(true);
+                    //uiManager.ShowCrosshair(false);
+                    highscoreShown = true;
+                }
             }
         }
 
@@ -87,12 +100,12 @@ public class GameController : MonoBehaviour {
             if(!paused)
             {
                 Time.timeScale = 0;
-                pauseText.text = "Paused";
+                uiManager.ShowEventText("Paused");
                 paused = true;
             }
             else {
                 Time.timeScale = 1;
-                pauseText.text = "";
+                uiManager.RemoveEventText();
                 paused = false;
             }
         }
@@ -105,7 +118,7 @@ public class GameController : MonoBehaviour {
         {
             for (int i = 0; i < enemyStartCount; i++)
             {
-                float alpha = Random.Range(0.0f, 1.0f);
+                float alpha = UnityEngine.Random.Range(0.0f, 1.0f);
                 float powerUpProb = powerUpPerWave / enemyStartCount;
                 if (alpha <= powerUpProb)
                 {
@@ -131,7 +144,7 @@ public class GameController : MonoBehaviour {
 
             InitializeNextWave();
             yield return new WaitForSeconds(waveWait);
-            nextWaveText.text = "";
+            uiManager.RemoveEventText();
         }
     }
 
@@ -146,9 +159,7 @@ public class GameController : MonoBehaviour {
 
         //enemyCount += currentWave;
         currentWave++;
-        nextWaveText.text = "Next Wave: " + currentWave;
-
-
+        uiManager.ShowEventText("Next Wave: " + currentWave);
     }
 
     void SpawnEnemy()
@@ -156,7 +167,7 @@ public class GameController : MonoBehaviour {
         Vector3 spawnPosition = ComputeSpawnPosition(enemySpawnRadius, enemySpawnAngle, enemyYPosMin, enemyYPosMax);
         Quaternion spawnRotation = Quaternion.identity;
 
-        float alpha = Random.Range(0.0f, 1.0f);
+        float alpha = UnityEngine.Random.Range(0.0f, 1.0f);
         if(alpha <= enemyEasyProb)
         {
             Instantiate(Resources.Load("Prefabs/Enemies/Enemy Easy"), spawnPosition, spawnRotation);
@@ -193,14 +204,14 @@ public class GameController : MonoBehaviour {
     private Vector3 ComputeSpawnPosition(float spawnDistance, int spawnAngle, float yPosMin, float yPosMax)
     {
         // random value in the defined spawnAngle
-        float alphaDeg = Random.Range(90 - spawnAngle / 2, 90 + spawnAngle / 2);
+        float alphaDeg = UnityEngine.Random.Range(90 - spawnAngle / 2, 90 + spawnAngle / 2);
 
         // convert from degree to radiance
         float alphaRad = alphaDeg * Mathf.Deg2Rad;
 
         // compute x and z position based on the random value, y pos is a random value between given yPosMin and xPosMax
         float xPos = Mathf.Cos(alphaRad) * spawnDistance;
-        float yPos = Random.Range(yPosMin, yPosMax);
+        float yPos = UnityEngine.Random.Range(yPosMin, yPosMax);
         float zPos = Mathf.Sin(alphaRad) * spawnDistance;
 
         return player.transform.position + new Vector3(xPos, yPos, zPos);
@@ -208,10 +219,12 @@ public class GameController : MonoBehaviour {
 
     internal void GameOver()
     {
-        gameOverText.text = "Game Over !";
-        gameOver = true;
-        scoreManager.SaveScore(currentWave);
-        Application.LoadLevel("scores");
+        if(!gameOver)
+        {
+            uiManager.ShowEventText("Game Over !");
+            gameOver = true;
+            scoreManager.SaveScore(currentWave);
+        }
     }
 
 }

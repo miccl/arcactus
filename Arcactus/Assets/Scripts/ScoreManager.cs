@@ -7,7 +7,6 @@ public class ScoreManager : MonoBehaviour {
 
 
     public Text scoreText;
-    public Text newHighscoreText;
 
     private int score = 0;
     internal int scoreMultiplier = 1;
@@ -17,6 +16,7 @@ public class ScoreManager : MonoBehaviour {
     private int highscore;
 
     private GameController gameController;
+    private UIManager uiManager;
 
     // Use this for initialization
     void Start () {
@@ -26,13 +26,13 @@ public class ScoreManager : MonoBehaviour {
         scoreMultiplier = 1;
         UpdateScoreText();
         highscore = PlayerPrefs.GetInt(0 + HighscoreController.HSCORE, 0);
-        newHighscoreText.text = "";
         newHighscore = true;
 
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject != null)
         {
             gameController = gameControllerObject.GetComponent<GameController>();
+            uiManager = gameControllerObject.GetComponent<UIManager>();
         }
         else
         {
@@ -56,12 +56,8 @@ public class ScoreManager : MonoBehaviour {
                 //PlayerPrefs.SetInt("highscore", score);
                 if (newHighscore)
                 {
-                    newHighscoreText.text = "New Highscore!";
+                    uiManager.ShowEventText("New Highscore !", 2f);
                     newHighscore = false;
-                }
-                else
-                {
-                    newHighscoreText.text = "";
                 }
                 highscore = score;
             }

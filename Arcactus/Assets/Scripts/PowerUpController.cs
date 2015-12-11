@@ -44,6 +44,7 @@ public class PowerUpController : MonoBehaviour {
         if (lives <= 0)
         {
             powerUpManager.ApplyPowerUp(type, duration);
+            powerUpManager.DisplayPowerUp(type, duration);
             Dead();
         }
     }

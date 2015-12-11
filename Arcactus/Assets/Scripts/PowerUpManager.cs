@@ -10,7 +10,7 @@ public class PowerUpManager : MonoBehaviour {
     private RaycastShooting raycastShooting;
     private ScoreManager scoreManager;
     private LivesManager livesManager;
-    public Text powerUpText;
+    private UIManager uiManager;
 
     void Start () {
         GameObject armObject = GameObject.FindWithTag("Arm");
@@ -27,6 +27,7 @@ public class PowerUpManager : MonoBehaviour {
         if (gameControllerObject != null)
         {
             scoreManager = gameControllerObject.GetComponent<ScoreManager>();
+            uiManager = gameControllerObject.GetComponent<UIManager>();
         }
         else
         {
@@ -38,8 +39,6 @@ public class PowerUpManager : MonoBehaviour {
         {
             livesManager = playerControllerObject.GetComponent<LivesManager>();
         }
-
-        powerUpText.text = "";
     }
 
 
@@ -84,20 +83,12 @@ public class PowerUpManager : MonoBehaviour {
                 Debug.Log("PowerUp type not implemented");
                 break;
         }
-
-        StartCoroutine(DisplayPowerUp(type, duration));
-
     }
 
-    private IEnumerator DisplayPowerUp(PowerUpType type, float duration)
+    public void DisplayPowerUp(PowerUpType type, float duration)
     {
         String text = "PowerUp '" + type.ToString() + "' got activiated (" + duration + "s) !";
-        powerUpText.text = text;
-        yield return new WaitForSeconds(1f);
-        if(powerUpText.text == text)
-        {
-            powerUpText.text = "";
-        }
+        uiManager.ShowEventText(text, 1f);
     }
 
     IEnumerator DoubledShotSpeed(float duration)

@@ -39,13 +39,16 @@ public class LivesManager : MonoBehaviour
 
     public void ApplyDamage(float damageValue)
     {
-        lives -= damageValue;
-        ScreenFlash sf = gameObject.GetComponentInChildren<ScreenFlash>();
-        sf.StartFlash();
-        UpdateLives();
-        if (lives <= 0)
+        if (!gameController.gameOver)
         {
-            Dead();
+            lives -= damageValue;
+            ScreenFlash sf = gameObject.GetComponentInChildren<ScreenFlash>();
+            sf.StartFlash();
+            UpdateLives();
+            if (lives <= 0)
+            {
+                Dead();
+            }
         }
     }
 
