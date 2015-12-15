@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11487776}
   - 54: {fileID: 5492154}
   m_Layer: 0
-  m_Name: DoubledShotSpeed
+  m_Name: EnemySmaller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -111,8 +111,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 53116769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 50}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 100}
+  m_LocalScale: {x: .317965031, y: .317965031, z: .317965031}
   m_Children:
   - {fileID: 179935196}
   - {fileID: 212678764}
@@ -123,8 +123,8 @@ RectTransform:
   m_RootOrder: 6
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 25}
-  m_SizeDelta: {x: 150, y: 100}
+  m_AnchoredPosition: {x: 0, y: 1}
+  m_SizeDelta: {x: 1118, y: 629}
   m_Pivot: {x: .5, y: .5}
 --- !u!223 &53116771
 Canvas:
@@ -135,13 +135,13 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 2
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 2122024557}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -937085451
   m_SortingOrder: 0
 --- !u!114 &53116772
 MonoBehaviour:
@@ -502,7 +502,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 7
+    m_FontSize: 10
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -511,7 +511,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1.5
+    m_LineSpacing: 1
   m_Text: Position Text
 --- !u!222 &430621262
 CanvasRenderer:
@@ -1532,7 +1532,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 4.5, y: 178.399994}
+  m_AnchoredPosition: {x: 50, y: 20.6000004}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1422784242
@@ -1862,7 +1862,7 @@ MonoBehaviour:
   enemySpawnAngle: 160
   enemyYPosMin: 0
   enemyYPosMax: 5
-  powerUpPerWave: 10
+  powerUpPerWave: 1
   powerUpSpawnRadius: 80
   powerUpSpawnAngle: 160
   powerUpYPosMin: 5
@@ -2207,7 +2207,7 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -257, y: 225.070007}
+  m_AnchoredPosition: {x: 5.69999981, y: 47.2000008}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2045088303

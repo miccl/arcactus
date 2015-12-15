@@ -45,8 +45,8 @@ public class RaycastShooting : MonoBehaviour {
         {
             nextFire = Time.time + fireRate;
 
-            GameObject thorn = (GameObject)Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-         
+            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            //GameObject thorn = (GameObject)Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
             //ThornController tc = thorn.GetComponent<ThornController>();
             //tc.damage = 2;
 

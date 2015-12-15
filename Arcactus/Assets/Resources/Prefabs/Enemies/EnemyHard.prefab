@@ -35,7 +35,7 @@ GameObject:
   - 82: {fileID: 8278706}
   - 82: {fileID: 8230660}
   m_Layer: 0
-  m_Name: Enemy Hard
+  m_Name: EnemyHard
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

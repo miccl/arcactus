@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour {
 
     private ScoreManager scoreManager;
     private UIManager uiManager;
+    private PowerUpManager powerUpManager;
 
     void Start () {
 
@@ -62,6 +63,7 @@ public class GameController : MonoBehaviour {
         {
             scoreManager = gameControllerObject.GetComponent<ScoreManager>();
             uiManager = gameControllerObject.GetComponent<UIManager>();
+            powerUpManager = gameControllerObject.GetComponent<PowerUpManager>();
         }
         else
         {
@@ -170,16 +172,16 @@ public class GameController : MonoBehaviour {
         float alpha = UnityEngine.Random.Range(0.0f, 1.0f);
         if(alpha <= enemyEasyProb)
         {
-            Instantiate(Resources.Load("Prefabs/Enemies/Enemy Easy"), spawnPosition, spawnRotation);
+            Instantiate(Resources.Load("Prefabs/Enemies/EnemyEasy"), spawnPosition, spawnRotation);
 
         }
         else if(alpha >= 1- enemyHardProb)
         {
-            GameObject enemy = Instantiate(Resources.Load("Prefabs/Enemies/Enemy Hard"), spawnPosition, spawnRotation) as GameObject;
+            Instantiate(Resources.Load("Prefabs/Enemies/EnemyHard"), spawnPosition, spawnRotation);
         }
         else
         {
-            GameObject enemy = Instantiate(Resources.Load("Prefabs/Enemies/Enemy Medium"), spawnPosition, spawnRotation) as GameObject;
+            Instantiate(Resources.Load("Prefabs/Enemies/EnemyMedium"), spawnPosition, spawnRotation);
         }
 
 
@@ -189,6 +191,7 @@ public class GameController : MonoBehaviour {
 
     void SpawnPowerUp()
     {
+        GameObject powerUp = powerUpManager.PickOne();
         Vector3 spawnPosition = ComputeSpawnPosition(powerUpSpawnRadius, powerUpSpawnAngle, powerUpYPosMin, powerUpYPosMax);
         Quaternion spawnRotation = Quaternion.identity;
         Instantiate(powerUp, spawnPosition, spawnRotation);

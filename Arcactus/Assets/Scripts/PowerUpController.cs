@@ -5,7 +5,7 @@ using System;
 public class PowerUpController : MonoBehaviour {
 
     public float lives = 1;
-    public PowerUpManager.PowerUpType type;
+    public PowerUpManager.PowerUpTypes type;
     /// <summary>
     /// time the powerUp 
     /// </summary>

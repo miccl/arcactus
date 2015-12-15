@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PowerUpManager : MonoBehaviour {
 
-    public enum PowerUpType { None, DoubledShotSpeed, HalfedShotSpeed, DoubledScore, HalfedScore, LiveUp, LiveDown, EnemySmaller, EnemyFreeze, EnemyDoubledSpeed, EnemyBigger };
+    public enum PowerUpTypes {DoubledShotSpeed, HalfedShotSpeed, DoubledScore, HalfedScore, LiveUp, LiveDown, EnemySmaller, EnemyBigger, EnemyFreeze, EnemyDoubledSpeed};
     
     private RaycastShooting raycastShooting;
     private ScoreManager scoreManager;
@@ -42,41 +42,38 @@ public class PowerUpManager : MonoBehaviour {
     }
 
 
-    public void ApplyPowerUp(PowerUpType type, float duration)
+    public void ApplyPowerUp(PowerUpTypes type, float duration)
     {
         switch (type)
         {
-            case PowerUpType.None:
-                Debug.Log("No powerUp type selected!");
-                break;
-            case PowerUpType.DoubledShotSpeed:
+            case PowerUpTypes.DoubledShotSpeed:
                 StartCoroutine(DoubledShotSpeed(duration));
                 break;
-            case PowerUpType.HalfedShotSpeed:
+            case PowerUpTypes.HalfedShotSpeed:
                 StartCoroutine(HalfedScore(duration));
                 break;
-            case PowerUpType.DoubledScore:
+            case PowerUpTypes.DoubledScore:
                 StartCoroutine(DoubledScore(duration));
                 break;
-            case PowerUpType.HalfedScore:
+            case PowerUpTypes.HalfedScore:
                 StartCoroutine(HalfedScore(duration));
                 break;
-            case PowerUpType.LiveUp:
+            case PowerUpTypes.LiveUp:
                 LiveUp();
                 break;
-            case PowerUpType.LiveDown:
+            case PowerUpTypes.LiveDown:
                 LiveDown();
                 break;
-            case PowerUpType.EnemySmaller:
+            case PowerUpTypes.EnemySmaller:
                 StartCoroutine(EnemySmaller(duration));
                 break;
-            case PowerUpType.EnemyBigger:
+            case PowerUpTypes.EnemyBigger:
                 StartCoroutine(EnemyBigger(duration));
                 break;
-            case PowerUpType.EnemyFreeze:
+            case PowerUpTypes.EnemyFreeze:
                 StartCoroutine(EnemyFreeze(duration));
                 break;
-            case PowerUpType.EnemyDoubledSpeed:
+            case PowerUpTypes.EnemyDoubledSpeed:
                 StartCoroutine(EnemyDoubledSpeed(duration));
                 break;
             default:
@@ -85,7 +82,7 @@ public class PowerUpManager : MonoBehaviour {
         }
     }
 
-    public void DisplayPowerUp(PowerUpType type, float duration)
+    public void DisplayPowerUp(PowerUpTypes type, float duration)
     {
         String text = "PowerUp '" + type.ToString() + "' got activiated (" + duration + "s) !";
         uiManager.ShowEventText(text, 1f);
@@ -204,6 +201,24 @@ public class PowerUpManager : MonoBehaviour {
                 enemyController.speed = enemyController.startSpeed;
             }
         }
+    }
+
+    /// <summary>
+    /// randomly picks a power up and return the powerUpType 
+    /// </summary>
+    /// <returns></returns>
+    internal GameObject PickOne()
+    {
+        int randomIndex = UnityEngine.Random.Range(0, Enum.GetNames(typeof(PowerUpTypes)).Length);
+        PowerUpTypes powerUpType = (PowerUpTypes) randomIndex;
+        return getPowerUpPrefab(powerUpType);
+
+    }
+
+    private GameObject getPowerUpPrefab(PowerUpTypes type)
+    {
+        string powerUpString = type.ToString();
+        return Resources.Load("Prefabs/PowerUps/" + powerUpString) as GameObject;
     }
 
     IEnumerator EnemyDoubledSpeed(float duration)
