@@ -3,16 +3,28 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    
+	/// <summary>
+	/// The movement speed of the player.
+	/// </summary>
+	public float movement_speed = 1;
+
+    /// <summary>
+    /// The movement vector.
+    /// </summary>
     private Vector3 movementVector;
+	/// <summary>
+	/// The character controller.
+	/// </summary>
     private CharacterController characterController = null;
-    public float movement_speed = 1;
+
     
     void Start () {
         characterController = gameObject.GetComponent<CharacterController>();
     }
 
-
+	/// <summary>
+	/// Moving the player with the given movement speed.
+	/// </summary>
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");

@@ -4,10 +4,16 @@ using System;
 
 public class PowerUpController : MonoBehaviour {
 
+	/// <summary>
+	/// The lives of the power up.
+	/// </summary>
     public float lives = 1;
+	/// <summary>
+	/// The type of the power up.
+	/// </summary>
     public PowerUpManager.PowerUpTypes type;
     /// <summary>
-    /// time the powerUp 
+    /// The lifetime the power up. 
     /// </summary>
     public float lifetime = 5;
     /// <summary>
@@ -15,8 +21,10 @@ public class PowerUpController : MonoBehaviour {
     /// </summary>
     public float duration = 5;
 
+	/// <summary>
+	/// The power up manager.
+	/// </summary>
     private PowerUpManager powerUpManager;
-    private float startTime;
 
     void Start()
     {
@@ -33,11 +41,20 @@ public class PowerUpController : MonoBehaviour {
         
     }
 
-    IEnumerator WaitAndDestroy()
+	/// <summary>
+	/// Waits for the lifetime and then destroys the power up.
+	/// </summary>
+	/// <returns>The and destroy.</returns>
+    private IEnumerator WaitAndDestroy()
     {
-        yield return new WaitForSeconds(lifetime);
+		yield return new WaitForSeconds(lifetime);
         Dead();
     }
+
+	/// <summary>
+	/// Applies damage to the power up.
+	/// </summary>
+	/// <param name="damage">The taken damage.</param>
     public void ApplyDamage(float damage)
     {
         lives -= damage;
@@ -49,6 +66,9 @@ public class PowerUpController : MonoBehaviour {
         }
     }
 
+	/// <summary>
+	/// Dead this instance.
+	/// </summary>
     void Dead()
     {
         Destroy(gameObject);

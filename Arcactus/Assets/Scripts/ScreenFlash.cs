@@ -33,11 +33,19 @@ public class ScreenFlash : MonoBehaviour {
     /// </summary>
     public float fadeTime = 2.0f;
 
+	/// <summary>
+	/// The start alpha value of the fade.
+	/// </summary>
+	public float startAlpha = 1.0f;
+
     /// <summary>
     /// The initial screen color.
     /// </summary>
     public Color fadeColor = new Color(0.01f, 0.01f, 0.01f, 1.0f);
 
+	/// <summary>
+	/// The fade material.
+	/// </summary>
     private Material fadeMaterial = null;
     private bool isFading = false;
     private YieldInstruction fadeInstruction = new WaitForEndOfFrame();
@@ -51,6 +59,9 @@ public class ScreenFlash : MonoBehaviour {
         fadeMaterial = new Material(Shader.Find("Oculus/Unlit Transparent Color"));
     }
 
+	/// <summary>
+	/// Starts the flash animation.
+	/// </summary>
     internal void StartFlash()
     {
         StartCoroutine(FadeIn());
@@ -68,7 +79,7 @@ public class ScreenFlash : MonoBehaviour {
     }
 
     /// <summary>
-    /// Fades alpha from 1.0 to 0.0
+    /// Fades alpha to 0.0
     /// </summary>
     IEnumerator FadeIn()
     {

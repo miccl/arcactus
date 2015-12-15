@@ -4,9 +4,17 @@ using UnityEngine.UI;
 
 public class HighscoreController : MonoBehaviour {
 
-
+	/// <summary>
+	/// The position text.
+	/// </summary>
     public Text positionText;
+	/// <summary>
+	/// The score text.
+	/// </summary>
     public Text scoreText;
+	/// <summary>
+	/// The wave text.
+	/// </summary>
     public Text waveText;
 
     internal const string HSCORE = "HScore";
@@ -19,13 +27,10 @@ public class HighscoreController : MonoBehaviour {
         waveText.text = "";
         UpdateHighscore();
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
-
+	/// <summary>
+	/// Updates the highscore.
+	/// </summary>
     void UpdateHighscore()
     {
 
@@ -40,6 +45,11 @@ public class HighscoreController : MonoBehaviour {
         }
     }
 
+	/// <summary>
+	/// Adds a score to the highscore.
+	/// </summary>
+	/// <param name="score"> The score to add. </param>
+	/// <param name="wave"> The reached wave. </param>
     internal static void AddHighscore(int score, int wave)
     {
         int newScore, oldScore;

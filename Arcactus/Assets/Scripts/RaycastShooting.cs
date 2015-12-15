@@ -1,39 +1,44 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class RaycastShooting : MonoBehaviour {
 
 
     /// <summary>
-    /// object to shoot
+    /// The object to shoot.
     /// </summary>
     public GameObject shot;
     /// <summary>
-    /// spawn of the shot
+    /// The spawn point of the shot,
     /// </summary>
     public Transform shotSpawn;
 
     /// <summary>
-    /// damage of the shot
+    /// The damage of the shot.
     /// </summary>
     public float shotDamage = 1.0f;
     /// <summary>
-    /// range of the shot
+    /// The range of the shot.
     /// </summary>
     int shotRange = 100;
 
 
     /// <summary>
-    /// 
+    /// The fire rate of the ray.
     /// </summary>
     [Range(0.1f, 2)]
     public float fireRate = 0.5f;
 
 
     /// <summary>
-    /// allowed time to shot the next fire under the given fireRate
+    /// The allowed time to shot the next fire under the given fireRate
     /// </summary>
     private float nextFire;
+
+	/// <summary>
+	/// The hit.
+	/// </summary>
     RaycastHit hit;
 
     void Update()

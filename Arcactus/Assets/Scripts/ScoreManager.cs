@@ -5,17 +5,36 @@ using System;
 
 public class ScoreManager : MonoBehaviour {
 
-
+	/// <summary>
+	/// The score text.
+	/// </summary>
     public Text scoreText;
 
+	/// <summary>
+	/// The total score.
+	/// </summary>
     private int score = 0;
+	/// <summary>
+	/// The score multiplier.
+	/// </summary>
     internal int scoreMultiplier = 1;
 
-    //Boolean, um nur das erste Mal anzuzeigen, dass der Spieler einen neuen Highscore hat.
+	/// <summary>
+	/// Whether the score text was shown before or not.
+	/// </summary>
     private bool newHighscore;
+	/// <summary>
+	/// The current highscore.
+	/// </summary>
     private int highscore;
 
+	/// <summary>
+	/// The game controller.
+	/// </summary>
     private GameController gameController;
+	/// <summary>
+	/// The user interface manager.
+	/// </summary>
     private UIManager uiManager;
 
     // Use this for initialization
@@ -46,6 +65,10 @@ public class ScoreManager : MonoBehaviour {
 	
 	}
 
+	/// <summary>
+	/// Adds a score value to the total score.
+	/// </summary>
+	/// <param name="scoreValue">The score value.</param>
     public void AddScore(int scoreValue)
     {
         if (!gameController.gameOver)
@@ -64,14 +87,19 @@ public class ScoreManager : MonoBehaviour {
             UpdateScoreText();
         }
     }
-
+	/// <summary>
+	/// Updates the score text.
+	/// </summary>
     void UpdateScoreText()
     {
         scoreText.text = score.ToString();
     }
 
 
-
+	/// <summary>
+	/// Saves the current score with the reached wave using <see cref="HighscoreController"/>.
+	/// </summary>
+	/// <param name="wave">The reached wave</param>
     internal void SaveScore(int wave)
     {
         HighscoreController.AddHighscore(score, wave);

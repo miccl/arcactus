@@ -5,11 +5,26 @@ using UnityEngine.UI;
 
 public class PowerUpManager : MonoBehaviour {
 
-    public enum PowerUpTypes {DoubledShotSpeed, HalfedShotSpeed, DoubledScore, HalfedScore, LiveUp, LiveDown, EnemySmaller, EnemyBigger, EnemyFreeze, EnemyDoubledSpeed};
-    
+	/// <summary>
+	/// The raycast shooting.
+	/// </summary>
+	public enum PowerUpTypes {DoubledShotSpeed, HalfedShotSpeed, DoubledScore, HalfedScore, LiveUp, LiveDown, EnemySmaller, EnemyBigger, EnemyFreeze, EnemyDoubledSpeed};
+
+	/// <summary>
+	/// The raycast shooting.
+	/// </summary>
     private RaycastShooting raycastShooting;
+	/// <summary>
+	/// The score manager.
+	/// </summary>
     private ScoreManager scoreManager;
+	/// <summary>
+	/// The lives manager.
+	/// </summary>
     private LivesManager livesManager;
+	/// <summary>
+	/// The user interface manager.
+	/// </summary>
     private UIManager uiManager;
 
     void Start () {
@@ -41,7 +56,11 @@ public class PowerUpManager : MonoBehaviour {
         }
     }
 
-
+	/// <summary>
+	/// Applies the power up.
+	/// </summary>
+	/// <param name="type">The power up type to apply.</param>
+	/// <param name="duration">The duration of the power up.</param>
     public void ApplyPowerUp(PowerUpTypes type, float duration)
     {
         switch (type)
@@ -81,13 +100,21 @@ public class PowerUpManager : MonoBehaviour {
                 break;
         }
     }
-
+	/// <summary>
+	/// Displaies the power up.
+	/// </summary>
+	/// <param name="type">The power up type.</param>
+	/// <param name="duration">The duration of the power up.</param>
     public void DisplayPowerUp(PowerUpTypes type, float duration)
     {
         String text = "PowerUp '" + type.ToString() + "' got activiated (" + duration + "s) !";
         uiManager.ShowEventText(text, 1f);
     }
 
+	/// <summary>
+	/// Doubleds the shot speed.
+	/// </summary>
+	/// <param name="duration">The duration of the power up.</param>
     IEnumerator DoubledShotSpeed(float duration)
     {
         raycastShooting.fireRate /= 2;
@@ -95,6 +122,10 @@ public class PowerUpManager : MonoBehaviour {
         raycastShooting.fireRate *= 2;
     }
 
+	/// <summary>
+	/// Halfeds the shot speed.
+	/// </summary>
+	/// <param name="duration">Duration.</param>
     IEnumerator HalfedShotSpeed(float duration)
     {
         raycastShooting.fireRate *= 2;
@@ -103,13 +134,23 @@ public class PowerUpManager : MonoBehaviour {
 
     }
 
-    IEnumerator DoubledScore(float duration)
+	/// <summary>
+	/// Doubleds the score.
+	/// </summary>
+	/// <returns>The score.</returns>
+	/// <param name="duration">The duration of the power up.</param>
+	IEnumerator DoubledScore(float duration)
     {
         scoreManager.scoreMultiplier *= 2;
         yield return new WaitForSeconds(duration);
         scoreManager.scoreMultiplier /= 2;
     }
 
+	/// <summary>
+	/// Halfeds the score.
+	/// </summary>
+	/// <returns>The score.</returns>
+	/// <param name="duration">Duration.</param>
     IEnumerator HalfedScore(float duration)
     {
         scoreManager.scoreMultiplier /= 2;
@@ -117,17 +158,27 @@ public class PowerUpManager : MonoBehaviour {
         scoreManager.scoreMultiplier *= 2;
     }
 
+	/// <summary>
+	/// Adds a player live.
+	/// </summary>
     private void LiveUp()
     {
         livesManager.AddLive();
     }
 
+	/// <summary>
+	/// Removes a player live.
+	/// </summary>
     private void LiveDown()
     {
         livesManager.ApplyDamage(1);
     }
 
-    IEnumerator EnemySmaller(float duration)
+	/// <summary>
+	/// Makes all enemies smaller
+	/// </summary>
+	/// <param name="duration">The duration of the power up.</param>
+	IEnumerator EnemySmaller(float duration)
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         ScaleEnemies(enemies, 0.5f);
@@ -135,7 +186,11 @@ public class PowerUpManager : MonoBehaviour {
         ScaleEnemies(enemies, 2f);
     }
 
-    IEnumerator EnemyBigger(float duration)
+	/// <summary>
+	/// Makes all enemies bigger.
+	/// </summary>
+	/// <param name="duration">The duration of the power up.</param>
+	IEnumerator EnemyBigger(float duration)
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         ScaleEnemies(enemies, 2f);
@@ -143,6 +198,11 @@ public class PowerUpManager : MonoBehaviour {
         ScaleEnemies(enemies, 0.5f);
     }
 
+	/// <summary>
+	/// Scales the enemies size.
+	/// </summary>
+	/// <param name="enemies">The enemies to scale.</param>
+	/// <param name="scale">The scale factor.</param>
     void ScaleEnemies(GameObject[] enemies, float scale)
     {
         foreach (GameObject enemy in enemies)
@@ -155,13 +215,22 @@ public class PowerUpManager : MonoBehaviour {
         }
     }
 
+	/// <summary>
+	/// Scales the capsule collider.
+	/// </summary>
+	/// <param name="collider">The collider to scale.</param>
+	/// <param name="scale">The scale factor.</param>
     void ScaleCapsuleCollider(CapsuleCollider collider, float scale)
     {
         collider.height *= scale;
         collider.radius *= scale;
     }
 
-
+	/// <summary>
+	/// Scales the mesh.
+	/// </summary>
+	/// <param name="mesh">The mesh to scale.</param>
+	/// <param name="scale">The scale factor.</param>
     void ScaleMesh(Mesh mesh, float scale)
     {
         Vector3[] vertices = mesh.vertices;
@@ -175,8 +244,11 @@ public class PowerUpManager : MonoBehaviour {
         mesh.RecalculateNormals();
     }
 
-
-    IEnumerator EnemyFreeze(float duration)
+	/// <summary>
+	/// Stops all enemies from moving.
+	/// </summary>
+	/// <param name="duration">The duration of the power up.</param>
+	IEnumerator EnemyFreeze(float duration)
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
@@ -204,9 +276,9 @@ public class PowerUpManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// randomly picks a power up and return the powerUpType 
+    /// Returns a random power up.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The power up game object.</returns>
     internal GameObject PickOne()
     {
         int randomIndex = UnityEngine.Random.Range(0, Enum.GetNames(typeof(PowerUpTypes)).Length);
@@ -215,13 +287,22 @@ public class PowerUpManager : MonoBehaviour {
 
     }
 
+	/// <summary>
+	/// Returns the prefab of the power up with the given type.
+	/// </summary>
+	/// <returns>The power up prefab.</returns>
+	/// <param name="type">The type of the power up.</param>
     private GameObject getPowerUpPrefab(PowerUpTypes type)
     {
         string powerUpString = type.ToString();
         return Resources.Load("Prefabs/PowerUps/" + powerUpString) as GameObject;
     }
 
-    IEnumerator EnemyDoubledSpeed(float duration)
+	/// <summary>
+	/// Doubles enemy speed.
+	/// </summary>
+	/// <param name="duration">The duration of the power up.</param>
+	IEnumerator EnemyDoubledSpeed(float duration)
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)

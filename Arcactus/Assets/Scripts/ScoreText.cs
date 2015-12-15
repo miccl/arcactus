@@ -3,11 +3,15 @@ using System.Collections;
 
 public class ScoreText : MonoBehaviour
 {
-
+	/// <summary>
+	/// The color of the text.
+	/// </summary>
     private Color textColor;
+	/// <summary>
+	/// The text mesh.
+	/// </summary>
     private TextMesh tm;
 
-    // Use this for initialization
     void Start()
     {
         tm = GetComponent<TextMesh>();
@@ -15,7 +19,6 @@ public class ScoreText : MonoBehaviour
         //textColor = tm.color;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // if you only use "transform.LookAt(Camera.main.transform.position)"  the textMesh will be displayed backwards
@@ -27,6 +30,9 @@ public class ScoreText : MonoBehaviour
         }
     }
 
+	/// <summary>
+	/// Fades the score text.
+	/// </summary>
     void Fade()
     {
 

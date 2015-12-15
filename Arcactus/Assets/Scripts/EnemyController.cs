@@ -5,43 +5,61 @@ using System;
 public class EnemyController : MonoBehaviour {
 
     /// <summary>
-    /// needed shots from the player to destroy the enemy
+    /// The lives of the enemy.
     /// </summary>
     public float lives;
 
     /// <summary>
-    /// speed initialised in the creation of the enemy
+    /// The initial movement speed of the enemy.
     /// </summary>
     public float startSpeed;
 
 
     /// <summary>
-    /// current movement speed of the enemy
+    /// The current movement speed of the enemy
     /// </summary>
     internal float speed;
 
     /// <summary>
-    /// score value of the enemy if the player destroys it
+    /// The score value of the enemy if the player defeats it.
     /// </summary>
     public int scoreValue;
     /// <summary>
-    /// damage of the enemy
+    /// The damage of the enemy.
     /// </summary>
     public float damage;
 
+	/// <summary>
+	/// The rigidbody of the enemy.
+	/// </summary>
     private Rigidbody rb;
+	/// <summary>
+	/// The player transform to calculate the movement direction.
+	/// </summary>
     private Transform playerTransform;
+	/// <summary>
+	/// The score manager.
+	/// </summary>
     private ScoreManager scoreManager;
+	/// <summary>
+	/// The score text.
+	/// </summary>
     private TextMesh scoreText;
 
+	/// <summary>
+	/// The balloon pop sound.
+	/// </summary>
     AudioSource balloonPopSound;
-    AudioSource balloonBounce;
+	/// <summary>
+	/// The balloon bounce sound.
+	/// </summary>
+    AudioSource balloonBounceSound;
 
     void Start()
     {
         AudioSource[] audios = GetComponents<AudioSource>();
         balloonPopSound = audios[0];
-        balloonBounce = audios[1];
+        balloonBounceSound = audios[1];
 
         speed = startSpeed;
         playerTransform = GameObject.FindWithTag("Player").transform;
@@ -62,6 +80,10 @@ public class EnemyController : MonoBehaviour {
 
     }
 
+	/// <summary>
+	/// Applies damage to the enemy.
+	/// </summary>
+	/// <param name="taken_damage"> The taken damage.</param>
     public void ApplyDamage(float taken_damage)
     {
         lives -= taken_damage;
@@ -70,16 +92,23 @@ public class EnemyController : MonoBehaviour {
             Dead();
         } else
         {
-            balloonBounce.Play();
+            balloonBounceSound.Play();
         }
     }
 
+	/// <summary>
+	/// Updates the movement of the enemy.
+	/// </summary>
     void FixedUpdate()
     {
         Vector3 direction = (playerTransform.position- transform.position).normalized;
         rb.AddForce(direction * speed);
     }
 
+	/// <summary>
+	/// Raises the collision enter event.
+	/// </summary>
+	/// <param name="collision"> The collision. </param>
     void OnCollisionEnter(Collision collision)
     {
         GameObject other = collision.gameObject;
@@ -91,20 +120,28 @@ public class EnemyController : MonoBehaviour {
         }
     }
 
+	/// <summary>
+	/// Dead function.
+	/// Destroys enemy, add score, plays sound...
+	/// </summary>
     void Dead()
     {
         scoreManager.AddScore(scoreValue);
         scoreText.text = scoreValue.ToString();
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<CapsuleCollider>().enabled = false;
-        rb.velocity = new Vector3(0, 0, 0);
-        speed = 0;
         balloonPopSound.Play();
         StartCoroutine(startExplosion());
     }
 
+	/// <summary>
+	/// Starts the explosion of the enemy.
+	/// </summary>
+	/// <returns>The explosion.</returns>
     private IEnumerator startExplosion()
     {
+		GetComponent<MeshRenderer>().enabled = false;
+		GetComponent<CapsuleCollider>().enabled = false;
+		rb.velocity = new Vector3(0, 0, 0);
+		speed = 0;
 
         yield return new WaitForSeconds(1f);
         scoreText.text = "";
