@@ -95,10 +95,6 @@ public class GameController : MonoBehaviour {
 	/// </summary>
     private float enemyEasyProb = 0.95f;
 	/// <summary>
-	/// The spawn probality of the medium enemy.
-	/// </summary>
-    private float enemyMediumProb = 0.05f;
-	/// <summary>
 	/// The spawn probality of the hard enemy.
 	/// </summary>
     private float enemyHardProb = 0.0f;
@@ -115,6 +111,7 @@ public class GameController : MonoBehaviour {
 	/// The power up manager.
 	/// </summary>
     private PowerUpManager powerUpManager;
+    private int enemyCount;
 
     void Start () {
 
@@ -123,6 +120,7 @@ public class GameController : MonoBehaviour {
         paused = false;
         currentWave = 1;
         highscoreShown = false;
+        enemyCount = enemyStartCount;
 
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject != null)
@@ -187,10 +185,10 @@ public class GameController : MonoBehaviour {
         yield return new WaitForSeconds(startWait);
         while(true)
         {
-            for (int i = 0; i < enemyStartCount; i++)
+            float powerUpProb = powerUpPerWave / enemyCount;
+            for (int i = 0; i < enemyCount; i++)
             {
                 float alpha = UnityEngine.Random.Range(0.0f, 1.0f);
-                float powerUpProb = powerUpPerWave / enemyStartCount;
                 if (alpha <= powerUpProb)
                 {
                     SpawnPowerUp();
@@ -229,10 +227,10 @@ public class GameController : MonoBehaviour {
         {
             enemyHardProb += currentWave/100.0f;
             enemyEasyProb -= (1.5f*(11 - (currentWave)))/100.0f;
-            enemyMediumProb = 1 - enemyHardProb - enemyEasyProb;
+            //enemyMediumProb = 1 - enemyHardProb - enemyEasyProb;
         }
 
-        //enemyCount += currentWave;
+        enemyCount += currentWave;
         currentWave++;
         uiManager.ShowEventText("Next Wave: " + currentWave);
     }
@@ -259,10 +257,6 @@ public class GameController : MonoBehaviour {
         {
             Instantiate(Resources.Load("Prefabs/Enemies/EnemyMedium"), spawnPosition, spawnRotation);
         }
-
-
-        //Instantiate(enemy, spawnPosition, spawnRotation);
-
     }
 
 	/// <summary>

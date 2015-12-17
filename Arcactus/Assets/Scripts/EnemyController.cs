@@ -126,8 +126,14 @@ public class EnemyController : MonoBehaviour {
 	/// </summary>
     void Dead()
     {
-        scoreManager.AddScore(scoreValue);
-        scoreText.text = scoreValue.ToString();
+        int scoreMulitplied = scoreManager.AddScore(scoreValue);
+        scoreText.text = scoreMulitplied.ToString();
+
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+        rb.velocity = new Vector3(0, 0, 0);
+        speed = 0;
+
         balloonPopSound.Play();
         StartCoroutine(startExplosion());
     }
@@ -138,13 +144,8 @@ public class EnemyController : MonoBehaviour {
 	/// <returns>The explosion.</returns>
     private IEnumerator startExplosion()
     {
-		GetComponent<MeshRenderer>().enabled = false;
-		GetComponent<CapsuleCollider>().enabled = false;
-		rb.velocity = new Vector3(0, 0, 0);
-		speed = 0;
 
-        yield return new WaitForSeconds(1f);
-        scoreText.text = "";
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
 
     }

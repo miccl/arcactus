@@ -1392,8 +1392,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1304608339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 50, z: 1000}
-  m_LocalScale: {x: 2000, y: 100, z: 2000}
+  m_LocalPosition: {x: -2, y: 50, z: 500}
+  m_LocalScale: {x: 2000, y: 100, z: 1500}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1468,14 +1468,14 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.25
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
-    m_Strength: 1
+    m_Strength: .25
     m_Bias: .0500000007
     m_NormalBias: .400000006
   m_Cookie: {fileID: 0}
@@ -1857,7 +1857,7 @@ MonoBehaviour:
   startWait: 1
   waveWait: 10
   spawnWait: 1
-  enemyStartCount: 5
+  enemyStartCount: 10
   enemySpawnRadius: 100
   enemySpawnAngle: 160
   enemyYPosMin: 0

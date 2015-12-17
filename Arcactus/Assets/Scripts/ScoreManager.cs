@@ -17,7 +17,7 @@ public class ScoreManager : MonoBehaviour {
 	/// <summary>
 	/// The score multiplier.
 	/// </summary>
-    internal int scoreMultiplier = 1;
+    internal float scoreMultiplier = 1;
 
 	/// <summary>
 	/// Whether the score text was shown before or not.
@@ -69,23 +69,27 @@ public class ScoreManager : MonoBehaviour {
 	/// Adds a score value to the total score.
 	/// </summary>
 	/// <param name="scoreValue">The score value.</param>
-    public void AddScore(int scoreValue)
+    public int AddScore(int scoreValue)
     {
+        int currScoreValue = 0;
         if (!gameController.gameOver)
         {
-            score += scoreValue * scoreMultiplier;
+            currScoreValue = (int) (scoreValue * scoreMultiplier);
+            score += currScoreValue;
             if (score > highscore)
             {
                 //PlayerPrefs.SetInt("highscore", score);
                 if (newHighscore)
                 {
-                    uiManager.ShowEventText("New Highscore !", 2f);
+                    uiManager.ShowEventText("New Highscore !", 2.0f);
                     newHighscore = false;
                 }
                 highscore = score;
             }
             UpdateScoreText();
         }
+
+        return currScoreValue;
     }
 	/// <summary>
 	/// Updates the score text.
