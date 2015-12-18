@@ -41,6 +41,13 @@ public class RaycastShooting : MonoBehaviour {
 	/// </summary>
     RaycastHit hit;
 
+    /// <summary>
+    /// the radius of the raycast
+    /// </summary>
+    [Range(0.1f, 0.5f)]
+    public float raycastRadius = 0.25f;
+
+
     void Update()
     {
         // ray in the middle of the play screen
@@ -56,7 +63,7 @@ public class RaycastShooting : MonoBehaviour {
             //tc.damage = 2;
 
             // sends out a ray from the given spawn with the given range
-            if (Physics.Raycast(ray, out hit, shotRange))
+            if (Physics.SphereCast(ray, raycastRadius, out hit, shotRange))
             {
                 // send a message to the strucked object and execute the function "ApplyDamage" with the parameter damage
                 hit.transform.SendMessage("ApplyDamage", shotDamage, SendMessageOptions.DontRequireReceiver);

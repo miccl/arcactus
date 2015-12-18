@@ -135,8 +135,8 @@ public class EnemyController : MonoBehaviour {
 		GameObject scoreText = Instantiate(scoreTextPrefab, transform.position + verschiebung , transform.rotation) as GameObject;
 		ScoreText scoreTextController = scoreText.GetComponent<ScoreText>();
 		scoreTextController.SetText(scoreValue.ToString());
-        //Color textColor = ColorUtils.ChangeColorBrightness(GetComponent<MeshRenderer>().material.color, 0.5f);
-        Color textColor = GetComponent<MeshRenderer>().material.color;
+        Color textColor = ColorUtils.ChangeColorBrightness(GetComponent<MeshRenderer>().material.color, 0.3f);
+        //Color textColor = GetComponent<MeshRenderer>().material.color;
         scoreTextController.SetTextColor(textColor);
 
     }

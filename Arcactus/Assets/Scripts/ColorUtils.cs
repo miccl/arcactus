@@ -14,9 +14,9 @@ public class ColorUtils : MonoBehaviour {
     /// </returns>
     public static Color ChangeColorBrightness(Color color, float correctionFactor)
     {
-        float red = (float)color.r;
-        float green = (float)color.g;
-        float blue = (float)color.b;
+        float red = color.r * 255.0f;
+        float green = color.g * 255.0f;
+        float blue = color.b * 255.0f;
 
         if (correctionFactor < 0)
         {
@@ -31,16 +31,15 @@ public class ColorUtils : MonoBehaviour {
             green = (255 - green) * correctionFactor + green;
             blue = (255 - blue) * correctionFactor + blue;
         }
-
+        //return new Color(red, green, blue, color.a);
         return FromArgb(color.a, (int)red, (int)green, (int)blue);
     }
 
     public static Color FromArgb(float alpha, int red, int green, int blue)
     {
-        float fa = ((float)alpha) / 255.0f;
         float fr = ((float)red) / 255.0f;
         float fg = ((float)green) / 255.0f;
         float fb = ((float)blue) / 255.0f;
-        return new Color(fr, fg, fb, fa);
+        return new Color(fr, fg, fb, alpha);
     }
 }
