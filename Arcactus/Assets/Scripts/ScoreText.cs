@@ -3,24 +3,22 @@ using System.Collections;
 
 public class ScoreText : MonoBehaviour
 {
-
-	/// <summary>
-	/// The text mesh.
-	/// </summary>
+    /// <summary>
+    /// The color of the text.
+    /// </summary>
+    private Color textColor;
+    /// <summary>
+    /// The text mesh.
+    /// </summary>
     private TextMesh tm;
-	/// <summary>
-	/// The color of the text.
-	/// </summary>
-	private Color textColor;
 
-	private string text;
+
+    private string text;
 
     void Start()
     {
         tm = GetComponent<TextMesh>();
-		//textColor = tm.color;
-		tm.text = "";
-
+        tm.text = "";
     }
 
     void Update()
@@ -28,20 +26,20 @@ public class ScoreText : MonoBehaviour
         // if you only use "transform.LookAt(Camera.main.transform.position)"  the textMesh will be displayed backwards
         transform.LookAt(2 * transform.position - Camera.main.transform.position);
         transform.Translate(0, 0.1f, 0, Space.World);
-		tm.text = text;
+        tm.text = text;
         Fade();
     }
 
-	/// <summary>
-	/// Fades the score text.
-	/// </summary>
+    /// <summary>
+    /// Fades the score text.
+    /// </summary>
     void Fade()
     {
 
         if (tm.color.a > 0)
         {
             textColor.a -= 0.1f * Time.deltaTime * 8;
-			tm.color = textColor;
+            tm.color = textColor;
         }
         else
         {
@@ -50,11 +48,12 @@ public class ScoreText : MonoBehaviour
 
     }
 
-	public void SetText(string text) {
-		this.text = text;
-	}
+    public void SetText(string text)
+    {
+        this.text = text;
+    }
 
-    public void SetColor(Color textColor)
+    public void SetTextColor(Color textColor)
     {
         this.textColor = textColor;
     }
