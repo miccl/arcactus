@@ -108,7 +108,7 @@ public class PowerUpManager : MonoBehaviour {
     public void DisplayPowerUp(PowerUpTypes type, float duration)
     {
         String text = "PowerUp '" + type.ToString() + "' got activiated (" + duration + "s) !";
-        uiManager.ShowEventText(text, 1f);
+        uiManager.ShowEventText(text, 3f);
     }
 
 	/// <summary>

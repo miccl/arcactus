@@ -154,5 +154,4 @@ public class UIManager : MonoBehaviour {
         hudCanvas.enabled = show;
     }
 
-
 }

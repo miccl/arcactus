@@ -134,6 +134,9 @@ public class GameController : MonoBehaviour {
             Debug.Log("Cannot find 'GameController' script");
         }
 
+        uiManager.RemoveEventText();
+        uiManager.RemoveSecondaryEventText();
+
         StartCoroutine(SpawnWaves());
 	}
 	
@@ -153,7 +156,7 @@ public class GameController : MonoBehaviour {
                 if(!highscoreShown)
                 {
                     //uiManager.ShowHUD(false);
-                    uiManager.RemoveEventText();
+                    //uiManager.RemoveEventText();
                     uiManager.ShowHighscore(true);
                     //uiManager.ShowCrosshair(false);
                     highscoreShown = true;

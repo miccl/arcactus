@@ -1855,11 +1855,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1956359842}
   startWait: 1
-  waveWait: 10
+  waveWait: 5
   spawnWait: 1
   enemyStartCount: 10
   enemySpawnRadius: 100
-  enemySpawnAngle: 160
+  enemySpawnAngle: 135
   enemyYPosMin: 0
   enemyYPosMax: 5
   powerUpPerWave: 1
@@ -2014,7 +2014,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1956359842}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efed661e1f46d2e4a8e69231cb866295, type: 3}
   m_Name: 

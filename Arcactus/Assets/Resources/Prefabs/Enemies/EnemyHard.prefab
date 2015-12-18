@@ -251,7 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 3
   startSpeed: .25
-  scoreValue: 30
+  scoreValue: 10
   damage: 1.5
   scoreTextPrefab: {fileID: 116026, guid: ebf716bd0c445e94fa2dd6de98005b90, type: 2}
 --- !u!136 &13667468
@@ -278,6 +278,10 @@ Prefab:
       propertyPath: scoreTextPrefab
       value: 
       objectReference: {fileID: 116026, guid: ebf716bd0c445e94fa2dd6de98005b90, type: 2}
+    - target: {fileID: 0}
+      propertyPath: scoreValue
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 187144}
