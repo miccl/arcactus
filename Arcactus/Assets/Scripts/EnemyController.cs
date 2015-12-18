@@ -43,16 +43,6 @@ public class EnemyController : MonoBehaviour {
     private ScoreManager scoreManager;
 
 	/// <summary>
-	/// The score text prefab.
-	/// </summary>
-    public GameObject scoreTextPrefab;
-
-	/// <summary>
-	/// The spawn point of the scoreText.
-	/// </summary>
-	public Transform scoreTextSpawnPoint;
-
-	/// <summary>
 	/// The balloon pop sound.
 	/// </summary>
     AudioSource balloonPopSound;
@@ -60,6 +50,8 @@ public class EnemyController : MonoBehaviour {
 	/// The balloon bounce sound.
 	/// </summary>
     AudioSource balloonBounceSound;
+
+    public GameObject scoreTextPrefab;
 
     void Start()
     {
@@ -96,8 +88,7 @@ public class EnemyController : MonoBehaviour {
         if (lives <= 0)
         {
             Dead();
-        }
-        else
+        } else
         {
             balloonBounceSound.Play();
         }
@@ -105,9 +96,9 @@ public class EnemyController : MonoBehaviour {
 
     }
 
-    /// <summary>
-    /// Updates the movement of the enemy.
-    /// </summary>
+	/// <summary>
+	/// Updates the movement of the enemy.
+	/// </summary>
     void FixedUpdate()
     {
         Vector3 direction = (playerTransform.position- transform.position).normalized;
@@ -136,7 +127,7 @@ public class EnemyController : MonoBehaviour {
     void Dead()
     {
         balloonPopSound.Play();
-		Destroy(gameObject);
+        Destroy(gameObject);
     }
 
 	private void ShowScoreText(int scoreValue) {
@@ -144,7 +135,9 @@ public class EnemyController : MonoBehaviour {
 		GameObject scoreText = Instantiate(scoreTextPrefab, transform.position + verschiebung , transform.rotation) as GameObject;
 		ScoreText scoreTextController = scoreText.GetComponent<ScoreText>();
 		scoreTextController.SetText(scoreValue.ToString());
-        scoreTextController.SetColor(GetComponent<MeshRenderer>().material.color);
+        //Color textColor = ColorUtils.ChangeColorBrightness(GetComponent<MeshRenderer>().material.color, 0.5f);
+        Color textColor = GetComponent<MeshRenderer>().material.color;
+        scoreTextController.SetTextColor(textColor);
 
     }
 }
