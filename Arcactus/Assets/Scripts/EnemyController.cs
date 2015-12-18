@@ -29,9 +29,14 @@ public class EnemyController : MonoBehaviour {
     /// </summary>
     public float damage;
 
-	/// <summary>
-	/// The rigidbody of the enemy.
-	/// </summary>
+    /// <summary>
+    /// The prefab of the scoreText
+    /// </summary>
+    public GameObject scoreTextPrefab;
+
+    /// <summary>
+    /// The rigidbody of the enemy.
+    /// </summary>
     private Rigidbody rb;
 	/// <summary>
 	/// The player transform to calculate the movement direction.
@@ -51,7 +56,8 @@ public class EnemyController : MonoBehaviour {
 	/// </summary>
     AudioSource balloonBounceSound;
 
-    public GameObject scoreTextPrefab;
+    private Color textColor;
+
 
     void Start()
     {
@@ -60,6 +66,7 @@ public class EnemyController : MonoBehaviour {
         balloonBounceSound = audios[1];
 
         speed = startSpeed;
+        textColor = ColorUtils.ChangeColorBrightness(GetComponent<MeshRenderer>().material.color, 0.2f);
         playerTransform = GameObject.FindWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
 
@@ -81,6 +88,8 @@ public class EnemyController : MonoBehaviour {
     public void ApplyDamage(float taken_damage)
     {
         lives -= taken_damage;
+
+        //GetComponent<MeshRenderer>().material.color = ColorUtils.ChangeColorBrightness(GetComponent<MeshRenderer>().material.color, 0.2f);
 
         int scoreMulitplied = scoreManager.AddScore(scoreValue);
         ShowScoreText(scoreMulitplied);
@@ -135,7 +144,6 @@ public class EnemyController : MonoBehaviour {
 		GameObject scoreText = Instantiate(scoreTextPrefab, transform.position + verschiebung , transform.rotation) as GameObject;
 		ScoreText scoreTextController = scoreText.GetComponent<ScoreText>();
 		scoreTextController.SetText(scoreValue.ToString());
-        Color textColor = ColorUtils.ChangeColorBrightness(GetComponent<MeshRenderer>().material.color, 0.3f);
         //Color textColor = GetComponent<MeshRenderer>().material.color;
         scoreTextController.SetTextColor(textColor);
 
