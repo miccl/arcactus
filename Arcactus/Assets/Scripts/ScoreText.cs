@@ -3,31 +3,33 @@ using System.Collections;
 
 public class ScoreText : MonoBehaviour
 {
-	/// <summary>
-	/// The color of the text.
-	/// </summary>
-    private Color textColor;
+
 	/// <summary>
 	/// The text mesh.
 	/// </summary>
     private TextMesh tm;
+	/// <summary>
+	/// The color of the text.
+	/// </summary>
+	private Color textColor;
+
+	private string text;
 
     void Start()
     {
         tm = GetComponent<TextMesh>();
-        textColor = transform.parent.GetComponent<MeshRenderer>().material.color;
-        //textColor = tm.color;
+		//textColor = tm.color;
+		tm.text = "";
+
     }
 
     void Update()
     {
         // if you only use "transform.LookAt(Camera.main.transform.position)"  the textMesh will be displayed backwards
         transform.LookAt(2 * transform.position - Camera.main.transform.position);
-        if (tm.text != "")
-        {
-            transform.Translate(0, 0.1f, 0, Space.World);
-            Fade();
-        }
+        transform.Translate(0, 0.1f, 0, Space.World);
+		tm.text = text;
+        Fade();
     }
 
 	/// <summary>
@@ -39,12 +41,21 @@ public class ScoreText : MonoBehaviour
         if (tm.color.a > 0)
         {
             textColor.a -= 0.1f * Time.deltaTime * 8;
-            tm.color = textColor;
+			tm.color = textColor;
         }
         else
         {
             Destroy(gameObject);
         }
 
+    }
+
+	public void SetText(string text) {
+		this.text = text;
+	}
+
+    public void SetColor(Color textColor)
+    {
+        this.textColor = textColor;
     }
 }

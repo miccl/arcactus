@@ -41,10 +41,16 @@ public class EnemyController : MonoBehaviour {
 	/// The score manager.
 	/// </summary>
     private ScoreManager scoreManager;
+
 	/// <summary>
-	/// The score text.
+	/// The score text prefab.
 	/// </summary>
-    private TextMesh scoreText;
+    public GameObject scoreTextPrefab;
+
+	/// <summary>
+	/// The spawn point of the scoreText.
+	/// </summary>
+	public Transform scoreTextSpawnPoint;
 
 	/// <summary>
 	/// The balloon pop sound.
@@ -74,10 +80,6 @@ public class EnemyController : MonoBehaviour {
         {
             Debug.Log("Cannot find 'GameController' script");
         }
-
-        scoreText = GetComponentInChildren<TextMesh>();
-        scoreText.text = "";
-
     }
 
 	/// <summary>
@@ -90,15 +92,20 @@ public class EnemyController : MonoBehaviour {
         if(lives <= 0)
         {
             Dead();
-        } else
+        }
+        else
         {
             balloonBounceSound.Play();
         }
+
+        int scoreMulitplied = scoreManager.AddScore(scoreValue);
+        ShowScoreText(scoreMulitplied);
+
     }
 
-	/// <summary>
-	/// Updates the movement of the enemy.
-	/// </summary>
+    /// <summary>
+    /// Updates the movement of the enemy.
+    /// </summary>
     void FixedUpdate()
     {
         Vector3 direction = (playerTransform.position- transform.position).normalized;
@@ -126,16 +133,9 @@ public class EnemyController : MonoBehaviour {
 	/// </summary>
     void Dead()
     {
-        int scoreMulitplied = scoreManager.AddScore(scoreValue);
-        scoreText.text = scoreMulitplied.ToString();
-
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<CapsuleCollider>().enabled = false;
-        rb.velocity = new Vector3(0, 0, 0);
-        speed = 0;
-
         balloonPopSound.Play();
         StartCoroutine(startExplosion());
+		Destroy(gameObject);
     }
 
 	/// <summary>
@@ -144,9 +144,16 @@ public class EnemyController : MonoBehaviour {
 	/// <returns>The explosion.</returns>
     private IEnumerator startExplosion()
     {
-
         yield return new WaitForSeconds(2f);
-        Destroy(gameObject);
+
+    }
+
+	private void ShowScoreText(int scoreValue) {
+        Vector3 verschiebung = new Vector3(0, 1.5f, 0);
+		GameObject scoreText = Instantiate(scoreTextPrefab, transform.position + verschiebung , transform.rotation) as GameObject;
+		ScoreText scoreTextController = scoreText.GetComponent<ScoreText>();
+		scoreTextController.SetText(scoreValue.ToString());
+        scoreTextController.SetColor(GetComponent<MeshRenderer>().material.color);
 
     }
 }
