@@ -89,7 +89,11 @@ public class EnemyController : MonoBehaviour {
     public void ApplyDamage(float taken_damage)
     {
         lives -= taken_damage;
-        if(lives <= 0)
+
+        int scoreMulitplied = scoreManager.AddScore(scoreValue);
+        ShowScoreText(scoreMulitplied);
+
+        if (lives <= 0)
         {
             Dead();
         }
@@ -98,8 +102,6 @@ public class EnemyController : MonoBehaviour {
             balloonBounceSound.Play();
         }
 
-        int scoreMulitplied = scoreManager.AddScore(scoreValue);
-        ShowScoreText(scoreMulitplied);
 
     }
 
@@ -134,18 +136,7 @@ public class EnemyController : MonoBehaviour {
     void Dead()
     {
         balloonPopSound.Play();
-        StartCoroutine(startExplosion());
 		Destroy(gameObject);
-    }
-
-	/// <summary>
-	/// Starts the explosion of the enemy.
-	/// </summary>
-	/// <returns>The explosion.</returns>
-    private IEnumerator startExplosion()
-    {
-        yield return new WaitForSeconds(2f);
-
     }
 
 	private void ShowScoreText(int scoreValue) {
