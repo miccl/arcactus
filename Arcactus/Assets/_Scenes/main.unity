@@ -1056,6 +1056,10 @@ Prefab:
       propertyPath: m_TagString
       value: Arm
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 9808544e23e1404418ef41373c1f18ce, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 9808544e23e1404418ef41373c1f18ce, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 9808544e23e1404418ef41373c1f18ce, type: 3}

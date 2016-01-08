@@ -269,7 +269,7 @@ public class GameController : MonoBehaviour {
     {
         GameObject powerUp = powerUpManager.PickOne();
         Vector3 spawnPosition = ComputeSpawnPosition(powerUpSpawnRadius, powerUpSpawnAngle, powerUpYPosMin, powerUpYPosMax);
-        Quaternion spawnRotation = Quaternion.identity;
+		Quaternion spawnRotation = UnityEngine.Random.rotation;
         Instantiate(powerUp, spawnPosition, spawnRotation);
     }
     /// <summary>

@@ -9,10 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 463912}
   - 33: {fileID: 3340150}
-  - 135: {fileID: 13508874}
   - 23: {fileID: 2314902}
   - 114: {fileID: 11487776}
   - 54: {fileID: 5492154}
+  - 64: {fileID: 6475040}
   m_Layer: 0
   m_Name: LiveDown
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 127668}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -.72874999, y: 1.07418942, z: 4.07894516}
-  m_LocalScale: {x: 3.11851311, y: 2.75722313, z: 1}
+  m_LocalScale: {x: 3, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -42,7 +42,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: ac618d44d047bb347bcdcdce42be3cef, type: 2}
+  - {fileID: 2100000, guid: 2f8acb739e1657e43a3adc783bd4335e, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -50,9 +50,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -64,7 +62,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 127668}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: f10d8bdf7bb749a41a9a7106fb97cfc0, type: 3}
 --- !u!54 &5492154
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -80,6 +78,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &6475040
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_Mesh: {fileID: 4300000, guid: f10d8bdf7bb749a41a9a7106fb97cfc0, type: 3}
 --- !u!114 &11487776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,18 +105,6 @@ MonoBehaviour:
   type: 6
   lifetime: 5
   duration: 5
---- !u!135 &13508874
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 127668}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -117,7 +115,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ac618d44d047bb347bcdcdce42be3cef, type: 2}
+      objectReference: {fileID: 2100000, guid: 2f8acb739e1657e43a3adc783bd4335e, type: 2}
     - target: {fileID: 0}
       propertyPath: m_Mass
       value: .5
@@ -125,6 +123,22 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: type
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: f10d8bdf7bb749a41a9a7106fb97cfc0, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
