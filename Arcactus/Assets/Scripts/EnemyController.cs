@@ -143,7 +143,7 @@ public class EnemyController : MonoBehaviour {
         Vector3 verschiebung = new Vector3(0, 1.5f, 0);
 		GameObject scoreText = Instantiate(scoreTextPrefab, transform.position + verschiebung , transform.rotation) as GameObject;
 		ScoreText scoreTextController = scoreText.GetComponent<ScoreText>();
-		scoreTextController.SetText(scoreValue.ToString());
+		scoreTextController.SetText("+" + scoreValue.ToString());
         //Color textColor = GetComponent<MeshRenderer>().material.color;
         scoreTextController.SetTextColor(textColor);
 
