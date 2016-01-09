@@ -134,9 +134,6 @@ public class GameController : MonoBehaviour {
             Debug.Log("Cannot find 'GameController' script");
         }
 
-        uiManager.RemoveEventText();
-        uiManager.RemoveSecondaryEventText();
-
         StartCoroutine(SpawnWaves());
 	}
 	
@@ -169,12 +166,12 @@ public class GameController : MonoBehaviour {
             if(!paused)
             {
                 Time.timeScale = 0;
-                uiManager.ShowEventText("Paused");
+				uiManager.ShowStatusText("Game Paused.");
                 paused = true;
             }
             else {
                 Time.timeScale = 1;
-                uiManager.RemoveEventText();
+				uiManager.HideStatusText();
                 paused = false;
             }
         }
@@ -216,7 +213,6 @@ public class GameController : MonoBehaviour {
 
             InitializeNextWave();
             yield return new WaitForSeconds(waveWait);
-            uiManager.RemoveEventText();
         }
     }
     
@@ -235,7 +231,7 @@ public class GameController : MonoBehaviour {
 
         enemyCount += currentWave;
         currentWave++;
-        uiManager.ShowEventText("Next Wave: " + currentWave);
+		uiManager.ShowStatusText("Next Wave: " + currentWave, 4.0f);
     }
 
 	/// <summary>
@@ -304,7 +300,7 @@ public class GameController : MonoBehaviour {
     {
         if(!gameOver)
         {
-            uiManager.ShowEventText("Game Over !");
+			uiManager.ShowStatusText("Game Over!");
             gameOver = true;
             scoreManager.SaveScore(currentWave);
         }

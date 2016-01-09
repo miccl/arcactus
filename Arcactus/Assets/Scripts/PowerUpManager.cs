@@ -107,8 +107,8 @@ public class PowerUpManager : MonoBehaviour {
 	/// <param name="duration">The duration of the power up.</param>
     public void DisplayPowerUp(PowerUpTypes type, float duration)
     {
-        String text = "PowerUp '" + type.ToString() + "' got activiated (" + duration + "s) !";
-        uiManager.ShowEventText(text, 3f);
+        String text = type.ToString() + " (" + duration + "s) !";
+        uiManager.ShowItemActivatedEventText(text, 2f);
     }
 
 	/// <summary>

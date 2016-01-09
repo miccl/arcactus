@@ -12,7 +12,7 @@ GameObject:
   - 23: {fileID: 2314902}
   - 114: {fileID: 11487776}
   - 54: {fileID: 5492154}
-  - 64: {fileID: 6423992}
+  - 135: {fileID: 13536834}
   m_Layer: 0
   m_Name: EnemyDoubledSpeed
   m_TagString: Untagged
@@ -78,18 +78,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &6423992
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 127668}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: f10d8bdf7bb749a41a9a7106fb97cfc0, type: 3}
 --- !u!114 &11487776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -105,6 +93,18 @@ MonoBehaviour:
   type: 3
   lifetime: 5
   duration: 5
+--- !u!135 &13536834
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .419999987
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -139,6 +139,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Radius
+      value: .419999987
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

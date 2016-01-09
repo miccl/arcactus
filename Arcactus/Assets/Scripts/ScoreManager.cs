@@ -81,7 +81,7 @@ public class ScoreManager : MonoBehaviour {
                 //PlayerPrefs.SetInt("highscore", score);
                 if (newHighscore)
                 {
-                    uiManager.ShowEventText("New Highscore !", 2.0f);
+                    uiManager.ShowStatusText("New Highscore!", 2.0f);
                     newHighscore = false;
                 }
                 highscore = score;

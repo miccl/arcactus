@@ -21,111 +21,116 @@ public class UIManager : MonoBehaviour {
 	/// </summary>
     public RawImage crosshair;
 	/// <summary>
-	/// The event text.
-	/// </summary>
-    public Text eventText;
-	/// <summary>
 	/// The secondary event text.
 	/// </summary>
     public Text secondaryEventText;
+
+	/// <summary>
+	/// The game status text.
+	/// </summary>
+	public Text statusText;
+
+	/// <summary>
+	/// Settings for the Item Event Text
+	/// </summary>
+	[Header("Item Activated Event Text")]
+	public Font font;
+	public int fontSize;
+	public int eventTextWidth;
+	public int eventTextHeight;
+	public TextAnchor alignment;
 
     void Start () {
         hudCanvas.enabled = true;
         highscoreCanvas.enabled = false;
         crosshair.enabled = true;
-        RemoveEventText();
-        RemoveSecondaryEventText();
+		statusText.enabled = false;
 	}
 
 	/// <summary>
-	/// Shows the event text.
+	/// Dynamically creates Event Text objects to show Item Activation info.
+	/// Object will be destroyed after a given duration.
 	/// </summary>
-	/// <param name="text">The text to show.</param>
-    public void ShowEventText(string text)
-    {
-        ShowAndRemoveEventText(eventText, text, -1);
-    }
+	/// <param name="text">Text.</param>
+	/// <param name="duration">Duration.</param>
+	public void ShowItemActivatedEventText(string text, float duration)
+	{
+		GameObject eventTextObject = new GameObject ("Item Activated Text");
+		eventTextObject.transform.SetParent (hudCanvas.transform, false);
+		Text eventT = eventTextObject.AddComponent<Text> ();
+		eventTextObject.AddComponent<Outline> ();
+		RectTransform rect = eventTextObject.GetComponent<RectTransform> ();
+		rect.sizeDelta = new Vector2 (eventTextWidth, eventTextHeight);
+		eventT.alignment = TextAnchor.MiddleCenter;
+		eventT.font = font;
+		eventT.fontSize = fontSize;
+		eventT.text = text;
+		eventT.CrossFadeAlpha(0.0f, duration, true);
+		StartCoroutine ("BubbleUp", rect);
+		Destroy (eventTextObject, duration);
+	}
 
 	/// <summary>
-	/// Shows the secondary event text.
+	/// Shows a status info.
 	/// </summary>
-	/// <param name="text">The text to show.</param>
-    public void ShowSecondaryEventText(string text)
-    {
-        ShowAndRemoveEventText(secondaryEventText, text, -1);
-    }
+	/// <param name="text">Text.</param>
+	public void ShowStatusText(String text)
+	{
+		statusText.text = text;
+		statusText.enabled = true;
+	}
 
 	/// <summary>
-	/// Shows the event text for a specific duration.
+	/// Shows a status info for a given duration.
 	/// </summary>
-	/// <param name="text">The text to show.</param>
-	/// <param name="duration">The duration the text is shown.</param>
-    public void ShowEventText(string text, float duration)
-    {
-        ShowAndRemoveEventText(eventText, text, duration);
-    }
-	/// <summary>
-	/// Shows the secondary event text for a specific duration.
-	/// </summary>
-	/// <param name="text">The text to show.</param>
-	/// <param name="duration">The duration the text is shown.</param>
-	public void ShowSecondaryEventText(string text, float duration)
-    {
-        ShowAndRemoveEventText(secondaryEventText, text, duration);
-    }
+	/// <param name="text">Text.</param>
+	/// <param name="duration">Duration.</param>
+	public void ShowStatusText(String text, float duration)
+	{
+		statusText.text = text;
+		statusText.enabled = true;
+		StartCoroutine ("HideStatusText", duration);
+	}
 
 	/// <summary>
-	/// Shows the and remove event text after a specific time.
+	/// Hides a status info after a given duration.
+	/// Info starts fading away after half duration.
 	/// </summary>
-	/// <param name="text">The text to show.</param>
-	/// <param name="duration">The duration the text is shown.</param>
-	/// <param name="waitTime">Wait time.</param>
-    void ShowAndRemoveEventText(Text eventText, string text, float waitTime)
-    {
-        if(hudCanvas.enabled)
-        {
-            while(true)
-            {
-                if(!eventText.enabled)
-                {
-                    eventText.enabled = true;
-                    eventText.text = text;
-                    if (waitTime != -1)
-                    {
-                        StartCoroutine(RemoveEventText(eventText, waitTime));
-                    }
-                    break;
-                }
-            }
-        }
-    }
+	/// <returns>The status text.</returns>
+	/// <param name="duration">Duration.</param>
+	IEnumerator HideStatusText(float duration)
+	{
+		yield return new WaitForSeconds (duration / 2);
+		statusText.CrossFadeAlpha (0.0f, duration / 2, true);
+
+		yield return new WaitForSeconds (duration / 2);
+		statusText.enabled = false;
+		//Restore alpha
+		statusText.color = Color.white;
+	}
 
 	/// <summary>
-	/// Removes the event text immeditialy.
+	/// Hides a info text.
 	/// </summary>
-    public void RemoveEventText()
-    {
-        StartCoroutine(RemoveEventText(eventText, 0));
-    }
+	public void HideStatusText()
+	{
+		statusText.enabled = false;
+	}
 
 	/// <summary>
-	/// Removes the secondary event text immeditialy.
+	/// Makes RectTransforms float upwards
 	/// </summary>
-    public void RemoveSecondaryEventText()
-    {
-        StartCoroutine(RemoveEventText(secondaryEventText, 0));
-    }
-	/// <summary>
-	/// Removes the event text after a specific time.
-	/// </summary>
-	/// <param name="eventText">The event text.</param>
-	/// <param name="waitTime">Wait time.</param>
-    IEnumerator RemoveEventText(Text eventText, float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-        eventText.text = "";
-        eventText.enabled = false;
-    }
+	/// <param name="rect">Rect.</param>
+	private IEnumerator BubbleUp (RectTransform rect)
+	{
+		while (true) {
+			yield return new WaitForFixedUpdate();
+			if(!rect.Equals(null)) {
+				rect.Translate (0, .001f, 0);
+			} else break;
+			yield return null;
+		}
+	}
 
 	/// <summary>
 	/// Shows the highscore.
