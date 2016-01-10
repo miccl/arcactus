@@ -20,10 +20,6 @@ public class UIManager : MonoBehaviour {
 	/// The crosshair raw image.
 	/// </summary>
     public RawImage crosshair;
-	/// <summary>
-	/// The secondary event text.
-	/// </summary>
-    public Text secondaryEventText;
 
 	/// <summary>
 	/// The game status text.
