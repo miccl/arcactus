@@ -40,13 +40,6 @@ public class ScoreManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        //Init things
-        score = 0;
-        scoreMultiplier = 1;
-        UpdateScoreText();
-        highscore = PlayerPrefs.GetInt(0 + HighscoreController.HSCORE, 0);
-        newHighscore = true;
-
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject != null)
         {
@@ -58,17 +51,25 @@ public class ScoreManager : MonoBehaviour {
             Debug.Log("Cannot find 'GameController' script");
         }
 
+        Init();
+
     }
 
-    // Update is called once per frame
-    void Update () {
-	
-	}
+    public void Init()
+    {
+        score = 0;
+        scoreMultiplier = 1;
+        UpdateScoreText();
+        highscore = PlayerPrefs.GetInt(0 + HighscoreController.HSCORE, 0);
+        newHighscore = true;
+    }
 
-	/// <summary>
-	/// Adds a score value to the total score.
-	/// </summary>
-	/// <param name="scoreValue">The score value.</param>
+
+
+    /// <summary>
+    /// Adds a score value to the total score.
+    /// </summary>
+    /// <param name="scoreValue">The score value.</param>
     public int AddScore(int scoreValue)
     {
         int currScoreValue = 0;

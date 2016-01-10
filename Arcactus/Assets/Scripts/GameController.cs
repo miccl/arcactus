@@ -112,15 +112,9 @@ public class GameController : MonoBehaviour {
 	/// </summary>
     private PowerUpManager powerUpManager;
     private int enemyCount;
+    private LivesManager livesManager;
 
     void Start () {
-
-        gameOver = false;
-        restart = false;
-        paused = false;
-        currentWave = 1;
-        highscoreShown = false;
-        enemyCount = enemyStartCount;
 
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject != null)
@@ -134,7 +128,14 @@ public class GameController : MonoBehaviour {
             Debug.Log("Cannot find 'GameController' script");
         }
 
-        StartCoroutine(SpawnWaves());
+        GameObject playerControllerObject = GameObject.FindWithTag("Player");
+        if(playerControllerObject != null)
+        {
+            livesManager = playerControllerObject.GetComponent<LivesManager>();
+        }
+
+        StartGame();
+
 	}
 	
 	void Update () {
@@ -142,7 +143,7 @@ public class GameController : MonoBehaviour {
         {            
             if (Input.GetButtonDown("Restart"))
             {
-                Application.LoadLevel(Application.loadedLevel);
+                StartGame();
             }
         }
 
@@ -152,10 +153,7 @@ public class GameController : MonoBehaviour {
             {
                 if(!highscoreShown)
                 {
-                    //uiManager.ShowHUD(false);
-                    //uiManager.RemoveEventText();
-                    uiManager.ShowHighscore(true);
-                    //uiManager.ShowCrosshair(false);
+                    uiManager.HighscoreEnabled(true);
                     highscoreShown = true;
                 }
             }
@@ -176,6 +174,26 @@ public class GameController : MonoBehaviour {
             }
         }
     }
+
+    public void StartGame()
+    {
+        gameOver = false;
+        restart = false;
+        paused = false;
+        currentWave = 1;
+        highscoreShown = false;
+        enemyCount = enemyStartCount;
+
+        scoreManager.Init();
+        uiManager.InitiateGameView();
+        livesManager.Init();
+
+       foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            Destroy(enemy);
+
+        StartCoroutine(SpawnWaves());
+    }
+
     /// <summary>
     /// Spawning Waves including enemies and powerUps
     /// </summary>
@@ -231,12 +249,13 @@ public class GameController : MonoBehaviour {
 
         enemyCount += currentWave;
         currentWave++;
-		uiManager.ShowStatusText("Next Wave: " + currentWave, 4.0f);
+        uiManager.ShowStatusText("Next Wave: " + currentWave, 4.0f);
+
     }
 
-	/// <summary>
-	/// Spawns a random enemy.
-	/// </summary>
+    /// <summary>
+    /// Spawns a random enemy.
+    /// </summary>
     void SpawnEnemy()
     {
         Vector3 spawnPosition = ComputeSpawnPosition(enemySpawnRadius, enemySpawnAngle, enemyYPosMin, enemyYPosMax);
@@ -268,6 +287,7 @@ public class GameController : MonoBehaviour {
 		Quaternion spawnRotation = UnityEngine.Random.rotation;
         Instantiate(powerUp, spawnPosition, spawnRotation);
     }
+
     /// <summary>
     /// Computes a random spawn position with the given parameters
     /// </summary>

@@ -16,9 +16,15 @@ public class UIManager : MonoBehaviour {
 	/// The highscore canvas.
 	/// </summary>
     public Canvas highscoreCanvas;
-	/// <summary>
-	/// The crosshair raw image.
-	/// </summary>
+
+    /// <summary>
+    /// The menu canvas.
+    /// </summary>
+    public Canvas menuCanvas;
+
+    /// <summary>
+    /// The crosshair raw image.
+    /// </summary>
     public RawImage crosshair;
 
 	/// <summary>
@@ -37,11 +43,12 @@ public class UIManager : MonoBehaviour {
 	public TextAnchor alignment;
 
     void Start () {
-        hudCanvas.enabled = true;
-        highscoreCanvas.enabled = false;
-        crosshair.enabled = true;
-		statusText.enabled = false;
+        HUDEnabled(true);
+        HighscoreEnabled(false);
+        MenuEnabled(false);
+        statusText.enabled = false;
 	}
+ 
 
 	/// <summary>
 	/// Dynamically creates Event Text objects to show Item Activation info.
@@ -132,7 +139,7 @@ public class UIManager : MonoBehaviour {
 	/// Shows the highscore.
 	/// </summary>
 	/// <param name="show">If set to <c>true</c> show the highscore, otherwise hide the highscore.</param>
-    public void ShowHighscore(bool show)
+    public void HighscoreEnabled(bool show)
     {
         highscoreCanvas.enabled = show;
     }
@@ -141,18 +148,20 @@ public class UIManager : MonoBehaviour {
 	/// Shows the HUD.
 	/// </summary>
 	/// <param name="show">If set to <c>true</c> show the HUD, otherwise hide the hud.</param>
-    internal void ShowHUD(bool show)
+    internal void HUDEnabled(bool show)
     {
         hudCanvas.enabled = show;
     }
 
-	/// <summary>
-	/// Shows the crosshair.
-	/// </summary>
-	/// <param name="show">If set to <c>true</c> show the crosshair, otherwise hide the crosshair.</param>
-    internal void ShowCrosshair(bool show)
+    internal void MenuEnabled(bool show)
     {
-        hudCanvas.enabled = show;
+        menuCanvas.enabled = show;
     }
 
+    internal void InitiateGameView()
+    {
+        MenuEnabled(false);
+        HUDEnabled(true);
+        HighscoreEnabled(false);
+    }
 }

@@ -2,15 +2,29 @@
 using System.Collections;
 
 public class ManagerController : MonoBehaviour {
+    private GameController gameController;
 
-	/// <summary>
-	/// Starts a scene with the given name.
-	/// </summary>
-	/// <param name="scene">The name of the scene.</param>
-	public void StartScene(string scene)
+    public void Start()
     {
-        Application.LoadLevel(scene);
-        Debug.Log("Click");
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+        if (gameControllerObject != null)
+        {
+            gameController = gameControllerObject.GetComponent<GameController>();
+        }
+        else
+        {
+            Debug.Log("Cannot find 'GameController' script");
+        }
+
+    }
+
+    /// <summary>
+    /// Starts a scene with the given name.
+    /// </summary>
+    /// <param name="scene">The name of the scene.</param>
+    public void StartGame()
+    {
+        StartGame();
     }
 
 }

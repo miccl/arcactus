@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour {
     AudioSource balloonBounceSound;
 
     private Color textColor;
-
+    private GameController gameController;
 
     void Start()
     {
@@ -73,6 +73,7 @@ public class EnemyController : MonoBehaviour {
         if (gameControllerObject != null)
         {
             scoreManager = gameControllerObject.GetComponent<ScoreManager>();
+            gameController = gameControllerObject.GetComponent<GameController>();
         }
         else
         {
@@ -89,9 +90,11 @@ public class EnemyController : MonoBehaviour {
         lives -= taken_damage;
 
         //GetComponent<MeshRenderer>().material.color = ColorUtils.ChangeColorBrightness(GetComponent<MeshRenderer>().material.color, 0.2f);
-
-        int scoreMulitplied = scoreManager.AddScore(scoreValue);
-        ShowScoreText(scoreMulitplied);
+        if(!gameController.gameOver)
+        {
+            int scoreMulitplied = scoreManager.AddScore(scoreValue);
+            ShowScoreText(scoreMulitplied);
+        }
 
         if (lives <= 0)
         {

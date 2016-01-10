@@ -33,8 +33,6 @@ public class LivesManager : MonoBehaviour
 
     void Start()
     {
-        lives = startLives;
-
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject != null)
         {
@@ -45,12 +43,20 @@ public class LivesManager : MonoBehaviour
         {
             Debug.Log("Cannot find 'GameController' script");
         }
+
+        Init();
     }
 
-	/// <summary>
-	/// Applies the damage to the player.
-	/// </summary>
-	/// <param name="damageValue"> The taken damage </param>
+    public void Init()
+    {
+        lives = startLives;
+        UpdateLives();
+    }
+
+    /// <summary>
+    /// Applies the damage to the player.
+    /// </summary>
+    /// <param name="damageValue"> The taken damage </param>
     public void ApplyDamage(float damageValue)
     {
         if (!gameController.gameOver)
