@@ -107,14 +107,17 @@ public class PowerUpManager : MonoBehaviour {
 	/// <param name="duration">The duration of the power up.</param>
     public void DisplayPowerUp(PowerUpTypes type, float duration)
     {
-        String text = type.ToString() + " (" + duration + "s) !";
+        String text = type.ToString();
+        if (duration != -1)
+            text += " (" + duration + "s) !";
         uiManager.ShowItemActivatedEventText(text, 2f);
+
     }
 
-	/// <summary>
-	/// Doubleds the shot speed.
-	/// </summary>
-	/// <param name="duration">The duration of the power up.</param>
+    /// <summary>
+    /// Doubleds the shot speed.
+    /// </summary>
+    /// <param name="duration">The duration of the power up.</param>
     IEnumerator DoubledShotSpeed(float duration)
     {
         raycastShooting.fireRate /= 2;

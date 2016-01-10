@@ -69,7 +69,6 @@ public class EnemyController : MonoBehaviour {
         textColor = ColorUtils.ChangeColorBrightness(GetComponent<MeshRenderer>().material.color, 0.2f);
         playerTransform = GameObject.FindWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
-
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject != null)
         {
@@ -136,7 +135,9 @@ public class EnemyController : MonoBehaviour {
     void Dead()
     {
         balloonPopSound.Play();
-        Destroy(gameObject);
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+        Destroy(gameObject, balloonBounceSound.clip.length);
     }
 
 	private void ShowScoreText(int scoreValue) {
