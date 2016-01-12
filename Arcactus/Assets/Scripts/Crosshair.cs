@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Crosshair : MonoBehaviour {
 
-    //public Camera CameraFacing;
     public OVRCameraRig CameraFacing;
     private Vector3 originalScale;
 
