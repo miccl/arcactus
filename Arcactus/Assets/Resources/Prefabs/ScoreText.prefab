@@ -41,7 +41,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: f52a43f7817e00b42a1f7ae63566b2cf, type: 3}
+  - {fileID: 2100000, guid: d268be4180d661444b3932a233e3dee8, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -72,7 +72,7 @@ TextMesh:
   m_FontSize: 250
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: f52a43f7817e00b42a1f7ae63566b2cf, type: 3}
+  m_Font: {fileID: 12800000, guid: d268be4180d661444b3932a233e3dee8, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -111,7 +111,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Font
       value: 
-      objectReference: {fileID: 12800000, guid: f52a43f7817e00b42a1f7ae63566b2cf,
+      objectReference: {fileID: 12800000, guid: d268be4180d661444b3932a233e3dee8,
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_EffectColor.r

@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11487776}
   - 54: {fileID: 5492154}
   - 135: {fileID: 13567028}
+  - 122: {fileID: 12245598}
   m_Layer: 0
   m_Name: DoubledScore
   m_TagString: Untagged
@@ -93,6 +94,17 @@ MonoBehaviour:
   type: 2
   lifetime: 5
   duration: 5
+--- !u!122 &12245598
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127668}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278255411
+  m_Size: 2.5
 --- !u!135 &13567028
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -143,6 +155,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Radius
       value: .419999987
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.rgba
+      value: 4278255411
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
