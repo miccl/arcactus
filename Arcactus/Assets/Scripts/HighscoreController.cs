@@ -20,6 +20,8 @@ public class HighscoreController : MonoBehaviour {
     internal const string HSCORE = "HScore";
     internal const string HSCOREWAVE = "HScoreWave";
 
+    public int highscoreNumber = 7;
+
     // Use this for initialization
     void Start () {
         positionText.text = "";
@@ -34,7 +36,7 @@ public class HighscoreController : MonoBehaviour {
     void UpdateHighscore()
     {
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < highscoreNumber; i++)
         {
             if (PlayerPrefs.HasKey(i + HSCORE))
             {
@@ -50,15 +52,14 @@ public class HighscoreController : MonoBehaviour {
 	/// </summary>
 	/// <param name="score"> The score to add. </param>
 	/// <param name="wave"> The reached wave. </param>
-    internal static void AddHighscore(int score, int wave)
+    internal void AddHighscore(int score, int wave)
     {
         int newScore, oldScore;
         int newWave, oldWave;
 
         newScore = score;
         newWave = wave;
-        //newName = name;
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < highscoreNumber; i++)
         {
             if (PlayerPrefs.HasKey(i + HSCORE))
             {
@@ -68,7 +69,7 @@ public class HighscoreController : MonoBehaviour {
                     oldScore = PlayerPrefs.GetInt(i + HSCORE);
                     oldWave = PlayerPrefs.GetInt(i + HSCOREWAVE);
                     PlayerPrefs.SetInt(i + HSCORE, newScore);
-                    PlayerPrefs.SetInt(i + "HScoreName", newWave);
+                    PlayerPrefs.SetInt(i + HSCOREWAVE, newWave);
                     newScore = oldScore;
                     newWave = oldWave;
                 }
@@ -80,6 +81,8 @@ public class HighscoreController : MonoBehaviour {
                 break;
             }
         }
+
+        UpdateHighscore();
     }
 
 }

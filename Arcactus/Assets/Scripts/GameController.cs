@@ -113,6 +113,7 @@ public class GameController : MonoBehaviour {
     private PowerUpManager powerUpManager;
     private int enemyCount;
     private LivesManager livesManager;
+    private bool menuShown;
 
     void Start () {
 
@@ -134,7 +135,7 @@ public class GameController : MonoBehaviour {
             livesManager = playerControllerObject.GetComponent<LivesManager>();
         }
 
-        StartGame();
+        //StartGame();
 
 	}
 	
@@ -167,10 +168,29 @@ public class GameController : MonoBehaviour {
 				uiManager.ShowStatusText("Game Paused.");
                 paused = true;
             }
-            else {
+            else
+            {
                 Time.timeScale = 1;
 				uiManager.HideStatusText();
                 paused = false;
+            }
+        }
+
+        if (Input.GetButtonDown("Start"))
+        {
+            if(!menuShown)
+            {
+                Time.timeScale = 0;
+                uiManager.MenuEnabled(true);
+                paused = true;
+                menuShown = true;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                uiManager.MenuEnabled(false);
+                paused = false;
+                menuShown = false;
             }
         }
     }
@@ -183,6 +203,7 @@ public class GameController : MonoBehaviour {
         currentWave = 1;
         highscoreShown = false;
         enemyCount = enemyStartCount;
+        Time.timeScale = 1;
 
         scoreManager.Init();
         uiManager.InitiateGameView();

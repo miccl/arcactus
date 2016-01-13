@@ -23,9 +23,9 @@ public class UIManager : MonoBehaviour {
     public Canvas menuCanvas;
 
     /// <summary>
-    /// The crosshair raw image.
+    /// The crosshair object.
     /// </summary>
-    public RawImage crosshair;
+    public GameObject crosshair;
 
 	/// <summary>
 	/// The game status text.
@@ -43,9 +43,10 @@ public class UIManager : MonoBehaviour {
 	public TextAnchor alignment;
 
     void Start () {
-        HUDEnabled(true);
+        
+        HUDEnabled(false);
         HighscoreEnabled(false);
-        MenuEnabled(false);
+        MenuEnabled(true);
         statusText.enabled = false;
 	}
  
@@ -57,8 +58,8 @@ public class UIManager : MonoBehaviour {
 	/// <param name="text">Text.</param>
 	/// <param name="duration">Duration.</param>
 	public void ShowItemActivatedEventText(string text, float duration)
-	{
-		GameObject eventTextObject = new GameObject ("Item Activated Text");
+    {
+        GameObject eventTextObject = new GameObject ("Item Activated Text");
 		eventTextObject.transform.SetParent (hudCanvas.transform, false);
 		Text eventT = eventTextObject.AddComponent<Text> ();
 		eventTextObject.AddComponent<Outline> ();
@@ -151,6 +152,7 @@ public class UIManager : MonoBehaviour {
     internal void HUDEnabled(bool show)
     {
         hudCanvas.enabled = show;
+        crosshair.SetActive(show);
     }
 
     internal void MenuEnabled(bool show)
@@ -163,5 +165,19 @@ public class UIManager : MonoBehaviour {
         MenuEnabled(false);
         HUDEnabled(true);
         HighscoreEnabled(false);
+    }
+
+    internal void ShowMenu()
+    {
+        MenuEnabled(true);
+        HUDEnabled(false);
+        HighscoreEnabled(false);
+    }
+
+    public void ShowHighscore()
+    {
+        MenuEnabled(false);
+        HUDEnabled(false);
+        HighscoreEnabled(true);
     }
 }

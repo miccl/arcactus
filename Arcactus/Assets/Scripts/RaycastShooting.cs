@@ -46,14 +46,27 @@ public class RaycastShooting : MonoBehaviour {
     /// </summary>
     [Range(0.1f, 0.5f)]
     public float raycastRadius = 0.25f;
+    private GameController gameController;
 
+    void Start()
+    {
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+        if (gameControllerObject != null)
+        {
+            gameController = gameControllerObject.GetComponent<GameController>();
+        }
+        else
+        {
+            Debug.Log("Cannot find 'GameController' script");
+        }
+    }
 
     void Update()
     {
         // ray in the middle of the play screen
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f));
 
-        if (Input.GetButton("Fire1") && Time.time > nextFire)
+        if (Input.GetButton("Fire1") && Time.time > nextFire && !gameController.paused)
         {
             nextFire = Time.time + fireRate;
 
