@@ -177,7 +177,7 @@ public class UIManager : MonoBehaviour {
     public void ShowHighscore()
     {
         MenuEnabled(false);
-        HUDEnabled(false);
+        //HUDEnabled(false);
         HighscoreEnabled(true);
     }
 }
