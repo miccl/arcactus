@@ -96,7 +96,7 @@ MonoBehaviour:
   type: 9
   lifetime: 5
   duration: 5
-  title: Rush
+  title: RUSH
 --- !u!122 &12235878
 Halo:
   m_ObjectHideFlags: 1
@@ -169,7 +169,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: title
-      value: Rush
+      value: RUSH
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -96,7 +96,7 @@ MonoBehaviour:
   type: 1
   lifetime: 5
   duration: 5
-  title: Slowdown
+  title: SLO-MO FIRE
 --- !u!122 &12290492
 Halo:
   m_ObjectHideFlags: 1
@@ -169,7 +169,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: title
-      value: Slowdown
+      value: SLO-MO FIRE
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

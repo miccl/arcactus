@@ -96,7 +96,7 @@ MonoBehaviour:
   type: 0
   lifetime: 5
   duration: 5
-  title: SpeedUp
+  title: RAPID FIRE
 --- !u!122 &12203172
 Halo:
   m_ObjectHideFlags: 1
@@ -169,7 +169,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: title
-      value: SpeedUp
+      value: RAPID FIRE
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
