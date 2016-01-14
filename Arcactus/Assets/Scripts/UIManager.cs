@@ -180,4 +180,5 @@ public class UIManager : MonoBehaviour {
         //HUDEnabled(false);
         HighscoreEnabled(true);
     }
+
 }
