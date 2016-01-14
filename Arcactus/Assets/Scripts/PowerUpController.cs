@@ -21,6 +21,11 @@ public class PowerUpController : MonoBehaviour {
     /// </summary>
     public float duration = 5;
 
+    /// <summary>
+    /// The powerUp title
+    /// </summary>
+    public string title;
+
 	/// <summary>
 	/// The power up manager.
 	/// </summary>
@@ -37,6 +42,7 @@ public class PowerUpController : MonoBehaviour {
         {
             Debug.Log("Cannot find 'GameController' script");
         }
+
         StartCoroutine(WaitAndDestroy());
         
     }
@@ -61,7 +67,7 @@ public class PowerUpController : MonoBehaviour {
         if (lives <= 0)
         {
             powerUpManager.ApplyPowerUp(type, duration);
-            powerUpManager.DisplayPowerUp(type, duration);
+            powerUpManager.DisplayPowerUp(type, duration, title);
             Dead();
         }
     }

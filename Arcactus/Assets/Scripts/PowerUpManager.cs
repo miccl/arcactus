@@ -105,12 +105,17 @@ public class PowerUpManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="type">The power up type.</param>
 	/// <param name="duration">The duration of the power up.</param>
-    public void DisplayPowerUp(PowerUpTypes type, float duration)
+    public void DisplayPowerUp(PowerUpTypes type, float duration, string title)
     {
-        String text = type.ToString();
+        if (title == "")
+        {
+            Debug.LogError("no title defined");
+            return;
+        }
+
         if (duration != -1)
-            text += " (" + duration + "s) !";
-        uiManager.ShowItemActivatedEventText(text, 2f);
+            title += " (" + duration + "s) !";
+        uiManager.ShowItemActivatedEventText(title, 2f);
 
     }
 
