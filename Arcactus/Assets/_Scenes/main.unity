@@ -493,7 +493,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: HIGHSCORE
+  m_Text: Highscore
 --- !u!222 &333415783
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1364,7 +1364,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OPTIONS
+  m_Text: Options
 --- !u!222 &681777256
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1623,7 +1623,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: QUIT
+  m_Text: Quit
 --- !u!222 &908689434
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1937,7 +1937,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: POS
+  m_Text: Pos
 --- !u!222 &1190772343
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2028,7 +2028,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SCORE
+  m_Text: Score
 --- !u!222 &1199696774
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2567,7 +2567,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SCORE
+  m_Text: Score
 --- !u!222 &1425596644
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3207,7 +3207,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WAVE
+  m_Text: Wave
 --- !u!222 &1894588920
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3297,7 +3297,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PLAY
+  m_Text: Play
 --- !u!222 &1912647936
 CanvasRenderer:
   m_ObjectHideFlags: 0

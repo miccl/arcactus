@@ -165,7 +165,7 @@ public class GameController : MonoBehaviour {
             if(!paused)
             {
                 Time.timeScale = 0;
-				uiManager.ShowStatusText("GAME PAUSED");
+				uiManager.ShowStatusText("Game paused");
                 paused = true;
             }
             else
@@ -270,7 +270,7 @@ public class GameController : MonoBehaviour {
 
         enemyCount += currentWave;
         currentWave++;
-        uiManager.ShowStatusText("NEXT WAVE: " + currentWave, 4.0f);
+        uiManager.ShowStatusText("Next wave: " + currentWave, 4.0f);
 
     }
 
@@ -341,7 +341,7 @@ public class GameController : MonoBehaviour {
     {
         if(!gameOver)
         {
-			uiManager.ShowStatusText("GAME OVER!");
+			uiManager.ShowStatusText("Game Over!");
             gameOver = true;
             scoreManager.SaveScore(currentWave);
         }

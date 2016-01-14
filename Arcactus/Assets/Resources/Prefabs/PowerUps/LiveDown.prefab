@@ -96,7 +96,7 @@ MonoBehaviour:
   type: 5
   lifetime: 5
   duration: -1
-  title: 1 DOWN
+  title: 1 Down
 --- !u!122 &12293114
 Halo:
   m_ObjectHideFlags: 1
@@ -173,7 +173,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: title
-      value: 1 DOWN
+      value: 1 Down
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

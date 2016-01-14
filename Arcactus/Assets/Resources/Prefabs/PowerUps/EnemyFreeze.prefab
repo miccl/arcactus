@@ -96,7 +96,7 @@ MonoBehaviour:
   type: 8
   lifetime: 5
   duration: 5
-  title: FREEZE
+  title: Freeze
 --- !u!122 &12275404
 Halo:
   m_ObjectHideFlags: 1
@@ -169,7 +169,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: title
-      value: FREEZE
+      value: Freeze
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
