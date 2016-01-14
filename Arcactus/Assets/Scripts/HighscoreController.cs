@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class HighscoreController : MonoBehaviour {
 
@@ -24,18 +25,22 @@ public class HighscoreController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        positionText.text = "";
-        scoreText.text = "";
-        waveText.text = "";
         UpdateHighscore();
     }
 
-	/// <summary>
-	/// Updates the highscore.
-	/// </summary>
+    private void Init()
+    {
+        positionText.text = "";
+        scoreText.text = "";
+        waveText.text = "";
+    }
+
+    /// <summary>
+    /// Updates the highscore.
+    /// </summary>
     void UpdateHighscore()
     {
-
+        Init();
         for (int i = 0; i < highscoreNumber; i++)
         {
             if (PlayerPrefs.HasKey(i + HSCORE))
