@@ -7,6 +7,7 @@ TagManager:
   - Boundary
   - Enemy
   - Arm
+  - PowerUp
   layers:
   - Default
   - TransparentFX

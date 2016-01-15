@@ -113,7 +113,7 @@ public class GameController : MonoBehaviour {
     private PowerUpManager powerUpManager;
     private int enemyCount;
     private LivesManager livesManager;
-    private bool menuShown;
+    private IEnumerator spawnWaves;
 
     void Start () {
 
@@ -178,19 +178,19 @@ public class GameController : MonoBehaviour {
 
         if (Input.GetButtonDown("Start"))
         {
-            if(!menuShown)
+            if(!uiManager.menuCanvas.gameObject.activeSelf)
             {
                 Time.timeScale = 0;
-                uiManager.MenuEnabled(true);
+                Debug.Log("TEST2");
+                uiManager.ShowMenu();
                 paused = true;
-                menuShown = true;
             }
             else
             {
+                Debug.Log("TEST");
                 Time.timeScale = 1;
-                uiManager.InitiateGameView();
+                uiManager.MenuEnabled(false);
                 paused = false;
-                menuShown = false;
             }
         }
     }
@@ -205,14 +205,21 @@ public class GameController : MonoBehaviour {
         enemyCount = enemyStartCount;
         Time.timeScale = 1;
 
+
         scoreManager.Init();
         uiManager.InitiateGameView();
         livesManager.Init();
+        
+        if(spawnWaves != null)
+            StopCoroutine(spawnWaves);
 
-       foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             Destroy(enemy);
+        foreach (GameObject powerUp in GameObject.FindGameObjectsWithTag("PowerUp"))
+            Destroy(powerUp);
 
-        StartCoroutine(SpawnWaves());
+        spawnWaves = SpawnWaves();
+        StartCoroutine(spawnWaves);
     }
 
     /// <summary>
@@ -221,6 +228,7 @@ public class GameController : MonoBehaviour {
     /// <returns></returns>
     IEnumerator SpawnWaves()
     {
+        Debug.Log("CURRENT: " + currentWave);
         yield return new WaitForSeconds(startWait);
         while(true)
         {
@@ -341,6 +349,7 @@ public class GameController : MonoBehaviour {
     {
         if(!gameOver)
         {
+            uiManager.CrosshairEnabled(false);
 			uiManager.ShowStatusText("Game Over!");
             gameOver = true;
             scoreManager.SaveScore(currentWave);

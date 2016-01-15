@@ -22,7 +22,7 @@ public class ScoreManager : MonoBehaviour {
 	/// <summary>
 	/// Whether the score text was shown before or not.
 	/// </summary>
-    private bool newHighscore;
+    private bool newHighscoreShown;
 	/// <summary>
 	/// The current highscore.
 	/// </summary>
@@ -63,7 +63,7 @@ public class ScoreManager : MonoBehaviour {
         scoreMultiplier = 1;
         UpdateScoreText();
         highscore = PlayerPrefs.GetInt(0 + HighscoreController.HSCORE, 0);
-        newHighscore = true;
+        newHighscoreShown = false;
     }
 
 
@@ -82,10 +82,10 @@ public class ScoreManager : MonoBehaviour {
             if (score > highscore)
             {
                 //PlayerPrefs.SetInt("highscore", score);
-                if (newHighscore)
+                if (!newHighscoreShown)
                 {
                     uiManager.ShowStatusText("New Highscore!", 2.0f);
-                    newHighscore = false;
+                    newHighscoreShown = true;
                 }
                 highscore = score;
             }

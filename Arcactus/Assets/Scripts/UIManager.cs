@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// Manages the UI elements of the screen.
@@ -152,12 +153,26 @@ public class UIManager : MonoBehaviour {
     internal void HUDEnabled(bool show)
     {
         hudCanvas.enabled = show;
+        CrosshairEnabled(show);
+    }
+
+    internal void CrosshairEnabled(bool show)
+    {
         crosshair.SetActive(show);
     }
 
     internal void MenuEnabled(bool show)
     {
-        menuCanvas.enabled = show;
+        menuCanvas.gameObject.SetActive(show);
+        // Hack, welcher den Bug verhindert, dass bei erneuten Aufruf des Menues, nichts gehighligted wird
+        if (show)
+        {
+            GameObject go = EventSystem.current.currentSelectedGameObject;
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(go);
+
+        } 
+
     }
 
     internal void InitiateGameView()
@@ -165,12 +180,13 @@ public class UIManager : MonoBehaviour {
         MenuEnabled(false);
         HUDEnabled(true);
         HighscoreEnabled(false);
+        HideStatusText();
     }
 
     internal void ShowMenu()
     {
         MenuEnabled(true);
-        HUDEnabled(false);
+        //HUDEnabled(false);
         HighscoreEnabled(false);
     }
 
