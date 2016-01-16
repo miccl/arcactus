@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System;
 
-public class HighscoreController : MonoBehaviour {
+public class HighscoreManager : MonoBehaviour {
 
 	/// <summary>
 	/// The position text.
@@ -28,6 +28,9 @@ public class HighscoreController : MonoBehaviour {
         UpdateHighscore();
     }
 
+    /// <summary>
+    /// Initializes the highscore manager.
+    /// </summary>
     private void Init()
     {
         positionText.text = "";
@@ -36,7 +39,7 @@ public class HighscoreController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Updates the highscore.
+    /// Updates the highscore canvas.
     /// </summary>
     void UpdateHighscore()
     {

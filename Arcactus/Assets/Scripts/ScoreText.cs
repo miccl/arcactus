@@ -21,6 +21,10 @@ public class ScoreText : MonoBehaviour
         tm.text = "";
     }
 
+    /// <summary>
+    /// Updates text and position.
+    /// Adjusts the score position based on the camera position.
+    /// </summary>
     void Update()
     {
         // if you only use "transform.LookAt(Camera.main.transform.position)"  the textMesh will be displayed backwards
@@ -48,11 +52,18 @@ public class ScoreText : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Sets the text of the score text.
+    /// <param name="text">text of the score text.</param>
     public void SetText(string text)
     {
         this.text = text;
     }
 
+    /// <summary>
+    /// Sets the color of the score text.
+    /// </summary>
+    /// <param name="textColor">color of the score text.</param>
     public void SetTextColor(Color textColor)
     {
         this.textColor = textColor;

@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
+/// <summary>
+/// Script to implement raycast shooting.
+/// </summary>
 public class RaycastShooting : MonoBehaviour {
 
 
@@ -60,6 +62,7 @@ public class RaycastShooting : MonoBehaviour {
             Debug.Log("Cannot find 'GameController' script");
         }
     }
+
 
     void Update()
     {

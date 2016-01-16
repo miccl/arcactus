@@ -36,7 +36,7 @@ public class ScoreManager : MonoBehaviour {
 	/// The user interface manager.
 	/// </summary>
     private UIManager uiManager;
-    private HighscoreController highscoreController;
+    private HighscoreManager highscoreManager;
 
     // Use this for initialization
     void Start () {
@@ -46,7 +46,7 @@ public class ScoreManager : MonoBehaviour {
         {
             gameController = gameControllerObject.GetComponent<GameController>();
             uiManager = gameControllerObject.GetComponent<UIManager>();
-            highscoreController = gameControllerObject.GetComponent<HighscoreController>();
+            highscoreManager = gameControllerObject.GetComponent<HighscoreManager>();
         }
         else
         {
@@ -56,13 +56,16 @@ public class ScoreManager : MonoBehaviour {
         Init();
 
     }
-
+    
+    /// <summary>
+    /// Initilizes the score manager.
+    /// </summary>
     public void Init()
     {
         score = 0;
         scoreMultiplier = 1;
         UpdateScoreText();
-        highscore = PlayerPrefs.GetInt(0 + HighscoreController.HSCORE, 0);
+        highscore = PlayerPrefs.GetInt(0 + HighscoreManager.HSCORE, 0);
         newHighscoreShown = false;
     }
 
@@ -109,7 +112,7 @@ public class ScoreManager : MonoBehaviour {
 	/// <param name="wave">The reached wave</param>
     internal void SaveScore(int wave)
     {
-        highscoreController.AddHighscore(score, wave);
+        highscoreManager.AddHighscore(score, wave);
         Debug.Log("Saved score:" + score + ", " + wave);
     }
 }

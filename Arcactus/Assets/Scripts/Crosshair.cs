@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Script to create a crosshair in vr.
+/// </summary>
 public class Crosshair : MonoBehaviour {
+
 
     public Camera CameraFacing;
     private Vector3 originalScale;
@@ -12,7 +16,11 @@ public class Crosshair : MonoBehaviour {
         originalScale = transform.localScale;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Updates the position and scale of the crosshair.
+    /// Updates the crosshair position based on the camera position <paramref name="CameraFacing"/>.
+   ///  Scales the crosshair based on the distance to the nearest aimed object.
+    /// </summary>
     void Update()
     {
         RaycastHit hit;

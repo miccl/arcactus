@@ -47,6 +47,9 @@ public class LivesManager : MonoBehaviour
         Init();
     }
 
+    /// <summary>
+    /// Initializes the lives manager.
+    /// </summary>
     public void Init()
     {
         lives = startLives;

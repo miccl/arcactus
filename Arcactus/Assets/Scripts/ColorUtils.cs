@@ -34,7 +34,14 @@ public class ColorUtils : MonoBehaviour {
         //return new Color(red, green, blue, color.a);
         return FromArgb(color.a, (int)red, (int)green, (int)blue);
     }
-
+    /// <summary>
+    /// Creates a color object with the given parameters.
+    /// </summary>
+    /// <param name="alpha">the alpha value</param>
+    /// <param name="red"> red value (0.0f to 255.0f)</param>
+    /// <param name="green">green value (0.0f to 255.0f)</param>
+    /// <param name="blue">blue value (0.0f to 255.0f)</param>
+    /// <returns>the color object.</returns>
     public static Color FromArgb(float alpha, int red, int green, int blue)
     {
         float fr = ((float)red) / 255.0f;

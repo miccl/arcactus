@@ -145,7 +145,7 @@ public class EnemyController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Displays the score text over the enemy.
+    /// Dynamically displays a score text over the enemy.
     /// </summary>
     /// <param name="scoreValue"></param>
 	private void DisplayScoreText(int scoreValue) {

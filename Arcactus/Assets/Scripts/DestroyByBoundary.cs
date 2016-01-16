@@ -6,6 +6,10 @@ using System.Collections;
 /// </summary>
 public class DestroyByBoundary : MonoBehaviour {
 
+    /// <summary>
+    /// Destroys the enemy who exits the trigger.
+    /// </summary>
+    /// <param name="other"></param>
 	void OnTriggerExit(Collider other)
     {
         Destroy(other.gameObject);

@@ -24,7 +24,7 @@ using System.Collections;
 
 /// <summary>
 /// Modified <see cref="OVRScreenFade"/> to flash the Screen.
-/// Used in <see cref="LivesManager"/> to make a red flash screen if the player is hit by an enemy.
+/// Used in <see cref="LivesManager"/> to make a red flash screen when the player is hit by an enemy.
 /// </summary>
 public class ScreenFlash : MonoBehaviour {
 
