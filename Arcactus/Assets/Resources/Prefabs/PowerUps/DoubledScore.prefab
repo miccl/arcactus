@@ -97,6 +97,7 @@ MonoBehaviour:
   lifetime: 7
   duration: 5
   title: x2
+  powerUpPopSound: {fileID: 8300000, guid: 9c5295b63b8c6c9499fc3e6937ba2292, type: 3}
 --- !u!122 &12245598
 Halo:
   m_ObjectHideFlags: 1
@@ -179,6 +180,18 @@ Prefab:
       propertyPath: lifetime
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: powerUpPopSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c5295b63b8c6c9499fc3e6937ba2292, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 127668}

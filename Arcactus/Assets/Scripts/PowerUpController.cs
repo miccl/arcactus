@@ -17,19 +17,22 @@ public class PowerUpController : MonoBehaviour {
     /// </summary>
     public float lifetime = 5;
     /// <summary>
-    /// duration time of the powerUp if activated
+    /// The duration time of the powerUp if activated.
     /// </summary>
     public float duration = 5;
 
     /// <summary>
-    /// The powerUp title
+    /// The powerUp title.
     /// </summary>
     public string title;
 
-	/// <summary>
-	/// The power up manager.
-	/// </summary>
+    /// <summary>
+    /// The sound of a powerUp pop.
+    /// </summary>
+    public AudioClip powerUpPopSound;
+
     private PowerUpManager powerUpManager;
+    private AudioManager audioManager;
 
     void Start()
     {
@@ -37,24 +40,14 @@ public class PowerUpController : MonoBehaviour {
         if (gameControllerObject != null)
         {
             powerUpManager = gameControllerObject.GetComponent<PowerUpManager>();
+            audioManager = gameControllerObject.GetComponent<AudioManager>();
         }
         else
         {
             Debug.Log("Cannot find 'GameController' script");
         }
 
-        StartCoroutine(WaitAndDestroy());
-        
-    }
-
-	/// <summary>
-	/// Waits for the lifetime and then destroys the power up.
-	/// </summary>
-	/// <returns>The and destroy.</returns>
-    private IEnumerator WaitAndDestroy()
-    {
-		yield return new WaitForSeconds(lifetime);
-        Dead();
+        Destroy(gameObject, lifetime);
     }
 
 	/// <summary>
@@ -73,11 +66,15 @@ public class PowerUpController : MonoBehaviour {
     }
 
 	/// <summary>
-	/// Dead this instance.
+	/// Destroys this instance.
 	/// </summary>
     void Dead()
     {
-        Destroy(gameObject);
+        audioManager.PlaySound(powerUpPopSound);
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<SphereCollider>().enabled = false;
+        Destroy(gameObject, powerUpPopSound.length);
+
     }
 
 

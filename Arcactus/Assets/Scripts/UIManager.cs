@@ -142,10 +142,10 @@ public class UIManager : MonoBehaviour {
 		}
 	}
 
-	/// <summary>
-	/// Shows the highscore.
-	/// </summary>
-	/// <param name="show">If set to <c>true</c> show the highscore, otherwise hide the highscore.</param>
+    /// <summary>
+    /// Enables or disables the crosshair based on the given parameter.
+    /// </summary>
+    /// <param name="show">If set to <c>true</c> show the highscore, otherwise hide the highscore.</param>
     public void HighscoreEnabled(bool show)
     {
         highscoreCanvas.enabled = show;
@@ -161,16 +161,27 @@ public class UIManager : MonoBehaviour {
         CrosshairEnabled(show);
     }
 
+    /// <summary>
+    /// Shows or hides the crosshair based on the given parameter.
+    /// </summary>
+    /// <param name="show">If set to <c>true</c> shows the crosshair, otherwise hides the crosshair.</param>
     internal void CrosshairEnabled(bool show)
     {
         crosshair.SetActive(show);
     }
 
+    /// <summary>
+    /// Shows or hides the menu based on the given parameter.
+    /// </summary>
+    /// <param name="show">If set to <c>true</c> shows the menu, otherwise hides the menu.</param>
     internal void MenuEnabled(bool show)
     {
         menuCanvas.gameObject.SetActive(show);
     }
 
+    /// <summary>
+    /// Initizialzizes the game view.
+    /// </summary>
     internal void InitializeGameView()
     {
         MenuEnabled(false);
@@ -179,6 +190,9 @@ public class UIManager : MonoBehaviour {
         HideStatusText();
     }
 
+    /// <summary>
+    /// Shows the menu.
+    /// </summary>
     internal void ShowMenu()
     {
         MenuEnabled(true);
@@ -187,6 +201,9 @@ public class UIManager : MonoBehaviour {
         HighscoreEnabled(false);
     }
 
+    /// <summary>
+    /// Shows the highscore.
+    /// </summary>
     public void ShowHighscore()
     {
         MenuEnabled(false);
@@ -194,6 +211,10 @@ public class UIManager : MonoBehaviour {
         HighscoreEnabled(true);
     }
 
+    /// <summary>
+    /// Wether the continue button is enabled or not.
+    /// </summary>
+    /// <param name="enable">If set to <c>true</c> the continue botton is enabled, otherwise not.</param>
     internal void ContinueButtonEnabled(bool enable)
     {
         continueButton.interactable = enable;

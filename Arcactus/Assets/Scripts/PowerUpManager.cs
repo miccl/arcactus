@@ -332,11 +332,6 @@ public class PowerUpManager : MonoBehaviour {
                 EnemyController enemyController = enemy.gameObject.GetComponent<EnemyController>();
                 enemyController.speed /= 2;
             }
-            else
-            {
-                Debug.Log("enemy null");
-            }
-
         }
     }
 

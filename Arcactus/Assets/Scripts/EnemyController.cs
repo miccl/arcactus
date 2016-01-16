@@ -50,30 +50,31 @@ public class EnemyController : MonoBehaviour {
 	/// <summary>
 	/// The balloon pop sound.
 	/// </summary>
-    AudioSource balloonPopSound;
-	/// <summary>
-	/// The balloon bounce sound.
-	/// </summary>
-    AudioSource balloonBounceSound;
+    public AudioClip balloonPopSound;
+    /// <summary>
+    /// The balloon bounce sound.
+    /// </summary>
+    public AudioClip balloonBounceSound;
 
     private Color textColor;
     private GameController gameController;
+    private AudioManager audioManager;
 
     void Start()
     {
-        AudioSource[] audios = GetComponents<AudioSource>();
-        balloonPopSound = audios[0];
-        balloonBounceSound = audios[1];
 
         speed = startSpeed;
         textColor = ColorUtils.ChangeColorBrightness(GetComponent<MeshRenderer>().material.color, 0.2f);
         playerTransform = GameObject.FindWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
+
+
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject != null)
         {
             scoreManager = gameControllerObject.GetComponent<ScoreManager>();
             gameController = gameControllerObject.GetComponent<GameController>();
+            audioManager = gameControllerObject.GetComponent<AudioManager>();
         }
         else
         {
@@ -93,7 +94,7 @@ public class EnemyController : MonoBehaviour {
         if(!gameController.gameOver)
         {
             int scoreMulitplied = scoreManager.AddScore(scoreValue);
-            ShowScoreText(scoreMulitplied);
+            DisplayScoreText(scoreMulitplied);
         }
 
         if (lives <= 0)
@@ -101,7 +102,7 @@ public class EnemyController : MonoBehaviour {
             Dead();
         } else
         {
-            balloonBounceSound.Play();
+            audioManager.PlaySound(balloonBounceSound);
         }
 
 
@@ -137,13 +138,17 @@ public class EnemyController : MonoBehaviour {
 	/// </summary>
     void Dead()
     {
-        balloonPopSound.Play();
+        audioManager.PlaySound(balloonPopSound);
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
-        Destroy(gameObject, balloonBounceSound.clip.length);
+        Destroy(gameObject, balloonBounceSound.length);
     }
 
-	private void ShowScoreText(int scoreValue) {
+    /// <summary>
+    /// Displays the score text over the enemy.
+    /// </summary>
+    /// <param name="scoreValue"></param>
+	private void DisplayScoreText(int scoreValue) {
         Vector3 verschiebung = new Vector3(0, 1.5f, 0);
 		GameObject scoreText = Instantiate(scoreTextPrefab, transform.position + verschiebung , transform.rotation) as GameObject;
 		ScoreText scoreTextController = scoreText.GetComponent<ScoreText>();

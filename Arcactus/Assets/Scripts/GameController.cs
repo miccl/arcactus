@@ -345,7 +345,7 @@ public class GameController : MonoBehaviour {
         {
             uiManager.CrosshairEnabled(false);
 			uiManager.ShowStatusText("Game Over!");
-            audioManager.PlayGameOver();
+            audioManager.PlayGameOverSound();
             gameOver = true;
             gameRunning = false;
             uiManager.ContinueButtonEnabled(false);
