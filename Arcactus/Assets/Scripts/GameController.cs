@@ -90,6 +90,8 @@ public class GameController : MonoBehaviour {
 	/// </summary>
     private bool highscoreShown;
 
+    internal bool gameRunning = false;
+
 	/// <summary>
 	/// The spawn probality of the easy enemy.
 	/// </summary>
@@ -114,15 +116,19 @@ public class GameController : MonoBehaviour {
     private int enemyCount;
     private LivesManager livesManager;
     private IEnumerator spawnWaves;
+    private AudioSource gameOverSound;
+    private AudioManager audioManager;
 
     void Start () {
 
+        
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject != null)
         {
             scoreManager = gameControllerObject.GetComponent<ScoreManager>();
             uiManager = gameControllerObject.GetComponent<UIManager>();
             powerUpManager = gameControllerObject.GetComponent<PowerUpManager>();
+            audioManager = gameControllerObject.GetComponent<AudioManager>();
         }
         else
         {
@@ -135,11 +141,10 @@ public class GameController : MonoBehaviour {
             livesManager = playerControllerObject.GetComponent<LivesManager>();
         }
 
-        //StartGame();
 
-	}
-	
-	void Update () {
+    }
+
+    void Update () {
         if (restart)
         {            
             if (Input.GetButtonDown("Restart"))
@@ -156,23 +161,12 @@ public class GameController : MonoBehaviour {
                 {
                     uiManager.HighscoreEnabled(true);
                     highscoreShown = true;
+                    uiManager.HideStatusText();
+                } else
+                {
+                    uiManager.ShowMenu();
+                    uiManager.HUDEnabled(false);
                 }
-            }
-        }
-
-        if (Input.GetButtonDown("Pause"))
-        {
-            if(!paused)
-            {
-                Time.timeScale = 0;
-				uiManager.ShowStatusText("Game paused");
-                paused = true;
-            }
-            else
-            {
-                Time.timeScale = 1;
-				uiManager.HideStatusText();
-                paused = false;
             }
         }
 
@@ -181,18 +175,17 @@ public class GameController : MonoBehaviour {
             if(!uiManager.menuCanvas.gameObject.activeSelf)
             {
                 Time.timeScale = 0;
-                Debug.Log("TEST2");
                 uiManager.ShowMenu();
                 paused = true;
             }
-            else
-            {
-                Debug.Log("TEST");
-                Time.timeScale = 1;
-                uiManager.MenuEnabled(false);
-                paused = false;
-            }
         }
+    }
+
+    public void ContinueGame()
+    {
+        Time.timeScale = 1;
+        uiManager.InitializeGameView();
+        paused = false;
     }
 
     public void StartGame()
@@ -205,9 +198,11 @@ public class GameController : MonoBehaviour {
         enemyCount = enemyStartCount;
         Time.timeScale = 1;
 
+        uiManager.ContinueButtonEnabled(true);
+        gameRunning = true;
 
         scoreManager.Init();
-        uiManager.InitiateGameView();
+        uiManager.InitializeGameView();
         livesManager.Init();
         
         if(spawnWaves != null)
@@ -228,7 +223,6 @@ public class GameController : MonoBehaviour {
     /// <returns></returns>
     IEnumerator SpawnWaves()
     {
-        Debug.Log("CURRENT: " + currentWave);
         yield return new WaitForSeconds(startWait);
         while(true)
         {
@@ -351,7 +345,10 @@ public class GameController : MonoBehaviour {
         {
             uiManager.CrosshairEnabled(false);
 			uiManager.ShowStatusText("Game Over!");
+            audioManager.PlayGameOver();
             gameOver = true;
+            gameRunning = false;
+            uiManager.ContinueButtonEnabled(false);
             scoreManager.SaveScore(currentWave);
         }
     }

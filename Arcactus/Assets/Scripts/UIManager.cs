@@ -33,6 +33,9 @@ public class UIManager : MonoBehaviour {
 	/// </summary>
 	public Text statusText;
 
+    public Button continueButton;
+    public Button newGameButton;
+
 	/// <summary>
 	/// Settings for the Item Event Text
 	/// </summary>
@@ -49,16 +52,17 @@ public class UIManager : MonoBehaviour {
         HighscoreEnabled(false);
         MenuEnabled(true);
         statusText.enabled = false;
-	}
- 
+        ContinueButtonEnabled(false);
+    }
 
-	/// <summary>
-	/// Dynamically creates Event Text objects to show Item Activation info.
-	/// Object will be destroyed after a given duration.
-	/// </summary>
-	/// <param name="text">Text.</param>
-	/// <param name="duration">Duration.</param>
-	public void ShowItemActivatedEventText(string text, float duration)
+
+    /// <summary>
+    /// Dynamically creates Event Text objects to show Item Activation info.
+    /// Object will be destroyed after a given duration.
+    /// </summary>
+    /// <param name="text">Text.</param>
+    /// <param name="duration">Duration.</param>
+    public void ShowItemActivatedEventText(string text, float duration)
     {
         GameObject eventTextObject = new GameObject ("Item Activated Text");
 		eventTextObject.transform.SetParent (hudCanvas.transform, false);
@@ -70,6 +74,7 @@ public class UIManager : MonoBehaviour {
 		eventT.font = font;
 		eventT.fontSize = fontSize;
 		eventT.text = text;
+        rect.localScale = new Vector3(0.5f, 0.5f, 1.0f);
 		eventT.CrossFadeAlpha(0.0f, duration, true);
 		StartCoroutine ("BubbleUp", rect);
 		Destroy (eventTextObject, duration);
@@ -164,18 +169,9 @@ public class UIManager : MonoBehaviour {
     internal void MenuEnabled(bool show)
     {
         menuCanvas.gameObject.SetActive(show);
-        // Hack, welcher den Bug verhindert, dass bei erneuten Aufruf des Menues, nichts gehighligted wird
-        if (show)
-        {
-            GameObject go = EventSystem.current.currentSelectedGameObject;
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(go);
-
-        } 
-
     }
 
-    internal void InitiateGameView()
+    internal void InitializeGameView()
     {
         MenuEnabled(false);
         HUDEnabled(true);
@@ -187,6 +183,7 @@ public class UIManager : MonoBehaviour {
     {
         MenuEnabled(true);
         //HUDEnabled(false);
+        CrosshairEnabled(false);
         HighscoreEnabled(false);
     }
 
@@ -195,6 +192,11 @@ public class UIManager : MonoBehaviour {
         MenuEnabled(false);
         //HUDEnabled(false);
         HighscoreEnabled(true);
+    }
+
+    internal void ContinueButtonEnabled(bool enable)
+    {
+        continueButton.interactable = enable;
     }
 
 }

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Crosshair : MonoBehaviour {
 
-    public OVRCameraRig CameraFacing;
+    public Camera CameraFacing;
     private Vector3 originalScale;
 
     // Use this for initialization
@@ -25,8 +25,9 @@ public class Crosshair : MonoBehaviour {
         }
         else
         {
-            distance = CameraFacing.rightEyeCamera.farClipPlane * 0.95f;
+            distance = CameraFacing.farClipPlane * 0.95f;
         }
+
         transform.position = CameraFacing.transform.position +
             CameraFacing.transform.rotation * Vector3.forward * distance;
         transform.LookAt(CameraFacing.transform.position);

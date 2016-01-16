@@ -3,8 +3,11 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour {
-    private AudioSource song1;
     private UIManager uiManager;
+
+    private AudioSource song1;
+    private AudioSource gameOverSound;
+
 
     public Text audioText;
     private bool isMuted;
@@ -14,6 +17,7 @@ public class AudioManager : MonoBehaviour {
     void Start () {
         AudioSource[] audios = GetComponents<AudioSource>();
         song1 = audios[0];
+        gameOverSound = audios[1];
         isMuted = (PlayerPrefs.GetInt("AUDIO_MUTED", 0) != 0);
 
         DoAudio();
@@ -51,5 +55,12 @@ public class AudioManager : MonoBehaviour {
         {
             audioText.text += "Off";
         }
+    }
+
+    internal void PlayGameOver()
+    {
+        gameOverSound.Play();
+        song1.Stop();
+        song1.PlayDelayed(3.0f);
     }
 }

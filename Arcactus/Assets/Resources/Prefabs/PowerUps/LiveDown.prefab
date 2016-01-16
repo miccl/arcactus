@@ -94,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 1
   type: 5
-  lifetime: 5
+  lifetime: 11
   duration: -1
   title: 1 Down
 --- !u!122 &12293114
@@ -178,6 +178,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: PowerUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lifetime
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

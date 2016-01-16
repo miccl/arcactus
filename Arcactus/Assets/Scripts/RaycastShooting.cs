@@ -66,14 +66,11 @@ public class RaycastShooting : MonoBehaviour {
         // ray in the middle of the play screen
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f));
 
-        if (Input.GetButton("Fire1") && Time.time > nextFire && !gameController.paused)
+        if (Input.GetButton("Fire1") && Time.time > nextFire && !gameController.paused && !gameController.gameOver && gameController.gameRunning)
         {
             nextFire = Time.time + fireRate;
 
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-            //GameObject thorn = (GameObject)Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-            //ThornController tc = thorn.GetComponent<ThornController>();
-            //tc.damage = 2;
 
             // sends out a ray from the given spawn with the given range
             if (Physics.SphereCast(ray, raycastRadius, out hit, shotRange))

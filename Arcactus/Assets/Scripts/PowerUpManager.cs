@@ -115,7 +115,7 @@ public class PowerUpManager : MonoBehaviour {
 
         if (duration != -1)
             title += " (" + duration + "s) !";
-        uiManager.ShowItemActivatedEventText(title, 2f);
+        uiManager.ShowItemActivatedEventText(title, 3f);
 
     }
 
