@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   width="63"
+   height="69"
+   sodipodi:docname="P.png">
+  <metadata
+     id="metadata8">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1364"
+     inkscape:window-height="718"
+     id="namedview4"
+     showgrid="false"
+     inkscape:zoom="3.4202899"
+     inkscape:cx="-6.2161017"
+     inkscape:cy="34.5"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <path
+     style="fill:#000000;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+     d="M 21.78125 2.8125 C 12.981237 2.7609687 5.7834947 5.3356614 4.96875 11.6875 C 2.1565827 33.611462 14.117798 26.240669 16.375 25.15625 C 27.188945 19.960951 8.0886069 57.515099 18.125 62.28125 C 32.888663 69.292318 35.646867 55.375579 34.5 46.1875 C 33.476805 37.990222 49.784018 44.846188 54.6875 40.625 C 61.489012 34.769884 59.850127 20.091832 53.5 13.75 C 47.055327 7.3137459 33.095552 2.8787545 21.78125 2.8125 z M 37.71875 20.46875 C 40.934851 20.46875 40.743595 28.438866 37.125 28.375 C 33.52388 28.31144 35.672139 20.46875 37.71875 20.46875 z "
+     id="path2987" />
+</svg>
