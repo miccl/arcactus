@@ -3080,7 +3080,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1733023218}
-        m_MethodName: ChangeAudio
+        m_MethodName: ChangeBackgroundSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3735,7 +3735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dfa613dda86764db28b8efb382cbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLives: 1
+  startLives: 3
   life1: {fileID: 184396670}
   life2: {fileID: 1980668439}
   life3: {fileID: 302742266}

@@ -89,35 +89,35 @@ Material:
         first:
           name: _FrontTex
         second:
-          m_Texture: {fileID: 2800000, guid: 9f9bc0d88a0ee5446a4714ad0b7f600b, type: 3}
+          m_Texture: {fileID: 2800000, guid: 3a48384ec5ae4c24097ab43b5605934a, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BackTex
         second:
-          m_Texture: {fileID: 2800000, guid: f557fb13d8f84a3428a5c49c46a9db0c, type: 3}
+          m_Texture: {fileID: 2800000, guid: d58d2b925091a1147a8f98f300888268, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _LeftTex
         second:
-          m_Texture: {fileID: 2800000, guid: 1e0b31ef8316adc4ebcf76000b8da8fd, type: 3}
+          m_Texture: {fileID: 2800000, guid: 000fa474c5c5b7c4f9d758a0254288be, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _RightTex
         second:
-          m_Texture: {fileID: 2800000, guid: 8839a6f7af3181e4a8ee60748ce0083f, type: 3}
+          m_Texture: {fileID: 2800000, guid: 000fa474c5c5b7c4f9d758a0254288be, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _UpTex
         second:
-          m_Texture: {fileID: 2800000, guid: c92e8e2044b434e409969c15a8fedcba, type: 3}
+          m_Texture: {fileID: 2800000, guid: b0dbb6100cc2e9e458238a933aecf3d1, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -139,11 +139,27 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: .5
+        second: 0.5
+      data:
+        first:
+          name: _Exposure
+        second: 1
+      data:
+        first:
+          name: _SunDisk
+        second: 2
+      data:
+        first:
+          name: _SunSize
+        second: 0.048
+      data:
+        first:
+          name: _AtmosphereThickness
+        second: 1.48
       data:
         first:
           name: _Parallax
-        second: .0199999996
+        second: 0.02
       data:
         first:
           name: _ZWrite
@@ -151,7 +167,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: .5
+        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -178,22 +194,6 @@ Material:
         second: 0
       data:
         first:
-          name: _Exposure
-        second: 1
-      data:
-        first:
-          name: _SunDisk
-        second: 2
-      data:
-        first:
-          name: _SunSize
-        second: .0480000004
-      data:
-        first:
-          name: _AtmosphereThickness
-        second: 1.48000002
-      data:
-        first:
           name: _Rotation
         second: 0
     m_Colors:
@@ -207,13 +207,13 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _GroundColor
-        second: {r: .368999988, g: .349000007, b: .340999991, a: 1}
+          name: _SkyTint
+        second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
       data:
         first:
-          name: _SkyTint
-        second: {r: .5, g: .5, b: .5, a: 1}
+          name: _GroundColor
+        second: {r: 0.369, g: 0.349, b: 0.341, a: 1}
       data:
         first:
           name: _Tint
-        second: {r: .602941155, g: .602941155, b: .602941155, a: .5}
+        second: {r: 0.4705882, g: 0.4705882, b: 0.4705882, a: 0.5}
