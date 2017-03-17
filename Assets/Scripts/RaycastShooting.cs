@@ -11,26 +11,26 @@ public class RaycastShooting : MonoBehaviour {
     /// The object to shoot.
     /// </summary>
     public GameObject shot;
-    /// <summary>
-    /// The spawn point of the shot,
-    /// </summary>
-    public Transform shotSpawn;
 
     /// <summary>
     /// The damage of the shot.
     /// </summary>
-    public float shotDamage = 1.0f;
+	public float shotDamage = 1.0f;
+
+    public Transform ShotSpawn;
+
     /// <summary>
     /// The range of the shot.
     /// </summary>
     int shotRange = 100;
 
 
+
     /// <summary>
     /// The fire rate of the ray.
     /// </summary>
     [Range(0.1f, 2)]
-    public float fireRate = 0.5f;
+    public float fireRate = 0.6f;
 
 
     /// <summary>
@@ -67,13 +67,14 @@ public class RaycastShooting : MonoBehaviour {
     void Update()
     {
         // ray in the middle of the play screen
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f));
+        Vector3 shotSpawnPosition = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f);
+        Ray ray = Camera.main.ScreenPointToRay(shotSpawnPosition);
 
         if (Input.GetButton("Fire1") && Time.time > nextFire && !gameController.paused && !gameController.gameOver && gameController.gameRunning)
         {
             nextFire = Time.time + fireRate;
 
-            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+			Instantiate(shot, ShotSpawn.position, ShotSpawn.rotation);
 
             // sends out a ray from the given spawn with the given range
             if (Physics.SphereCast(ray, raycastRadius, out hit, shotRange))

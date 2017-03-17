@@ -23,11 +23,6 @@ public class UIManager : MonoBehaviour {
     /// </summary>
     public Canvas menuCanvas;
 
-    /// <summary>
-    /// The crosshair object.
-    /// </summary>
-    public GameObject crosshair;
-
 	/// <summary>
 	/// The game status text.
 	/// </summary>
@@ -167,7 +162,7 @@ public class UIManager : MonoBehaviour {
     /// <param name="show">If set to <c>true</c> shows the crosshair, otherwise hides the crosshair.</param>
     internal void CrosshairEnabled(bool show)
     {
-        crosshair.SetActive(show);
+        //crosshair.SetActive(show);
     }
 
     /// <summary>

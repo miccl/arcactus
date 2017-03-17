@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /// <summary>
 /// Script to destroy all objects which exit the boundary.
@@ -10,7 +9,7 @@ public class DestroyByBoundary : MonoBehaviour {
     /// Destroys the enemy who exits the trigger.
     /// </summary>
     /// <param name="other"></param>
-	void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider other)
     {
         Destroy(other.gameObject);
     }

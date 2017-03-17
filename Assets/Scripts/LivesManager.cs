@@ -60,13 +60,19 @@ public class LivesManager : MonoBehaviour
     /// Applies the damage to the player.
     /// </summary>
     /// <param name="damageValue"> The taken damage </param>
+    ///
+    ///
+    ///
+
+
+
     public void ApplyDamage(float damageValue)
     {
         if (!gameController.gameOver)
         {
             lives -= damageValue;
             ScreenFlash sf = gameObject.GetComponentInChildren<ScreenFlash>();
-            sf.StartFlash();
+            //sf.StartFlash();
             UpdateLives();
             if (lives <= 0)
             {
