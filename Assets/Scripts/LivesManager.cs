@@ -71,8 +71,8 @@ public class LivesManager : MonoBehaviour
         if (!gameController.gameOver)
         {
             lives -= damageValue;
-            ScreenFlash sf = gameObject.GetComponentInChildren<ScreenFlash>();
-            //sf.StartFlash();
+//            ScreenFlash sf = gameObject.GetComponentInChildren<ScreenFlash>();
+//            sf.StartFlash();
             UpdateLives();
             if (lives <= 0)
             {

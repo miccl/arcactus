@@ -9,5 +9,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/main.unity
     guid: 26fa8d6cbfce04045a414f04618868c2
   - enabled: 0
-    path: Assets/GoogleVR/Demos/Scenes/GVRDemo.unity
+    path: Assets/Assets/GoogleVR/Demos/Scenes/GVRDemo.unity
     guid: bb36d2905dc634f1c9eecb35beecaca8

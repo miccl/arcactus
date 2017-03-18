@@ -46,18 +46,9 @@ public class ScreenFlash : MonoBehaviour {
 	/// <summary>
 	/// The fade material.
 	/// </summary>
-    private Material fadeMaterial = null;
+    public Material fadeMaterial;
     private bool isFading = false;
     private YieldInstruction fadeInstruction = new WaitForEndOfFrame();
-
-    /// <summary>
-    /// Initialize.
-    /// </summary>
-    void Awake()
-    {
-        // create the fade material
-        fadeMaterial = new Material(Shader.Find("Oculus/Unlit Transparent Color"));
-    }
 
 	/// <summary>
 	/// Starts the flash animation.
@@ -67,16 +58,7 @@ public class ScreenFlash : MonoBehaviour {
         StartCoroutine(FadeIn());
     }
 
-    /// <summary>
-    /// Cleans up the fade material
-    /// </summary>
-    void OnDestroy()
-    {
-        if (fadeMaterial != null)
-        {
-            Destroy(fadeMaterial);
-        }
-    }
+
 
     /// <summary>
     /// Fades alpha to 0.0
