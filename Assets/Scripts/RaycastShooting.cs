@@ -30,7 +30,7 @@ public class RaycastShooting : MonoBehaviour {
     /// The fire rate of the ray.
     /// </summary>
     [Range(0.1f, 2)]
-    public float fireRate = 0.6f;
+    public float fireRate = 0.5f;
 
 
     /// <summary>
