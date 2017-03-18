@@ -70,19 +70,11 @@ public class RaycastShooting : MonoBehaviour {
         Vector3 shotSpawnPosition = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f);
         Ray ray = Camera.main.ScreenPointToRay(shotSpawnPosition);
 
-        if (Input.GetButton("Fire1") && Time.time > nextFire && !gameController.paused && !gameController.gameOver && gameController.gameRunning)
+        if (Input.GetButtonDown("Fire1") && Time.time > nextFire && !gameController.paused && !gameController.gameOver && gameController.gameRunning)
         {
             nextFire = Time.time + fireRate;
 
 			Instantiate(shot, ShotSpawn.position, ShotSpawn.rotation);
-
-            // sends out a ray from the given spawn with the given range
-            if (Physics.SphereCast(ray, raycastRadius, out hit, shotRange))
-            {
-                // send a message to the strucked object and execute the function "ApplyDamage" with the parameter damage
-                hit.transform.SendMessage("ApplyDamage", shotDamage, SendMessageOptions.DontRequireReceiver);
-            }
-
         }
     }
 

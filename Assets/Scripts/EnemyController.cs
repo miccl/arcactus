@@ -124,7 +124,7 @@ public class EnemyController : MonoBehaviour {
     void OnCollisionEnter(Collision collision)
     {
         GameObject other = collision.gameObject;
-        if(other.tag == "Player")
+        if(other.CompareTag("Player"))
         {
             LivesManager lv = other.gameObject.GetComponent<LivesManager>();
             lv.ApplyDamage(damage);
